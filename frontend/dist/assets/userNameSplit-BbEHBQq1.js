@@ -1,0 +1,1 @@
+const s=n=>{if(!n||typeof n.Name!="string"||n.Name.trim().length===0)return;const t=n.Name.trim().split(" ").filter(e=>e.length>0);if(t.length===0)return;if(t.length===1){const e=t[0];return e.length===1?(e+e).toUpperCase():e.substring(0,2).toUpperCase()}const r=t[0][0],i=t[t.length-1][0];return(r+i).toUpperCase()};export{s as u};
