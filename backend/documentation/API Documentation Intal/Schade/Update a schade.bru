@@ -1,0 +1,23 @@
+meta {
+  name: Update a schade
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/schade/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {}
+}

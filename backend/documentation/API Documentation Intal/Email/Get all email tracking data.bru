@@ -1,0 +1,15 @@
+meta {
+  name: Get all email tracking data
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/email/tracking/all
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

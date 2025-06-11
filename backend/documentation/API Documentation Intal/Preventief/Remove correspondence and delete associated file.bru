@@ -1,0 +1,20 @@
+meta {
+  name: Remove correspondence and delete associated file
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/api/preventief/correspondence/:preventiefID/:CorrespondenceID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  preventiefID: 
+  CorrespondenceID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

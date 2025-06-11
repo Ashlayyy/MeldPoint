@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{subject}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Helpdesk Melding Afgesloten</h1>
+        </div>
+
+        <div class="content">
+            <p>Beste {{userName}},</p>
+
+            <p>Je helpdesk melding met onderwerp "<strong>{{ticketSubject}}</strong>" is afgesloten.</p>
+
+            <h3>Details:</h3>
+            <ul>
+                <li><strong>Ticket nummer:</strong> {{ticketNumber}}</li>
+                <li><strong>Status:</strong> {{status}}</li>
+                <li><strong>Oplossing:</strong> {{solution}}</li>
+            </ul>
+
+            <p>Als je nog vragen hebt, kun je altijd een nieuwe melding aanmaken.</p>
+        </div>
+
+        <div class="footer">
+            <p>{{signatureText}}<br>
+                {{teamName}}</p>
+        </div>
+    </div>
+</body>
+
+</html>

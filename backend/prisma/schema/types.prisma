@@ -1,0 +1,112 @@
+type IDArray {
+  IDs String[]
+}
+
+type CorrespondenceIDs {
+  IDs String
+}
+
+type Steps {
+  Obstakel Base?
+  Plan     Base?
+  Do       Base?
+  Check    Base?
+  Act      Base?
+  Finished Base?
+}
+
+type Smart {
+  Specifiek    SmartItem?
+  Meetbaar     SmartItem?
+  Haalbaar     SmartItem?
+  Relevant     SmartItem?
+  Tijdgebonden SmartItem?
+}
+
+type SmartItem {
+  Text        String?
+  Behaald     String?
+  Toelichting String?
+}
+
+type Item {
+  id            String?
+  WieID         String?
+  Actie         String?
+  Deadline      DateTime?
+  Status        ItemStatus?
+  Effectiviteit Effectiviteit?
+  Impact        Impact?
+  Comments      String?
+}
+
+type Strategie {
+  KPI      String?
+  Comments String?
+}
+
+type Base {
+  Deadline DateTime?
+  Finished Boolean?
+}
+
+enum PDCA_Status {
+  Wel
+  Deels
+  Niet
+}
+
+enum Impact {
+  Groot
+  Gemiddeld
+  Klein
+}
+
+enum Effectiviteit {
+  Zeer
+  Redelijk
+  Weinig
+}
+
+enum ItemStatus {
+  Open
+  Progress
+  Done
+}
+
+enum Type {
+  Melding
+  Algemeen
+  Idee
+}
+
+enum ResourceType {
+  ALL
+  MELDING
+  IDEE
+  PROJECT
+  SCHADE
+  PROJECTLEIDER
+  STATUS
+  USER
+  CORRECTIEF
+  ACTIEHOUDER
+  PREVENTIEF
+  CHAT
+  ACRHIVE
+  HISTORY
+  AUDIT
+  SETTINGS
+  DEPARTMENT
+  FINANCE
+  CHANGELOGS
+  ANALYTICS
+}
+
+enum PermissionAction {
+  READ
+  CREATE
+  UPDATE
+  DELETE
+  MANAGE
+}

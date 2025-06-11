@@ -1,0 +1,20 @@
+meta {
+  name: Remove correspondence and delete associated file
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/api/melding/correspondence/:meldingId/:correspondenceId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  meldingId: 
+  correspondenceId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Reset user settings to default
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/settings/:userId/reset
+  body: none
+  auth: bearer
+}
+
+params:path {
+  userId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

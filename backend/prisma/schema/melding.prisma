@@ -1,0 +1,50 @@
+model Melding {
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  VolgNummer        Int?               @unique
+  Archived          Boolean
+  PDCA              Boolean            @default(false)
+  Type              Type
+  Obstakel          String
+  CorrespondenceIDs CorrespondenceIDs?
+  CloneIds          IDArray?
+  ClonedTo          String?
+  Deelorder         String?
+  Samenvatting      String?
+  Category          String?
+  Title             String?
+  Correctief        Correctief?        @relation(fields: [CorrectiefID], references: [id])
+  Preventief        Preventief?        @relation(fields: [PreventiefID], references: [id])
+  Project           Project?           @relation(fields: [ProjectID], references: [id])
+  Status            Status?            @relation(fields: [StatusID], references: [id])
+  User              User?              @relation(fields: [UserID], references: [id])
+  CorrectiefID      String?            @unique @db.ObjectId
+  PreventiefID      String?            @db.ObjectId
+  ProjectID         String?            @db.ObjectId
+  StatusID          String?            @db.ObjectId
+  ActiehouderID     String?            @db.ObjectId
+  UserID            String?            @db.ObjectId
+  CreatedAt         DateTime           @default(now())
+  UpdatedAt         DateTime           @updatedAt
+  ChatRoom          ChatRoom?
+  CreatedBy         User?              @relation("CreatedBy", fields: [CreatedByID], references: [id])
+  CreatedByID       String?            @db.ObjectId
+  ArchivedAt        DateTime?
+}
+
+model Idee {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  Idee              String
+  Archived          Boolean
+  CorrespondenceIDs IDArray?
+  ChatRoomID        String?  @unique
+  CreatedAt         DateTime @default(now())
+  UpdatedAt         DateTime @updatedAt
+}
+
+model VolgNummer {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  VolgNummer Int      @unique @default(1)
+  Type       String   @default("volgNummer")
+  CreatedAt  DateTime @default(now())
+  UpdatedAt  DateTime @updatedAt
+}

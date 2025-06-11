@@ -1,0 +1,18 @@
+model Correctief {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  Deadline    String
+  Oplossing   String
+  Faalkosten  Int?
+  AkoordOPS   Boolean?
+  TIMER       Int?
+  Status      Status?  @relation(fields: [StatusID], references: [id])
+  StatusID    String?  @db.ObjectId
+  CreatedAt   DateTime @default(now())
+  UpdatedAt   DateTime @updatedAt
+  Melding     Melding?
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      String?  @db.ObjectId
+  tasks       Task[]
+  CreatedBy   User?    @relation("CreatedByCorrectief", fields: [CreatedByID], references: [id])
+  CreatedByID String?  @db.ObjectId
+}

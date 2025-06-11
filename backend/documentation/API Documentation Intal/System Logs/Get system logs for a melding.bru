@@ -1,0 +1,21 @@
+meta {
+  name: Get system logs for a melding
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/systemLog/melding/:meldingId/:preventiefId/:correctiefId/history
+  body: none
+  auth: bearer
+}
+
+params:path {
+  meldingId: 
+  preventiefId: 
+  correctiefId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

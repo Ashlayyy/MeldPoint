@@ -1,0 +1,20 @@
+meta {
+  name: Remove a deelorder from a project
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/api/project/:id/deelorder/:deelorder
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+  deelorder: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

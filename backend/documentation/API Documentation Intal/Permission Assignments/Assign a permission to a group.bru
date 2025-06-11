@@ -1,0 +1,20 @@
+meta {
+  name: Assign a permission to a group
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/permissions/assign/group/:groupId/permission/:permissionId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  groupId: 
+  permissionId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

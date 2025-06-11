@@ -1,0 +1,20 @@
+meta {
+  name: Add team member to correctief
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/correctief/teamleden/:meldingID/:teamlidID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+  teamlidID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

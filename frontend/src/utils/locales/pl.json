@@ -1,0 +1,559 @@
+{
+  "profile": {
+    "greeting_morning": "Dzień dobry, {name}",
+    "greeting_afternoon": "Dzień dobry, {name}",
+    "greeting_evening": "Dobry wieczór, {name}",
+    "greeting_night": "Powinnaś Powinieneś spać, {name}!",
+    "allow_notifications": "Zezwól na powiadomienia",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj",
+    "my_issues": "Moje feedback",
+    "roles": {
+      "admin": "Administrator",
+      "user": "Użytkownik"
+    }
+  },
+  "myIssues": {
+    "title": "Mój Panel Opinii",
+    "subtitle": "Śledź i zarządzaj swoimi opiniami efektywnie",
+    "emptyState": "Nie znaleziono zgłoszeń",
+    "states": {
+      "open": "Otwarte",
+      "closed": "Zamknięte"
+    },
+    "labels": {
+      "created": "Utworzono",
+      "closed": "Zamknięto",
+      "na": "N/D"
+    },
+    "buttons": {
+      "viewDetails": "Zobacz Szczegóły",
+      "close": "Zamknij",
+      "submitComment": "Wyślij Komentarz"
+    },
+    "details": {
+      "description": "Opis",
+      "commentsTitle": "Komentarze ({count})",
+      "addCommentTitle": "Dodaj Komentarz",
+      "commentPlaceholder": "Wpisz swój komentarz tutaj..."
+    }
+  },
+  "verbeterplein": {
+    "breadcrumbs": {
+      "home": "Strona główna",
+      "verbeterplein": "Verbeterplein"
+    },
+    "buttons": {
+      "new_report": "Raport"
+    },
+    "tabs": {
+      "ops": "Skrzynka odbiorcza",
+      "correctief": "Proces naprawczy",
+      "pdca": "Usprawnienia",
+      "all": "Wszystkie",
+      "archived": "Archiwum",
+      "engagement": "Zaangażowanie"
+    },
+    "createReport": {
+      "step1": "Przeszkoda",
+      "step2": "Projekt",
+      "step3": "Pliki",
+      "step3_subtitle": "Opcjonalne",
+      "step4": "Proces naprawczy",
+      "step5": "Przegląd"
+    },
+    "showItem": {
+      "headers": {
+        "general": "OGÓLNE",
+        "improvements": "USPRAWNIENIA",
+        "obstacle_data": "DANE PRZESZKODY",
+        "corrective": "PROCES NAPRAWCZY",
+        "improvement": "USPRAWNIENIE"
+      },
+      "tabs": {
+        "report": "Raport",
+        "communication": "Komunikacja",
+        "pdca": "Usprawnienia",
+        "history": "Historia",
+        "engagement": "Zaangażowanie"
+      },
+      "fields": {
+        "sequence_number": "Numer sekwencyjny",
+        "project_number": "Numer projektu",
+        "project_name": "Nazwa projektu",
+        "sub_order": "Podzlecenie",
+        "project_team": "Zespół projektowy",
+        "summary": "Podsumowanie",
+        "category": "Kategoria",
+        "obstacle": "Przeszkoda",
+        "linked_to": "Powiązane z",
+        "title": "Tytuł",
+        "action_holder": "Osoba odpowiedzialna",
+        "deadline": "Termin",
+        "fail_costs": "Koszty usterek",
+        "solution": "Rozwiązanie",
+        "approval": "Zatwierdzenie zakupu",
+        "approval_no": "Nie",
+        "approval_yes": "Tak",
+        "attachments": "Załączniki",
+        "client": "Klient",
+        "team_members": "Członkowie zespołu",
+        "cause": "Przyczyna",
+        "linked_reports": "Powiązane raporty"
+      },
+      "actions": {
+        "edit": "Edytuj",
+        "start_pdca": "Rozpocznij PDCA",
+        "add_attachment": "Dodaj załącznik",
+        "share": "Udostępnij link",
+        "copy": "Kopiuj link"
+      },
+      "placeholders": {
+        "no_summary": "Brak podsumowania",
+        "no_category": "Brak kategorii",
+        "na": "Nie dotyczy",
+        "no_solution": "Nie podano rozwiązania",
+        "no_obstacle": "Nie podano opisu przeszkody"
+      },
+      "dialog": {
+        "form_title": "Formularz",
+        "chat": "Czat"
+      },
+      "buttons": {
+        "questions": "Pytania"
+      },
+      "history": {
+        "events_count": "zdarzenia",
+        "correctief": "Pętla naprawcza",
+        "preventief": "Ulepszenie",
+        "actions": {
+          "update_correctief": "Zaktualizowano naprawę",
+          "update_preventief": "Zaktualizowano ulepszenie",
+          "create_correctief": "Utworzono naprawę",
+          "create_preventief": "Utworzono ulepszenie",
+          "delete_correctief": "Usunięto naprawę",
+          "delete_preventief": "Usunięto ulepszenie",
+          "archive_correctief": "Zarchiwizowano naprawę",
+          "archive_preventief": "Zarchiwizowano ulepszenie",
+          "create_report": "Utworzono zgłoszenie",
+          "delete_report": "Usunięto zgłoszenie",
+          "update_report": "Zaktualizowano zgłoszenie",
+          "archive_report": "Zarchiwizowano zgłoszenie",
+          "add_correspondence_id": "Dodano korespondencję",
+          "remove_correspondence_id": "Usunięto korespondencję",
+          "add_correspondence_to_preventief": "Dodano korespondencję do ulepszenia",
+          "remove_correspondence_from_preventief": "Usunięto korespondencję z ulepszenia"
+        },
+        "id": "ID",
+        "by_user": "Przez {name}",
+        "unknown_time": "Nieznany czas",
+        "minutes_ago": "{minutes} minut temu",
+        "hours_ago": "{hours} godzin temu",
+        "yesterday": "Wczoraj",
+        "view_changes": "Zobacz zmiany",
+        "view_files": "Zobacz pliki",
+        "correspondence_files": "Pliki korespondencji",
+        "view_file": "Zobacz plik",
+        "before": "Przed",
+        "after": "Po",
+        "empty": "Brak historii",
+        "request_info": "Informacje o żądaniu",
+        "environment": "Środowisko",
+        "version": "Wersja",
+        "execution_time": "Czas wykonania",
+        "status_code": "Kod statusu",
+        "technical_details": "Szczegóły techniczne",
+        "endpoint": "Punkt końcowy",
+        "method": "Metoda",
+        "resource_type": "Typ zasobu",
+        "timing": "Czas",
+        "timestamp": "Znacznik czasu",
+        "requested_at": "Żądanie wystosowano",
+        "no_history": "Brak dostępnej historii",
+        "advanced_details": "Zaawansowane Szczegóły Techniczne",
+        "request_details": "Szczegóły Żądania",
+        "response_details": "Szczegóły Odpowiedzi",
+        "correlation_id": "ID Korelacji",
+        "api_version": "Wersja API",
+        "preventief_id": "ID Zapobiegawcze",
+        "correctief_id": "ID Naprawcze",
+        "resource_id": "ID Zasobu",
+        "response_time": "Czas Odpowiedzi",
+        "content_length": "Rozmiar Zawartości",
+        "result_count": "Liczba Wyników",
+        "user_id": "ID Użytkownika",
+        "user_email": "Email Użytkownika",
+        "ip_address": "Adres IP",
+        "session_id": "ID Sesji",
+        "user_agent": "User Agent"
+      },
+      "edit": {
+        "title": "Edytuj",
+        "category": "Edytuj kategorię",
+        "summary": "Edytuj podsumowanie"
+      },
+      "engagement": {
+        "loading": "Ładowanie danych zaangażowania...",
+        "no_data": "Brak danych zaangażowania dla tego elementu.",
+        "total_views": "Całkowita liczba wyświetleń",
+        "unique_viewers": "Unikalni widzowie",
+        "total_events": "Całkowita liczba zarejestrowanych zdarzeń",
+        "activity_timeline": "Oś czasu aktywności",
+        "chart_placeholder": "Wykres aktywności już wkrótce...",
+        "eventTypes": {
+          "view": "Wyświetlono",
+          "comment": "Dodano komentarz",
+          "update": "Zaktualizowano",
+          "create": "Utworzono",
+          "update_preventief": "Zaktualizowano ulepszenie",
+          "create_preventief": "Utworzono ulepszenie",
+          "other": "Inna akcja",
+          "history_view": "Historia wyświetlona",
+          "open_url": "Otworzono URL",
+          "check_pdca": "Sprawdzono PDCA"
+        },
+        "event_type_label": "Typ zdarzenia",
+        "charts": {
+          "activity_timeline_title": "Oś czasu aktywności",
+          "views_by_department_title": "Wyświetlenia według działu",
+          "event_type_distribution_title": "Rozkład typów zdarzeń",
+          "top_users_title": "Najlepsi użytkownicy wg zdarzeń",
+          "engagement_trend_title": "Trend zaangażowania w czasie",
+          "activity_by_hour_title": "Aktywność wg godziny dnia",
+          "activity_by_day_title": "Aktywność wg dnia tygodnia"
+        }
+      }
+    },
+    "table": {
+      "headers": {
+        "id": "ID",
+        "project": "Projekt",
+        "project_name": "Nazwa projektu",
+        "deelorder": "Podzlecenie",
+        "akoordOPS": "Zatwierdzenie zakupu",
+        "fail_costs": "Koszty usterek",
+        "status_correctief": "Status procesu naprawczego",
+        "status_preventief": "Status usprawnień",
+        "action_holder_pdca": "Osoba odpowiedzialna",
+        "begeleider_pdca": "Begeleider",
+        "status_pdca": "Status PDCA",
+        "deadline": "Termin",
+        "title_pdca": "Tytuł PDCA",
+        "processdeel": "Process Deel",
+        "action_holder_correctief": "Osoba odpowiedzialna za działania korygujące",
+        "action": "Akcje"
+      },
+      "na": "Nie dotyczy"
+    },
+    "filters": {
+      "title": "Filtry",
+      "clear": "Wyczyść",
+      "active_count": "Aktywne filtry: {count}"
+    },
+    "edit_ops": {
+      "title": "Edytuj raport",
+      "labels": {
+        "project": "Numer projektu",
+        "part_order": "Podzlecenie",
+        "project_team": "Zespół projektowy",
+        "obstacle": "Przeszkoda"
+      }
+    },
+    "dialog": {
+      "chat": "Czat"
+    },
+    "edit_pdca": {
+      "title": "PDCA",
+      "labels": {
+        "title": "Tytuł",
+        "action_holder": "Osoba odpowiedzialna",
+        "deadline": "Termin",
+        "team_members": "Członkowie zespołu",
+        "status": "Status"
+      }
+    }
+  },
+  "admin": {
+    "title": "Administrator",
+    "migration": {
+      "title": "Migracja",
+      "upload_and_start": "Prześlij i rozpocznij migrację",
+      "in_progress": "Migracja w toku...",
+      "retry_connection": "Ponów połączenie",
+      "reconnecting": "Ponowne nawiązywanie połączenia...",
+      "no_file_selected": "Nie wybrano pliku",
+      "completed_in": "Migracja zakończona w {time} sekund",
+      "projects_progress": "Postęp projektów",
+      "reports_progress": "Postęp raportów",
+      "output": "Wynik migracji",
+      "confirm": "Czy na pewno chcesz rozpocząć migrację? To zajmie chwilę i wszystkie dane zostaną usunięte!"
+    },
+    "backup": {
+      "title": "Zarządzanie Kopiami Zapasowymi",
+      "restore_title": "Przywracanie Kopii Zapasowej",
+      "restore_warning": "Ostrzeżenie: Przywrócenie kopii zapasowej zastąpi wszystkie bieżące dane. Tej akcji nie można cofnąć.",
+      "confirm_restore": "Czy na pewno chcesz przywrócić tę kopię zapasową? Wszystkie bieżące dane zostaną utracone.",
+      "confirm_delete": "Czy na pewno chcesz usunąć tę kopię zapasową?",
+      "select_backup": "Wybierz kopię zapasową do przywrócenia",
+      "selected_backup": "Wybrana Kopia Zapasowa",
+      "start_restore": "Rozpocznij Przywracanie",
+      "restore_success": "Kopia zapasowa została przywrócona pomyślnie",
+      "delete_success": "Kopia zapasowa została usunięta pomyślnie",
+      "create_success": "Kopia zapasowa została utworzona pomyślnie",
+      "create_backup": "Utwórz Kopię Zapasową",
+      "download": "Pobierz",
+      "delete": "Usuń",
+      "restore": "Przywróć",
+      "no_backups": "Nie znaleziono kopii zapasowych",
+      "table": {
+        "backup_name": "Nazwa Kopii",
+        "created_at": "Data Utworzenia",
+        "actions": "Akcje"
+      },
+      "restore_status": {
+        "started": "Rozpoczęto przywracanie",
+        "downloading": "Pobieranie kopii zapasowej",
+        "decompressing": "Rozpakowywanie danych",
+        "restoring": "Przywracanie danych",
+        "completed": "Przywracanie zakończone"
+      },
+      "create_status": {
+        "started": "Rozpoczęto tworzenie kopii zapasowej",
+        "generating": "Generowanie danych kopii",
+        "compressing": "Kompresowanie danych",
+        "uploading": "Przesyłanie kopii",
+        "finalizing": "Finalizowanie kopii",
+        "completed": "Kopia zapasowa utworzona"
+      },
+      "backup_created": "Kopia zapasowa została utworzona pomyślnie",
+      "download_backup": "Pobieranie kopii zapasowej...",
+      "download_success": "Kopia zapasowa została pobrana pomyślnie",
+      "delete_backup": "Usuwanie kopii zapasowej...",
+      "restore_backup": "Przywracanie kopii zapasowej..."
+    },
+    "email": {
+      "overview": "Śledzenie e-mail",
+      "templates": "Szablony e-mail",
+      "add_template": "Dodaj szablon",
+      "edit_template": "Edytuj szablon",
+      "new_template": "Nowy szablon",
+      "table": {
+        "date_sent": "Wysłano",
+        "status": "Status",
+        "recipient": "Odbiorca",
+        "opened": "Otwarto",
+        "opened_from": "Otwarto z",
+        "name": "Nazwa",
+        "subject": "Temat",
+        "variables": "Zmienne",
+        "actions": "Akcje"
+      }
+    },
+    "permissions": {
+      "title": "Zarządzanie uprawnieniami",
+      "add_permission": "Dodaj uprawnienie",
+      "edit_permission": "Edytuj uprawnienie",
+      "delete_permission": "Usuń uprawnienie",
+      "delete_confirmation": "Czy na pewno chcesz usunąć to uprawnienie? Tej akcji nie można cofnąć.",
+      "rules": {
+        "name_required": "Nazwa jest wymagana",
+        "description_required": "Opis jest wymagany",
+        "resource_type_required": "Typ zasobu jest wymagany",
+        "permission_action_required": "Akcja uprawnienia jest wymagana"
+      },
+      "table": {
+        "name": "Nazwa",
+        "description": "Opis",
+        "permission_type": "Typ uprawnienia",
+        "resource_type": "Typ zasobu",
+        "permission_action": "Akcja uprawnienia",
+        "created_at": "Utworzono",
+        "actions": "Akcje"
+      },
+      "permission_types": {
+        "read": "Odczyt",
+        "create": "Tworzenie",
+        "update": "Aktualizacja",
+        "delete": "Usuwanie",
+        "manage": "Zarządzanie"
+      },
+      "resource_types": {
+        "melding": "Zgłoszenie",
+        "idee": "Pomysł",
+        "project": "Projekt",
+        "schade": "Szkoda",
+        "projectleider": "Kierownik projektu",
+        "status": "Status",
+        "user": "Użytkownik",
+        "correctief": "Działanie korygujące",
+        "actiehouders": "Osoby odpowiedzialne",
+        "preventief": "Działanie zapobiegawcze",
+        "chat": "Czat",
+        "archive": "Archiwum",
+        "history": "Historia",
+        "audit": "Audyt",
+        "settings": "Ustawienia",
+        "department": "Dział",
+        "all": "Wszystko"
+      }
+    },
+    "roles": {
+      "title": "Zarządzanie rolami",
+      "add_role": "Dodaj rolę",
+      "edit_role": "Edytuj rolę",
+      "create_role": "Utwórz rolę",
+      "delete_role": "Usuń rolę",
+      "delete_group": "Usuń grupę",
+      "delete_confirmation_role": "Czy na pewno chcesz usunąć tę rolę? Tej akcji nie można cofnąć.",
+      "delete_confirmation_group": "Czy na pewno chcesz usunąć tę grupę? Tej akcji nie można cofnąć.",
+      "edit_group": "Edytuj grupę",
+      "create_group": "Utwórz grupę",
+      "manage_role": "Zarządzaj rolą",
+      "manage_group": "Zarządzaj grupą",
+      "permissions": "Wybierz uprawnienia",
+      "table": {
+        "name": "Nazwa",
+        "description": "Opis",
+        "permissions": "Uprawnienia",
+        "created_at": "Utworzono",
+        "actions": "Akcje"
+      }
+    },
+    "users": {
+      "title": "Zarządzanie użytkownikami",
+      "pageTitle": "Zarządzanie użytkownikami",
+      "delete_user": "Usuń użytkownika",
+      "delete_confirmation_user": "Czy na pewno chcesz usunąć tego użytkownika? Tej akcji nie można cofnąć.",
+      "manage_user_access": "Zarządzaj dostępem użytkownika",
+      "dialog": {
+        "roles": "Role",
+        "groups": "Grupy",
+        "permissions": "Uprawnienia",
+        "department": "Dział",
+        "selectRoles": "Wybierz role",
+        "selectGroups": "Wybierz grupy",
+        "selectPermissions": "Wybierz uprawnienia",
+        "selectDepartment": "Wybierz dział"
+      },
+      "table": {
+        "search": "Szukaj użytkowników",
+        "user": "Użytkownik",
+        "email": "E-mail",
+        "department": "Dział",
+        "lastLogin": "Ostatnie logowanie",
+        "createdAt": "Utworzono",
+        "actions": "Akcje"
+      },
+      "department_updated": "Dział został zaktualizowany pomyślnie"
+    },
+    "github": {
+      "issues": {
+        "title": "Problemy GitHub",
+        "page_title": "Zarządzanie Problemami GitHub",
+        "filter": {
+          "status": "Status",
+          "type": "Typ",
+          "search": "Szukaj problemów"
+        },
+        "table": {
+          "title": "Tytuł",
+          "status": "Status",
+          "type": "Typ",
+          "created": "Utworzono",
+          "actions": "Akcje",
+          "labels": "Etykiety"
+        },
+        "actions": {
+          "close": "Zamknij Problem",
+          "reopen": "Ponownie Otwórz Problem",
+          "view_details": "Zobacz Szczegóły"
+        },
+        "details_title": "Szczegóły Problemu",
+        "created_by": "Utworzony przez",
+        "close_issue": "Zamknij Problem",
+        "close_reason": "Powód Zamknięcia",
+        "close_comment": "Komentarz Zamknięcia",
+        "close_comment_placeholder": "Dodaj komentarz wyjaśniający powód zamknięcia problemu...",
+        "close_reasons": {
+          "Duplicate": "Duplikat Problemu",
+          "Invalid": "Nieprawidłowy Problem",
+          "wont_fix": "Nie Będzie Naprawiony",
+          "Completed": "Zakończony",
+          "Not Needed": "Niepotrzebny",
+          "Other": "Inny"
+        },
+        "reason_required": "Powód jest wymagany",
+        "comment_required": "Komentarz jest wymagany",
+        "confirm_close": "Potwierdź Zamknięcie",
+        "close_success_title": "Problem Zamknięty",
+        "close_success_message": "Problem został pomyślnie zamknięty",
+        "close_error_title": "Błąd Zamykania Problemu",
+        "close_error_message": "Wystąpił błąd podczas zamykania problemu",
+        "reopen_success_title": "Problem Ponownie Otwarty",
+        "reopen_success_message": "Problem został pomyślnie ponownie otwarty",
+        "reopen_error_title": "Błąd Ponownego Otwierania",
+        "reopen_error_message": "Wystąpił błąd podczas ponownego otwierania problemu",
+        "load_error": "Nie udało się załadować problemów",
+        "closed_success": "Problem został pomyślnie zamknięty",
+        "reopened_success": "Problem został pomyślnie ponownie otwarty",
+        "status_update_error": "Nie udało się zaktualizować statusu problemu",
+        "closing_issue_message": "Zamykanie problemu...",
+        "close_comment_template": "Zamknięte przez {user}: {reason} - {message}",
+        "reopen_comment_template": "Ponownie otwarte przez {user}",
+        "coming_soon": "Dodatkowe funkcje wkrótce..."
+      }
+    },
+    "departments": {
+      "title": "Zarządzanie działami",
+      "pageTitle": "Zarządzanie działami",
+      "add_department": "Dodaj dział",
+      "edit_department": "Edytuj dział",
+      "delete_department": "Usuń dział",
+      "delete_confirmation": "Czy na pewno chcesz usunąć ten dział? Tej akcji nie można cofnąć.",
+      "created": "Dział utworzony pomyślnie",
+      "updated": "Dział zaktualizowany pomyślnie",
+      "deleted": "Dział usunięty pomyślnie",
+      "updating": "Aktualizacja działu...",
+      "table": {
+        "name": "Nazwa",
+        "description": "Opis",
+        "created_at": "Utworzono",
+        "actions": "Akcje"
+      }
+    }
+  },
+  "general": {
+    "retry": "Spróbuj ponownie",
+    "fallback": {
+      "loading": "Ładowanie komponentu..."
+    },
+    "yes": "Tak",
+    "no": "Nie",
+    "cancel": "Anuluj",
+    "events": "Zdarzenia",
+    "event": "Zdarzenie",
+    "view": "Widok",
+    "views": "Widoki",
+    "time_hour": "Godzina",
+    "day_of_week": "Dzień tygodnia",
+    "day": "Dzień"
+  },
+  "days": {
+    "sun": "Niedziela",
+    "mon": "Poniedziałek",
+    "tue": "Wtorek",
+    "wed": "Środa",
+    "thu": "Czwartek",
+    "fri": "Piątek",
+    "sat": "Sobota"
+  },
+  "errors": {
+    "data_transform_error": "Błąd podczas przekształcania danych dla wykresu {index}: {error}",
+    "fetch_error": "Nie udało się pobrać danych: {error}"
+  },
+  "analytics": {
+    "activity_time_series_name": "Zdarzenia wg godziny",
+    "activity_day_series_name": "Zdarzenia wg dnia",
+    "trend_series_name": "Zdarzenia w czasie"
+  }
+}

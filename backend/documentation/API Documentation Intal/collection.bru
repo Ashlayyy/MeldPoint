@@ -1,0 +1,15 @@
+headers {
+  x-api-request-secret: {{x-request-secret}}
+  x-api-key: {{x-api-key}}
+}
+
+auth {
+  mode: bearer
+}
+
+vars:pre-request {
+  baseUrl: http://localhost:4000
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDVjODk5MTAyZTIzZGUyZDMyZmIxYSIsImVtYWlsIjoiYXNobGF5c3RldXJAaW50YWwubmwiLCJuYW1lIjoiQXNobGF5IFN0ZXVyIiwiaWF0IjoxNzMyNjQ1MTU2fQ.oGYXMJBflaNBUmrwdWONYzplWJv5zHhEjTSQIFUxyzQ
+  x-api-key: 2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b
+  x-request-secret: secret
+}

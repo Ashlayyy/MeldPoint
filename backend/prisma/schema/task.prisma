@@ -1,0 +1,28 @@
+model Task {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  message      String
+  userId       String    @db.ObjectId
+  url          String?
+  action       String
+  actionType   String?
+  category     String?
+  preventiefId String?   @db.ObjectId
+  correctiefId String?   @db.ObjectId
+  createdAt    DateTime  @default(now())
+  deadline     DateTime? @default(now())
+  completedAt  DateTime?
+  finished     Boolean   @default(false)
+  level        Int?      @default(0) // 0 = CORR, 1 = PD, 2 = PDCA
+  data         Json?
+  metadata     Json?
+
+  user       User        @relation(fields: [userId], references: [id])
+  preventief Preventief? @relation(fields: [preventiefId], references: [id])
+  correctief Correctief? @relation(fields: [correctiefId], references: [id])
+
+  @@index([userId])
+  @@index([completedAt])
+  @@index([preventiefId])
+  @@index([correctiefId])
+  @@map("tasks")
+}

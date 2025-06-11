@@ -1,0 +1,19 @@
+meta {
+  name: Get a single schade
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/schade/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

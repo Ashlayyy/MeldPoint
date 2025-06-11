@@ -1,0 +1,15 @@
+meta {
+  name: Get all project leaders
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/projectleider
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

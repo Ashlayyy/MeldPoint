@@ -1,0 +1,21 @@
+meta {
+  name: Create a new chat room for melding
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/chat/chatroom
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "meldingId": ""
+  }
+}

@@ -1,0 +1,44 @@
+model Preventief {
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  Teamleden         IDArray?
+  CorrespondenceIDs CorrespondenceIDs?
+  rootCauseLevel    Int?               @default(2) // 0 = CORR, 1 = PD, 2 = PDCA
+  VolgNummer        Int?               @unique
+  Kernoorzaak       String?
+  Why               Json?
+  Deadline          String
+  Title             String?
+  Conclusie         String?
+
+  Smart      Smart?
+  Steps      Steps?
+  Strategie  Strategie?
+  TodoItems  Item[]
+  Tasks      String[]
+  PDCAStatus PDCA_Status?
+  ActJSON    Json?
+
+  Documentation      String?
+  TrainingNeeded     Boolean?
+  TrainingNeededType String?
+
+  Monitoring   String?
+  FollowUpDate String?
+  Responsible  String?
+
+  FailureAnalysis String?
+  NewPDCAPlanning String?
+
+  Status        Status?   @relation(fields: [StatusID], references: [id])
+  User          User?     @relation("PreventiefActiehouderRelation", fields: [ActiehouderID], references: [id])
+  Begeleider    User?     @relation("PreventiefBegeleiderRelation", fields: [BegeleiderID], references: [id])
+  StatusID      String?   @db.ObjectId
+  ActiehouderID String?   @db.ObjectId
+  BegeleiderID  String?   @db.ObjectId
+  CreatedAt     DateTime  @default(now())
+  UpdatedAt     DateTime  @updatedAt
+  Melding       Melding[]
+  tasks         Task[]
+  CreatedBy     User?     @relation("CreatedByPreventief", fields: [CreatedByID], references: [id])
+  CreatedByID   String?   @db.ObjectId
+}

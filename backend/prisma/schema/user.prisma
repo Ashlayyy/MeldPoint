@@ -1,0 +1,69 @@
+model User {
+  id                    String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Email                 String                    @unique
+  Name                  String
+  MicrosoftId           String?                   @unique
+  Department            Department?               @relation("UserDepartment", fields: [departmentId], references: [id])
+  departmentId          String?                   @db.ObjectId
+  lastLogin             DateTime?
+  permissionIds         String[]                  @db.ObjectId
+  roleIds               String[]                  @db.ObjectId
+  groupIds              String[]                  @db.ObjectId
+  CreatedAt             DateTime                  @default(now())
+  UpdatedAt             DateTime                  @updatedAt
+  userPermissions       UsersOnPermissions[]
+  userRoles             UsersOnRoles[]
+  userGroups            UsersOnPermissionGroups[]
+  Melding               Melding[]
+  Messages              Message[]
+  Settings              Settings?
+  PreventiefActiehouder Preventief[]              @relation("PreventiefActiehouderRelation")
+  PreventiefBegeleider  Preventief[]              @relation("PreventiefBegeleiderRelation")
+  Permission            Permission[]
+  PermissionGroup       PermissionGroup[]
+  Role                  Role[]
+  Correctief            Correctief[]
+  devices               UserDevice[]
+  loginHistory          LoginHistory[]
+  tokens                Token[]
+  loginAttempts         LoginAttempt?
+  notifications         Notification[]
+  tasks                 Task[]
+  apiKeys               api_key[]
+  CreatedMeldingen      Melding[]                 @relation("CreatedBy")
+  CreatedPreventiefen   Preventief[]              @relation("CreatedByPreventief")
+  CreatedCorrectiefen   Correctief[]              @relation("CreatedByCorrectief")
+  VersionHistory        VersionHistory[]
+  SystemLogs            SystemLog[]
+}
+
+model UserDevice {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  deviceId        String   @unique
+  deviceName      String
+  browser         String
+  os              String
+  lastActive      DateTime @default(now())
+  currentlyActive Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String   @db.ObjectId
+  user            User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model LoginHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  deviceId  String
+  ipAddress String
+  browser   String
+  os        String
+  status    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([deviceId])
+}

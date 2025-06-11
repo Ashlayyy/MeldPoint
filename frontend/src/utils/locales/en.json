@@ -1,0 +1,722 @@
+{
+  "profile": {
+    "my_issues": "My feedback",
+    "greeting_morning": "Goodmorning, {name}",
+    "greeting_afternoon": "Good afternoon, {name}",
+    "greeting_evening": "Good evening, {name}",
+    "greeting_night": "You should be sleeping, {name}!",
+    "allow_notifications": "Allow notifications",
+    "settings": "Settings",
+    "logout": "Logout",
+    "roles": {
+      "admin": "Admin",
+      "user": "User"
+    }
+  },
+  "myIssues": {
+    "title": "My Feedback Dashboard",
+    "subtitle": "Track and manage your feedback efficiently",
+    "emptyState": "No issues found",
+    "states": {
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "labels": {
+      "created": "Created",
+      "closed": "Closed",
+      "na": "N/A"
+    },
+    "buttons": {
+      "viewDetails": "View Details",
+      "close": "Close",
+      "submitComment": "Submit Comment"
+    },
+    "details": {
+      "description": "Description",
+      "commentsTitle": "Comments ({count})",
+      "addCommentTitle": "Add Comment",
+      "commentPlaceholder": "Type your comment here..."
+    }
+  },
+  "verbeterplein": {
+    "breadcrumbs": {
+      "home": "Home",
+      "verbeterplein": "Verbeterplein"
+    },
+    "buttons": {
+      "new_report": "Report"
+    },
+    "tabs": {
+      "ops": "Inbox",
+      "correctief": "Repair Loop",
+      "pdca": "Improvements",
+      "all": "All",
+      "archived": "Archive",
+      "engagement": "Engagement"
+    },
+    "createReport": {
+      "step1": "Obstacle",
+      "step2": "Project",
+      "step3": "Files",
+      "step3_subtitle": "Optioneel",
+      "step4": "Repair Loop",
+      "step5": "Overview"
+    },
+    "showItem": {
+      "headers": {
+        "general": "GENERAL",
+        "improvements": "IMPROVEMENTS",
+        "obstacle_data": "OBSTACLE DATA",
+        "corrective": "REPAIR LOOP",
+        "improvement": "IMPROVEMENT"
+      },
+      "tabs": {
+        "report": "Report",
+        "communication": "Communication",
+        "pdca": "Improvements",
+        "history": "History",
+        "engagement": "Engagement"
+      },
+      "fields": {
+        "sequence_number": "Sequence Number",
+        "project_number": "Project Number",
+        "project_name": "Project Name",
+        "sub_order": "Sub Order",
+        "project_team": "Project Team",
+        "summary": "Summary",
+        "category": "Category",
+        "obstacle": "Obstacle",
+        "linked_to": "Linked to",
+        "action_holder": "Action Holder",
+        "deadline": "Deadline",
+        "fail_costs": "Fail Costs",
+        "solution": "Solution",
+        "title": "Title",
+        "approval": "Purchase Approval",
+        "approval_no": "No",
+        "approval_yes": "Yes",
+        "attachments": "Attachments",
+        "client": "Client",
+        "team_members": "Team Members",
+        "cause": "Cause",
+        "linked_reports": "Linked Reports"
+      },
+      "actions": {
+        "edit": "Bewerken",
+        "start_pdca": "Start PDCA",
+        "add_attachment": "Add Attachment",
+        "share": "Share link",
+        "copy": "Copy link"
+      },
+      "placeholders": {
+        "no_summary": "No summary",
+        "no_category": "No category",
+        "na": "N/A",
+        "no_solution": "No solution given",
+        "no_obstacle": "No obstacle description given"
+      },
+      "dialog": {
+        "form_title": "Form",
+        "chat": "Chat"
+      },
+      "buttons": {
+        "questions": "Questions"
+      },
+      "history": {
+        "events_count": "events",
+        "correctief": "Repair Loop",
+        "preventief": "Improvement",
+        "id": "ID",
+        "actions": {
+          "update_correctief": "Updated correctief",
+          "update_preventief": "Updated preventief",
+          "create_correctief": "Created correctief",
+          "create_preventief": "Created preventief",
+          "delete_correctief": "Deleted correctief",
+          "delete_preventief": "Deleted preventief",
+          "archive_correctief": "Archived correctief",
+          "archive_preventief": "Archived preventief",
+          "create_report": "Created melding",
+          "delete_report": "Deleted melding",
+          "update_report": "Updated melding",
+          "archive_report": "Archived melding",
+          "add_correspondence_id": "Added correspondence",
+          "remove_correspondence_id": "Removed correspondence",
+          "add_correspondence_to_preventief": "Added correspondence to preventief",
+          "remove_correspondence_from_preventief": "Removed correspondence from preventief"
+        },
+        "by_user": "By {name}",
+        "unknown_time": "Unknown time",
+        "minutes_ago": "{minutes} minutes ago",
+        "hours_ago": "{hours} hours ago",
+        "yesterday": "Yesterday",
+        "request_info": "Request Information",
+        "environment": "Environment",
+        "version": "Version",
+        "execution_time": "Execution Time",
+        "status_code": "Status Code",
+        "technical_details": "Technical Details",
+        "endpoint": "Endpoint",
+        "method": "Method",
+        "user_details": "User Details",
+        "department": "Department",
+        "user_role": "User Role",
+        "no_history": "No history available",
+        "timing": "Timing",
+        "timestamp": "Timestamp",
+        "requested_at": "Requested At",
+        "view_changes": "View Changes",
+        "view_files": "View Files",
+        "correspondence_files": "Correspondence Files",
+        "view_file": "View File",
+        "before": "Before",
+        "after": "After",
+        "empty": "No history",
+        "advanced_details": "Advanced Technical Details",
+        "request_details": "Request Details",
+        "response_details": "Response Details",
+        "correlation_id": "Correlation ID",
+        "api_version": "API Version",
+        "preventief_id": "Preventief ID",
+        "correctief_id": "Correctief ID",
+        "resource_id": "Resource ID",
+        "resource_type": "Resource Type",
+        "response_time": "Response Time",
+        "content_length": "Content Length",
+        "result_count": "Result Count",
+        "user_id": "User ID",
+        "user_email": "User Email",
+        "ip_address": "IP Address",
+        "session_id": "Session ID",
+        "user_agent": "User Agent"
+      },
+      "edit": {
+        "title": "Edit",
+        "category": "Edit Category",
+        "summary": "Edit Summary"
+      },
+      "engagement": {
+        "loading": "Loading engagement data...",
+        "no_data": "No engagement data available for this item.",
+        "total_views": "Total Views",
+        "unique_viewers": "Unique Viewers",
+        "total_events": "Total Events Recorded",
+        "activity_timeline": "Activity Timeline",
+        "chart_placeholder": "Activity chart coming soon...",
+        "eventTypes": {
+          "view": "Viewed",
+          "comment": "Comment Added",
+          "update": "Updated",
+          "update_preventief": "Updated preventief",
+          "create": "Created",
+          "create_preventief": "Created preventief",
+          "other": "Other Action",
+          "history_view": "History Viewed",
+          "open_url": "Opened URL",
+          "check_pdca": "Checked PDCA"
+        },
+        "event_type_label": "Event Type",
+        "charts": {
+          "activity_timeline_title": "Activity Timeline",
+          "views_by_department_title": "Views by Department",
+          "event_type_distribution_title": "Event Type Distribution",
+          "top_users_title": "Top Users by Events",
+          "engagement_trend_title": "Engagement Trend Over Time",
+          "activity_by_hour_title": "Activity by Hour of Day",
+          "activity_by_day_title": "Activity by Day of Week"
+        }
+      }
+    },
+    "table": {
+      "headers": {
+        "id": "ID",
+        "project": "Project",
+        "project_name": "Project Name",
+        "deelorder": "Sub Order",
+        "akoordOPS": "Purchase Approval",
+        "fail_costs": "Fail Costs",
+        "status_correctief": "Repair Loop Status",
+        "status_preventief": "Improvements Status",
+        "action_holder_pdca": "Action Holder",
+        "deadline": "Deadline",
+        "processdeel": "Process Deel",
+        "status_pdca": "PDCA Status",
+        "title_pdca": "PDCA Title",
+        "begeleider_pdca": "Begeleider",
+        "action_holder_correctief": "Action Holder Correctief",
+        "action": "Actions"
+      },
+      "na": "N/A"
+    },
+    "filters": {
+      "title": "Filters",
+      "clear": "Clear",
+      "active_count": "Active filters: {count}"
+    },
+    "edit_ops": {
+      "title": "Edit report",
+      "labels": {
+        "project": "Project Number",
+        "part_order": "Part Order",
+        "project_team": "Project Team",
+        "obstacle": "Obstacle"
+      }
+    },
+    "dialog": {
+      "chat": "Chat"
+    },
+    "edit_pdca": {
+      "title": "PDCA",
+      "labels": {
+        "title": "Title",
+        "action_holder": "Action Holder",
+        "deadline": "Deadline",
+        "team_members": "Team Members",
+        "status": "Status"
+      }
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "backup": {
+      "title": "Backup Management",
+      "restore_title": "Restore Backup",
+      "restore_warning": "Warning: Restoring a backup will replace all current data. This action cannot be undone.",
+      "confirm_restore": "Are you sure you want to restore this backup? All current data will be lost.",
+      "confirm_delete": "Are you sure you want to delete this backup?",
+      "select_backup": "Select a backup to restore",
+      "selected_backup": "Selected Backup",
+      "start_restore": "Start Restore",
+      "restore_success": "Backup restored successfully",
+      "delete_success": "Backup deleted successfully",
+      "create_success": "Backup created successfully",
+      "create_backup": "Create Backup",
+      "download": "Download",
+      "delete": "Delete",
+      "restore": "Restore",
+      "no_backups": "No backups found",
+      "upload_title": "Upload Backup",
+      "select_file": "Select backup file",
+      "table": {
+        "backup_name": "Backup Name",
+        "created_at": "Created At",
+        "actions": "Actions"
+      },
+      "restore_status": {
+        "started": "Starting restore process",
+        "downloading": "Downloading backup",
+        "decompressing": "Decompressing backup data",
+        "restoring": "Restoring data",
+        "completed": "Restore completed"
+      },
+      "create_status": {
+        "started": "Starting backup creation",
+        "generating": "Generating backup data",
+        "compressing": "Compressing backup data",
+        "uploading": "Uploading backup",
+        "finalizing": "Finalizing backup",
+        "completed": "Backup completed"
+      },
+      "backup_created": "Backup created successfully",
+      "download_backup": "Downloading backup...",
+      "download_success": "Backup downloaded successfully",
+      "delete_backup": "Deleting backup...",
+      "restore_backup": "Restoring backup..."
+    },
+    "email": {
+      "overview": "E-mail Tracking",
+      "templates": "E-mail Templates",
+      "add_template": "Add Template",
+      "edit_template": "Edit Template",
+      "new_template": "New Template",
+      "table": {
+        "date_sent": "Sent at",
+        "status": "Status",
+        "recipient": "Recipient",
+        "opened": "Opened",
+        "opened_from": "Opened from",
+        "name": "Name",
+        "subject": "Subject",
+        "variables": "Variables",
+        "actions": "Actions"
+      }
+    },
+    "permissions": {
+      "title": "Permissions Management",
+      "add_permission": "Add Permission",
+      "edit_permission": "Edit Permission",
+      "delete_permission": "Delete Permission",
+      "delete_confirmation": "Are you sure you want to delete this permission? This action cannot be undone.",
+      "rules": {
+        "name_required": "Name is required",
+        "description_required": "Description is required",
+        "resource_type_required": "Resource type is required",
+        "permission_action_required": "Permission action is required"
+      },
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "permission_type": "Permission Type",
+        "resource_type": "Resource Type",
+        "permission_action": "Permission Action",
+        "created_at": "Created at",
+        "actions": "Actions"
+      },
+      "permission_types": {
+        "read": "Read",
+        "create": "Create",
+        "update": "Update",
+        "delete": "Delete",
+        "manage": "Manage"
+      },
+      "resource_types": {
+        "melding": "Melding",
+        "idee": "Idee",
+        "project": "Project",
+        "schade": "Schade",
+        "projectleider": "Projectleider",
+        "status": "Status",
+        "user": "Gebruiker",
+        "correctief": "Correctief",
+        "actiehouders": "Actiehouders",
+        "preventief": "Preventief",
+        "chat": "Chat",
+        "archive": "Archief",
+        "history": "Geschiedenis",
+        "audit": "Audit",
+        "settings": "Instellingen",
+        "department": "Afdeling",
+        "all": "Alles"
+      }
+    },
+    "roles": {
+      "title": "Roles Management",
+      "add_role": "Add Role",
+      "edit_role": "Edit Role",
+      "create_role": "Create Role",
+      "delete_role": "Delete Role",
+      "delete_group": "Delete Group",
+      "delete_confirmation_role": "Are you sure you want to delete this role? This action cannot be undone.",
+      "delete_confirmation_group": "Are you sure you want to delete this group? This action cannot be undone.",
+      "edit_group": "Edit Group",
+      "create_group": "Create Group",
+      "manage_role": "Manage Role",
+      "manage_group": "Manage Group",
+      "permissions": "Select Permissions",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "permissions": "Permissions",
+        "created_at": "Created at",
+        "actions": "Actions"
+      }
+    },
+    "users": {
+      "title": "Users Management",
+      "pageTitle": "Users Management",
+      "delete_user": "Delete User",
+      "delete_confirmation_user": "Are you sure you want to delete this user? This action cannot be undone.",
+      "manage_user_access": "Manage User Access",
+      "dialog": {
+        "roles": "Roles",
+        "groups": "Groups",
+        "permissions": "Permissions",
+        "department": "Department",
+        "selectRoles": "Select roles",
+        "selectGroups": "Select groups",
+        "selectPermissions": "Select permissions",
+        "selectDepartment": "Select department"
+      },
+      "table": {
+        "search": "Search Users",
+        "user": "User",
+        "email": "E-mail",
+        "department": "Department",
+        "lastLogin": "Last Login",
+        "createdAt": "Created at",
+        "actions": "Actions"
+      },
+      "department_updated": "Department updated successfully"
+    },
+    "departments": {
+      "title": "Department Management",
+      "pageTitle": "Department Management",
+      "add_department": "Add Department",
+      "edit_department": "Edit Department",
+      "delete_department": "Delete Department",
+      "delete_confirmation": "Are you sure you want to delete this department? This action cannot be undone.",
+      "created": "Department created successfully",
+      "updated": "Department updated successfully",
+      "deleted": "Department deleted successfully",
+      "updating": "Updating department...",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "created_at": "Created at",
+        "actions": "Actions"
+      }
+    },
+    "github": {
+      "issues": {
+        "title": "GitHub Issues",
+        "page_title": "GitHub Issues Management",
+        "filter": {
+          "status": "Status",
+          "type": "Type",
+          "search": "Search issues"
+        },
+        "table": {
+          "title": "Title",
+          "status": "Status",
+          "type": "Type",
+          "created": "Created",
+          "actions": "Actions",
+          "labels": "Labels"
+        },
+        "actions": {
+          "close": "Close Issue",
+          "reopen": "Reopen Issue",
+          "view_details": "View Details"
+        },
+        "details_title": "Issue Details",
+        "created_by": "Created by",
+        "close_issue": "Close Issue",
+        "close_reason": "Close Reason",
+        "close_comment": "Closing Comment",
+        "close_comment_placeholder": "Add a comment explaining why this issue is being closed...",
+        "close_reasons": {
+          "Duplicate": "Duplicate Issue",
+          "Invalid": "Invalid Issue",
+          "wont_fix": "Won't Fix",
+          "Completed": "Completed",
+          "Not Needed": "Not Needed",
+          "Other": "Other"
+        },
+        "reason_required": "Close reason is required",
+        "comment_required": "Close comment is required",
+        "confirm_close": "Confirm Close",
+        "close_success_title": "Issue Closed",
+        "close_success_message": "The issue has been successfully closed",
+        "close_error_title": "Error Closing Issue",
+        "close_error_message": "There was an error closing the issue",
+        "reopen_success_title": "Issue Reopened",
+        "reopen_success_message": "The issue has been successfully reopened",
+        "reopen_error_title": "Error Reopening Issue",
+        "reopen_error_message": "There was an error reopening the issue",
+        "load_error": "Failed to load issues",
+        "closed_success": "Issue closed successfully",
+        "reopened_success": "Issue reopened successfully",
+        "status_update_error": "Failed to update issue status",
+        "closing_issue_message": "Closing issue...",
+        "close_comment_template": "Closed by {user}: {reason} - {message}",
+        "reopen_comment_template": "Reopened by {user}",
+        "coming_soon": "Additional features coming soon..."
+      }
+    }
+  },
+  "general": {
+    "retry": "Retry",
+    "fallback": {
+      "loading": "Loading component..."
+    },
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "events": "Events",
+    "event": "Event",
+    "view": "View",
+    "views": "Views",
+    "time_hour": "Hour",
+    "day_of_week": "Day of Week",
+    "day": "Day"
+  },
+  "days": {
+    "sun": "Sunday",
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday"
+  },
+  "errors": {
+    "data_transform_error": "Error transforming data for chart {index}: {error}",
+    "fetch_error": "Failed to fetch data: {error}"
+  },
+  "analytics": {
+    "activity_time_series_name": "Events by Hour",
+    "activity_day_series_name": "Events by Day",
+    "trend_series_name": "Events Over Time"
+  },
+  "notifications": {
+    "ops_saved": "Fail Costs saved successfully!",
+    "system": "There is a new message.",
+    "dialog_closed": "Dialog closed!",
+    "start_melding": "Creating report...",
+    "create_success": "Report created successfully!",
+    "update_start": "Report is being updated...",
+    "update_success": "Successfully updated!",
+    "update_failed": "Update failed!",
+    "upload_success": "Files uploaded successfully",
+    "uploading_files": "Uploading files...",
+    "delete_success": "File deleted successfully",
+    "pdca_info": "You have a week to plan the PDCA!",
+    "success": "Success",
+    "info": "Info",
+    "status_updated": "Status updated successfully!",
+    "error": "Error",
+    "promise": "Working on it...",
+    "promise_success": "Success",
+    "promise_error": "Error",
+    "promise_canceled": "Notification canceled",
+    "item_saved": "Item saved",
+    "item_removed": "Item removed",
+    "empty_field": "The field: {field} is empty!",
+    "create_pdca": "Creating PDCA...",
+    "create_pdca_success": "PDCA successfully created!",
+    "create_pdca_failed": "PDCA creation failed!",
+    "archive_success": "Reports successfully moved to archive!",
+    "phase_reset_success": "Phase reset successfully!",
+    "update": "Successfully updated!",
+    "no_changes": "No changes made",
+    "linking_pdca": "Linking PDCA...",
+    "linking_pdca_success": "PDCA successfully linked!",
+    "linking_pdca_failed": "PDCA linking failed!",
+    "creating_feedback": "Creating feedback...",
+    "feedback_created": "Feedback created successfully!",
+    "feedback_error": "Error creating feedback! Please try again or contact support. {error}",
+    "feedback_error_upload": "Error uploading image! Please try again or contact support. {error}",
+    "feedback_error_upload_timeout": "Upload timed out. Please try again or contact support. {error}",
+    "saving_correctief": "Saving correctief...",
+    "correctief_saved": "Correctief saved successfully!",
+    "correctief_created": "Correctief created successfully!",
+    "saving_correspondence": "Saving correspondence...",
+    "correspondence_saved": "Correspondence saved successfully!",
+    "saving_title": "Saving title...",
+    "title_saved": "Title saved successfully!",
+    "saving_category": "Saving category...",
+    "category_saved": "Category saved successfully!",
+    "saving_ops": "Saving Fail Costs...",
+    "faalkosten_saved": "Fail costs saved successfully!",
+    "saving_pdca": "Saving PDCA...",
+    "pdca_saved": "PDCA saved successfully!",
+    "shared_successfully": "Link shared successfully",
+    "copied_to_clipboard": "Link copied to clipboard",
+    "action_deleted": "Task deleted successfully!",
+    "saving": "Saving..."
+  },
+  "auth": {
+    "microsoft_login": "Inloggen met Microsoft",
+    "microsoft_auth_failed": "Microsoft authentication failed. Please try again.",
+    "user_not_found": "User account not found.",
+    "login_failed": "Login failed. Please try again.",
+    "auth_code_reused": "Login failed. Please contact support."
+  },
+  "settings": {
+    "notifications": {
+      "title": "Notification Settings",
+      "enable_all": "Enable Notifications",
+      "enable_toast": "Enable In-App Notifications",
+      "enable_system": "Enable System Notifications",
+      "enable_sound": "Enable Sound",
+      "permission_required": "System notifications require browser permission",
+      "request_permission": "Request Permission"
+    },
+    "security": {
+      "title": "Security Settings",
+      "devices": {
+        "title": "Active Sessions",
+        "device": "Device",
+        "browser": "Browser",
+        "os": "Operating System",
+        "last_active": "Last Active",
+        "status": "Status",
+        "actions": "Actions",
+        "online": "Online",
+        "offline": "Offline",
+        "revoke": "Revoke",
+        "current": "Current Session",
+        "revoke_all": "Revoke All Sessions",
+        "revoke_confirm": "Are you sure you want to revoke access for this session?",
+        "revoke_all_confirm": "Are you sure you want to revoke access for all sessions?"
+      },
+      "settings": {
+        "title": "Security Options",
+        "two_factor": "Two-Factor Authentication",
+        "login_history": "Login History",
+        "password": "Password",
+        "configure": "Configure",
+        "enable": "Enable",
+        "view": "View History",
+        "change": "Change Password"
+      },
+      "two_factor": {
+        "setup_title": "Coming soon!",
+        "scan_qr": "Scan QR Code",
+        "enter_code": "Enter Code",
+        "verify": "Verify",
+        "backup_codes": "Backup Codes",
+        "enabled": "Two-Factor Authentication is enabled",
+        "disabled": "Two-Factor Authentication is disabled",
+        "setup_description": "Enhance your account security by enabling two-factor authentication",
+        "enable": "Enable 2FA",
+        "disable": "Disable 2FA"
+      },
+      "login_history": {
+        "title": "Login History",
+        "date": "Date",
+        "browser": "Browser",
+        "device": "Device",
+        "ip": "IP Address",
+        "status": "Status"
+      },
+      "password": {
+        "title": "Change Password",
+        "current": "Current Password",
+        "new": "New Password",
+        "confirm": "Confirm Password"
+      }
+    },
+    "email": {
+      "title": "Email Settings"
+    }
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "home": "Home",
+    "clear": "Clear"
+  },
+  "todos": {
+    "title": "Tasks",
+    "active_tasks": "Active Tasks",
+    "completed_tasks": "Completed Tasks",
+    "active_count": {
+      "one": "{count} task",
+      "other": "{count} tasks"
+    },
+    "completed_count": {
+      "one": "{count} completed",
+      "other": "{count} completed"
+    },
+    "no_active_tasks": "No active tasks",
+    "no_completed_tasks": "No completed tasks",
+    "created_at": "Created: {date}",
+    "completed_at": "Completed: {date}",
+    "statistics": "Task Statistics",
+    "total_tasks": "Total Tasks",
+    "completion_rate": "Completion Rate",
+    "recent_activity": "Recent Activity"
+  },
+  "notificationPage": {
+    "all_notifications": "All Notifications",
+    "system": "System",
+    "toast": "Toast",
+    "notification": "Notification",
+    "announcement": "Announcement",
+    "click_to_open": "Click to open",
+    "mark_as_read": "Mark as read",
+    "mark_all_read": "Mark as all read",
+    "no_notifications": "No notifications"
+  }
+}

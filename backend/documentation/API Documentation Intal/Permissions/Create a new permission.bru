@@ -1,0 +1,24 @@
+meta {
+  name: Create a new permission
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/permissions/permission
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "",
+    "description": "",
+    "action": "",
+    "resourceType": ""
+  }
+}

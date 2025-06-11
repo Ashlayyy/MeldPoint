@@ -1,0 +1,1 @@
+export type HeaderMode = 'OPS' | 'CORRECTIEF' | 'PDCA' | 'ARCHIVE' | 'ALL';

@@ -1,0 +1,15 @@
+meta {
+  name: Get all preventief records
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/preventief
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

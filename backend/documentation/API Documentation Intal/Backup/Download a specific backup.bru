@@ -1,0 +1,19 @@
+meta {
+  name: Download a specific backup
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/backup/download/:backupId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  backupId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Delete all history -Development only-
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/api/delete/history
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

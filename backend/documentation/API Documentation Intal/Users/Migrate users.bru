@@ -1,0 +1,19 @@
+meta {
+  name: Migrate users
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/users/migrate
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {}
+}

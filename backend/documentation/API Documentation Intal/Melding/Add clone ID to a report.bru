@@ -1,0 +1,20 @@
+meta {
+  name: Add clone ID to a report
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/melding/clone/:meldingID/:cloneID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+  cloneID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

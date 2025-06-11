@@ -1,0 +1,19 @@
+meta {
+  name: Create multiple reports -Development only-
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/create
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {}
+}

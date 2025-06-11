@@ -1,0 +1,22 @@
+meta {
+  name: Track feature usage
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/activity/feature
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "feature": "",
+    "metadata": {}
+  }
+}

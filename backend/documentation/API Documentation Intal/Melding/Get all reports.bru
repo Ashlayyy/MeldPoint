@@ -1,0 +1,15 @@
+meta {
+  name: Get all reports
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/melding
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

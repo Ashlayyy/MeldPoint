@@ -1,0 +1,16 @@
+{
+  "date": "2025-09-22",
+  "changes": {
+    "FEATURES": [
+      "Changelog pagina toegevoegd",
+      "Pagina toegevoegd waar je je eigen feedback kan zien. Hier is het ook mogelijk om achteraf nog een bericht aan een feedback melding toe te voegen.",
+      "PDCA krijgt nu een eigen volgnummer, deze staat los van het volgnummer van de melding."
+    ],
+    "BUG FIXES": [
+      "Geschiedenis pagina werkt nu helemaal juist. Meld bugs zodra je ze ziet! je helpt ons er veel mee #343",
+      "Bij preventief (en correctief) wordt nu automatisch de 'Open' status toegepast, zodat je geen N/A meer ziet verschijnen #288 #315 #308",
+      "Zodra er iets in een kernoorzaak (PDCA) wordt aangepast, of een taak (PD) wordt toegevoegd, wordt de Preventief vanaf nu automatisch op 'In Behandeling' gezet. #308 ",
+      "De PDCA status liet soms de verkeerde status zien #316"
+    ]
+  }
+}

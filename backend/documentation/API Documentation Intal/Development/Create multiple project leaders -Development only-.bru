@@ -1,0 +1,23 @@
+meta {
+  name: Create multiple project leaders -Development only-
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/create/projectleiders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "data": [
+      {}
+    ]
+  }
+}

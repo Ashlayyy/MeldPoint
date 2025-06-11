@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>{{subject}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .content {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .week-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .week-table th {
+      background-color: #f8f9fa;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 2px solid #dee2e6;
+    }
+
+    .week-table td {
+      padding: 12px;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .week-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .highlight {
+      background-color: #fff3cd;
+    }
+
+    .footer {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+    }
+
+    .date-header {
+      color: #0d6efd;
+      font-weight: bold;
+    }
+
+    .summary-section {
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .action-link {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Weekselijk Update</h1>
+      <p class="date-header">Week {{weekNumber}} - {{weekStartDate}} - {{weekEndDate}}</p>
+    </div>
+
+    <div class="content">
+      <div class="summary-section">
+        <h3>Weekoverzicht</h3>
+        <p>{{weekSummary}}</p>
+      </div>
+
+      <h3>Komende activiteiten</h3>
+      <table class="week-table">
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Activiteit</th>
+            <th>Status</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each activities}}
+          <tr {{#if this.highlight}}class="highlight" {{/if}}>
+            <td>{{this.date}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.status}}</td>
+            <td>
+              {{#if this.url}}
+              <a href="{{this.url}}" class="action-link" target="_blank">Bekijk</a>
+              {{/if}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <h3 {{#if notes}}>Belangrijke opmerkingen</h3>
+      <ul>
+        {{#each notes}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>{{signatureText}}<br>
+        {{teamName}}</p>
+      <p><small>Dit is een automatisch gegenereerde wekelijkse update. Als je vragen hebt, neem contact op met je
+          teamleider.</small>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

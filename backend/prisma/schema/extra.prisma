@@ -1,0 +1,31 @@
+model Status {
+  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  StatusNaam      String       @unique
+  StatusColor     String
+  DarkStatusColor String?
+  StatusType      String
+  CreatedAt       DateTime     @default(now())
+  UpdatedAt       DateTime     @updatedAt
+  Correctief      Correctief[]
+  Preventief      Preventief[]
+  Melding         Melding[]
+}
+
+model Settings {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  User      User     @relation(fields: [UserId], references: [id])
+  Theme     String?
+  Language  String?
+  UserId    String   @unique @db.ObjectId
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Backup {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileName  String
+  fileKey   String
+  size      Int
+  createdBy String
+  createdAt DateTime @default(now())
+}

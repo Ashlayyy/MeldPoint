@@ -1,0 +1,25 @@
+meta {
+  name: Add a deelorder to a project
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/project/:id/deelorder
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "deelorder": ""
+  }
+}

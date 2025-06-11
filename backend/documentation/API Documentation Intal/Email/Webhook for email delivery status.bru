@@ -1,0 +1,23 @@
+meta {
+  name: Webhook for email delivery status
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/email/webhook
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "trackingId": "",
+    "event": "",
+    "timestamp": "",
+    "bounceType": "",
+    "bounceReason": "",
+    "attempts": "",
+    "provider": ""
+  }
+}

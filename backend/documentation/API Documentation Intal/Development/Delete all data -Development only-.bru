@@ -1,0 +1,15 @@
+meta {
+  name: Delete all data -Development only-
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{baseUrl}}/api/deleteall
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

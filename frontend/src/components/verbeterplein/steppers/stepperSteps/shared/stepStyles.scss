@@ -1,0 +1,14 @@
+.step-form {
+  .v-row {
+    align-items: flex-start;
+    
+    .v-col {
+      display: flex;
+      flex-direction: column;
+      
+      .v-input {
+        margin-bottom: 16px;
+      }
+    }
+  }
+} 

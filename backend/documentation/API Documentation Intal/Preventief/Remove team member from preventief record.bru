@@ -1,0 +1,20 @@
+meta {
+  name: Remove team member from preventief record
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/preventief/teamleden/:meldingID/:teamlidID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+  teamlidID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

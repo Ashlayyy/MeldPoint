@@ -1,0 +1,4274 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation Intal",
+    "version": "1.0.0",
+    "description": "Complete API documentation for Intal system."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000",
+      "description": "Intal Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      },
+      "MigrationApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-migration-api-key",
+        "description": "Migration API key for development routes"
+      }
+    },
+    "schemas": {
+      "StandardResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/melding/fetch/lengths": {
+      "get": {
+        "tags": ["Melding"],
+        "summary": "Get lengths of different melding types",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "ops": { "type": "number" },
+                        "correctief": { "type": "number" },
+                        "pdca": { "type": "number" },
+                        "archived": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/melding": {
+      "get": {
+        "tags": ["Melding"],
+        "summary": "Get all reports",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all reports",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Melding"],
+        "summary": "Create a new report",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Report created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not created due to error"
+          }
+        }
+      }
+    },
+    "/api/melding/{id}": {
+      "get": {
+        "tags": ["Melding"],
+        "summary": "Get a single report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Single report found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Melding"],
+        "summary": "Update a report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Report updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      }
+    },
+    "/api/melding/clone/{meldingID}/{cloneID}": {
+      "post": {
+        "tags": ["Melding"],
+        "summary": "Add clone ID to a report",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cloneID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Clone ID added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "CloneID not added due to error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Melding"],
+        "summary": "Remove clone ID from a report",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cloneID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Clone ID removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "CloneID not removed due to error"
+          }
+        }
+      }
+    },
+    "/api/melding/correspondence/{meldingID}": {
+      "patch": {
+        "tags": ["Melding"],
+        "summary": "Add correspondence ID to a report",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correspondence": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Correspondence added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Correspondence not added due to error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Melding"],
+        "summary": "Set correspondence IDs for a report",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correspondence": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Correspondence IDs set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      }
+    },
+    "/api/melding/find/preventief/{preventiefID}": {
+      "get": {
+        "tags": ["Melding"],
+        "summary": "Find report by preventief ID",
+        "parameters": [
+          {
+            "name": "preventiefID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Report found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/melding/correspondence/{meldingId}/{correspondenceId}": {
+      "delete": {
+        "tags": ["Melding"],
+        "summary": "Remove correspondence and delete associated file",
+        "parameters": [
+          {
+            "name": "meldingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correspondenceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Correspondence removed and file deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "CorrespondenceID not removed due to error"
+          }
+        }
+      }
+    },
+    "/api/melding/file/{filekey}": {
+      "delete": {
+        "tags": ["Melding"],
+        "summary": "Delete a file by filekey",
+        "parameters": [
+          {
+            "name": "filekey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "File deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid filekey format"
+          },
+          "404": {
+            "description": "File not found"
+          }
+        }
+      }
+    },
+    "/api/project": {
+      "get": {
+        "tags": ["Project"],
+        "summary": "Get all projects",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Project"],
+        "summary": "Create a new project",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not created"
+          }
+        }
+      }
+    },
+    "/api/project/{id}": {
+      "get": {
+        "tags": ["Project"],
+        "summary": "Get a single project by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Project"],
+        "summary": "Update a project",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/project/{id}/deelorder": {
+      "post": {
+        "tags": ["Project"],
+        "summary": "Add a deelorder to a project",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deelorder": {
+                    "type": "string"
+                  }
+                },
+                "required": ["deelorder"]
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Deelorder added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/project/{id}/deelorder/{deelorder}": {
+      "delete": {
+        "tags": ["Project"],
+        "summary": "Remove a deelorder from a project",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deelorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Deelorder removed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/projectleider": {
+      "get": {
+        "tags": ["ProjectLeider"],
+        "summary": "Get all project leaders",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all project leaders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["ProjectLeider"],
+        "summary": "Create a new project leader",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  }
+                },
+                "required": ["Name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Project leader created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not created"
+          }
+        }
+      }
+    },
+    "/api/projectleider/{id}": {
+      "get": {
+        "tags": ["ProjectLeider"],
+        "summary": "Get a single project leader",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project leader found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["ProjectLeider"],
+        "summary": "Update a project leader",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project leader updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["ProjectLeider"],
+        "summary": "Delete a project leader",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project leader deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not deleted"
+          }
+        }
+      }
+    },
+    "/api/project/number/{id}": {
+      "get": {
+        "tags": ["Project"],
+        "summary": "Get a project by number ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Project found by number",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/schade": {
+      "get": {
+        "tags": ["Schade"],
+        "summary": "Get all schades",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all schades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Schade"],
+        "summary": "Create a new schade",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Schade created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not created"
+          }
+        }
+      }
+    },
+    "/api/schade/{id}": {
+      "get": {
+        "tags": ["Schade"],
+        "summary": "Get a single schade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Schade found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Schade"],
+        "summary": "Update a schade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Schade updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "tags": ["Status"],
+        "summary": "Get all statuses",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all statuses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Status"],
+        "summary": "Create a new status",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["StatusNaam", "StatusColor", "StatusType"],
+                "properties": {
+                  "StatusNaam": {
+                    "type": "string"
+                  },
+                  "StatusColor": {
+                    "type": "string"
+                  },
+                  "StatusType": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Status created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not created"
+          }
+        }
+      }
+    },
+    "/api/status/{id}": {
+      "get": {
+        "tags": ["Status"],
+        "summary": "Get a single status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Status found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Status"],
+        "summary": "Update a status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Status"],
+        "summary": "Delete a status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Status deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not deleted"
+          }
+        }
+      }
+    },
+    "/api/users/migrate": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Migrate users",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Users migrated successfully"
+          }
+        }
+      }
+    },
+    "/api/users/auth/microsoft": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Initiate Microsoft authentication",
+        "security": [{ "ApiKeyAuth": [] }],
+        "responses": {
+          "500": {
+            "description": "Microsoft authentication initialization failed"
+          }
+        }
+      }
+    },
+    "/api/users/auth/microsoft/callback": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Microsoft authentication callback",
+        "responses": {
+          "500": {
+            "description": "Microsoft authentication callback failed"
+          }
+        }
+      }
+    },
+    "/api/users/auth/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get current user",
+        "security": [{ "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/auth/status": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Check authentication status",
+        "security": [{ "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Authentication status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "isAuthenticated": {
+                          "type": "boolean"
+                        },
+                        "user": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "500": {
+            "description": "Failed to check authentication status"
+          }
+        }
+      }
+    },
+    "/api/users/role/{roleId}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get users by role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users with specified role",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve users by role"
+          }
+        }
+      }
+    },
+    "/api/users/{userId}": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        },
+                        "deletedUser": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User ID is required"
+          },
+          "500": {
+            "description": "Failed to delete user"
+          }
+        }
+      }
+    },
+    "/api/correctief/{id}": {
+      "get": {
+        "tags": ["Correctief"],
+        "summary": "Get a single correctief by ID",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single correctief record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/correctief": {
+      "get": {
+        "tags": ["Correctief"],
+        "summary": "Get all correctief records",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all correctief records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Records not found"
+          }
+        }
+      }
+    },
+    "/api/correctief/correspondence/{correctiefID}/{CorrespondenceID}": {
+      "delete": {
+        "tags": ["Correctief"],
+        "summary": "Remove correspondence from correctief",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "correctiefID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CorrespondenceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Correspondence removed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "CorrespondenceID not removed due to error"
+          }
+        }
+      }
+    },
+    "/api/correctief/teamleden/{meldingID}/{teamlidID}": {
+      "post": {
+        "tags": ["Correctief"],
+        "summary": "Add team member to correctief",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamlidID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Teamlid not added due to error"
+          }
+        }
+      }
+    },
+    "/api/correctief/teamleden/{meldingID}/rewrite": {
+      "patch": {
+        "tags": ["Correctief"],
+        "summary": "Rewrite team members for correctief",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teamleden": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Team members rewritten successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Teamlids not written due to error"
+          }
+        }
+      }
+    },
+    "/api/correctief/correspondence/{meldingID}": {
+      "post": {
+        "tags": ["Correctief"],
+        "summary": "Add correspondence to correctief",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correspondence": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Correspondence added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Correspondence not added due to error"
+          }
+        }
+      }
+    },
+    "/api/preventief": {
+      "get": {
+        "tags": ["Preventief"],
+        "summary": "Get all preventief records",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all preventief records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Records not found"
+          }
+        }
+      }
+    },
+    "/api/preventief/{id}": {
+      "get": {
+        "tags": ["Preventief"],
+        "summary": "Get a single preventief record",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single preventief record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Preventief"],
+        "summary": "Update a preventief record",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Preventief updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not updated"
+          }
+        }
+      }
+    },
+    "/api/preventief/teamleden/{meldingID}/{teamlidID}": {
+      "post": {
+        "tags": ["Preventief"],
+        "summary": "Add teamlid to preventief record",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamlidID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teamlid added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Teamlid not added due to error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Preventief"],
+        "summary": "Remove team member from preventief record",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamlidID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Team member removed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Teamlid not removed due to error"
+          }
+        }
+      }
+    },
+    "/api/preventief/teamleden/{meldingID}/rewrite": {
+      "patch": {
+        "tags": ["Preventief"],
+        "summary": "Rewrite team members for preventief record",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teamleden": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Team members rewritten successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Teamlids not written due to error"
+          }
+        }
+      }
+    },
+    "/api/preventief/correspondence/{meldingID}": {
+      "patch": {
+        "tags": ["Preventief"],
+        "summary": "Add correspondence to preventief record",
+        "parameters": [
+          {
+            "name": "meldingID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correspondence": {
+                    "type": "string"
+                  }
+                },
+                "required": ["correspondence"]
+              }
+            }
+          }
+        },
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Correspondence added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Correspondence not added due to error"
+          }
+        }
+      }
+    },
+    "/api/preventief/correspondence/{preventiefID}/{CorrespondenceID}": {
+      "delete": {
+        "tags": ["Preventief"],
+        "summary": "Remove correspondence and delete associated file",
+        "parameters": [
+          {
+            "name": "preventiefID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CorrespondenceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Correspondence removed and file deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "CorrespondenceID not removed due to error"
+          }
+        }
+      }
+    },
+    "/api/actiehouder": {
+      "get": {
+        "tags": ["Actiehouder"],
+        "summary": "Get all actiehouders",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all actiehouders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Records not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Actiehouder"],
+        "summary": "Create a new actiehouder",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Actiehouder created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not created due to error"
+          }
+        }
+      }
+    },
+    "/api/actiehouder/{id}": {
+      "get": {
+        "tags": ["Actiehouder"],
+        "summary": "Get a single actiehouder",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single actiehouder found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/api/chat/{id}": {
+      "get": {
+        "tags": ["Chat"],
+        "summary": "Get messages from chat room",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Chat messages retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          }
+        }
+      }
+    },
+    "/api/chat/message/{id}": {
+      "post": {
+        "tags": ["Chat"],
+        "summary": "Add message to chat room",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["message", "user"],
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Message added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields"
+          }
+        }
+      }
+    },
+    "/api/chat/chatroom": {
+      "post": {
+        "tags": ["Chat"],
+        "summary": "Create a new chat room for melding",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["meldingId"],
+                "properties": {
+                  "meldingId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Chat room created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing meldingId"
+          }
+        }
+      }
+    },
+    "/api/email": {
+      "post": {
+        "tags": ["Email"],
+        "summary": "Send an email",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["to", "subject", "html"],
+                "properties": {
+                  "to": {
+                    "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+                  },
+                  "subject": { "type": "string" },
+                  "html": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "messageId": { "type": "string" }
+                  }
+                }
+              },
+              "500": {
+                "description": "Failed to send email"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/email/track/{trackingId}": {
+      "get": {
+        "tags": ["Email"],
+        "summary": "Track email opens",
+        "parameters": [
+          {
+            "name": "trackingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tracking pixel returned",
+            "content": {
+              "image/gif": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/email/status/{trackingId}": {
+      "get": {
+        "tags": ["Email"],
+        "summary": "Get email tracking status",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "trackingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email tracking information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to get email status"
+          }
+        }
+      }
+    },
+    "/api/email/webhook": {
+      "post": {
+        "tags": ["Email"],
+        "summary": "Webhook for email delivery status",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["trackingId", "event", "timestamp"],
+                "properties": {
+                  "trackingId": { "type": "string" },
+                  "event": { "type": "string" },
+                  "timestamp": { "type": "string" },
+                  "bounceType": { "type": "string" },
+                  "bounceReason": { "type": "string" },
+                  "attempts": { "type": "number" },
+                  "provider": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Webhook processing failed"
+          }
+        }
+      }
+    },
+    "/api/email/tracking/all": {
+      "get": {
+        "tags": ["Email"],
+        "summary": "Get all email tracking data",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "All email tracking information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch email tracking data"
+          }
+        }
+      }
+    },
+    "/api/stats/dashboard": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get dashboard statistics",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Dashboard statistics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve dashboard statistics"
+          }
+        }
+      }
+    },
+    "/api/stats/departments": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get user count by department",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Department statistics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve department statistics"
+          }
+        }
+      }
+    },
+    "/api/stats/roles": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get user count by role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Role statistics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve role statistics"
+          }
+        }
+      }
+    },
+    "/api/stats/activity": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get user activity statistics",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 30
+            },
+            "description": "Number of days to retrieve activity for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity statistics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve activity statistics"
+          }
+        }
+      }
+    },
+    "/api/stats/growth": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get user growth statistics",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 30
+            },
+            "description": "Period in days to retrieve growth statistics for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Growth statistics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to retrieve growth statistics"
+          }
+        }
+      }
+    },
+    "/api/backup/create": {
+      "post": {
+        "tags": ["Backup"],
+        "summary": "Create a new backup",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Backup created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string" },
+                        "size": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to create backup"
+          }
+        }
+      }
+    },
+    "/api/backup/list": {
+      "get": {
+        "tags": ["Backup"],
+        "summary": "List all backups",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of backups retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to list backups"
+          }
+        }
+      }
+    },
+    "/api/backup/download/{backupId}": {
+      "get": {
+        "tags": ["Backup"],
+        "summary": "Download a specific backup",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "backupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the backup to download"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup file downloaded successfully",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid backup ID"
+          },
+          "500": {
+            "description": "Failed to download backup"
+          }
+        }
+      }
+    },
+    "/api/permissions/permissions": {
+      "get": {
+        "tags": ["Permissions"],
+        "summary": "Get all permissions",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all permissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch permissions"
+          }
+        }
+      }
+    },
+    "/api/permissions/permission": {
+      "post": {
+        "tags": ["Permissions"],
+        "summary": "Create a new permission",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "action", "resourceType"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "action": {
+                    "type": "string",
+                    "enum": ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"]
+                  },
+                  "resourceType": {
+                    "type": "string",
+                    "enum": ["USER", "ROLE", "PERMISSION", "GROUP"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Permission created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Failed to create permission"
+          }
+        }
+      }
+    },
+    "/api/permissions/permission/{id}": {
+      "get": {
+        "tags": ["Permissions"],
+        "summary": "Get a single permission",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Permission not found"
+          },
+          "500": {
+            "description": "Failed to fetch permission"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Permissions"],
+        "summary": "Update an existing permission",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "action": {
+                    "type": "string",
+                    "enum": ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"]
+                  },
+                  "resourceType": {
+                    "type": "string",
+                    "enum": ["USER", "ROLE", "PERMISSION", "GROUP"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Permission updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update permission"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Permissions"],
+        "summary": "Delete a permission",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete permission"
+          }
+        }
+      }
+    },
+    "/api/permissions/groups": {
+      "get": {
+        "tags": ["Permission Groups"],
+        "summary": "Get all permission groups",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all permission groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch permission groups"
+          }
+        }
+      }
+    },
+    "/api/permissions/group": {
+      "post": {
+        "tags": ["Permission Groups"],
+        "summary": "Create a new permission group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Permission group created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Failed to create permission group"
+          }
+        }
+      }
+    },
+    "/api/permissions/group/{id}": {
+      "get": {
+        "tags": ["Permission Groups"],
+        "summary": "Get a single permission group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission group details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Permission group not found"
+          },
+          "500": {
+            "description": "Failed to fetch permission group"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Permission Groups"],
+        "summary": "Update an existing permission group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Permission group updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update permission group"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Permission Groups"],
+        "summary": "Delete a permission group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission group deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete permission group"
+          }
+        }
+      }
+    },
+    "/api/permissions/roles": {
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Get all roles",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of all roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch roles"
+          }
+        }
+      }
+    },
+    "/api/permissions/role": {
+      "post": {
+        "tags": ["Roles"],
+        "summary": "Create a new role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "department": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Role created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
+          },
+          "500": {
+            "description": "Failed to create role"
+          }
+        }
+      }
+    },
+    "/api/permissions/role/{id}": {
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Get a single role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Role not found"
+          },
+          "500": {
+            "description": "Failed to fetch role"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Roles"],
+        "summary": "Update an existing role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "department": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Role updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update role"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Roles"],
+        "summary": "Delete a role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete role"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/user/{userId}/permission/{permissionId}": {
+      "post": {
+        "tags": ["Permission Assignments"],
+        "summary": "Assign a permission to a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission assigned to user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign permission to user"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/user/{userId}/permission/{permissionId}": {
+      "delete": {
+        "tags": ["Permission Assignments"],
+        "summary": "Remove a permission from a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission removed from user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove permission from user"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/role/{roleId}/permission/{permissionId}": {
+      "post": {
+        "tags": ["Permission Assignments"],
+        "summary": "Assign a permission to a role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission assigned to role successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign permission to role"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/group/{groupId}/permission/{permissionId}": {
+      "post": {
+        "tags": ["Permission Assignments"],
+        "summary": "Assign a permission to a group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission assigned to group successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign permission to group"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/user/{userId}/role/{roleId}": {
+      "post": {
+        "tags": ["Role Assignments"],
+        "summary": "Assign a role to a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role assigned to user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign role to user"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/role/{roleId}/permission/{permissionId}": {
+      "delete": {
+        "tags": ["Permission Assignments"],
+        "summary": "Remove a permission from a role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission removed from role successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove permission from role"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/group/{groupId}/permission/{permissionId}": {
+      "delete": {
+        "tags": ["Permission Assignments"],
+        "summary": "Remove a permission from a group",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permission removed from group successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove permission from group"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/user/{userId}/group/{groupId}": {
+      "post": {
+        "tags": ["Group Assignments"],
+        "summary": "Assign a group to a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group assigned to user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign group to user"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/user/{userId}/group/{groupId}": {
+      "delete": {
+        "tags": ["Group Assignments"],
+        "summary": "Remove a group from a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group removed from user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove group from user"
+          }
+        }
+      }
+    },
+    "/api/permissions/assign/role/{roleId}/group/{groupId}": {
+      "post": {
+        "tags": ["Group Assignments"],
+        "summary": "Assign a group to a role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group assigned to role successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to assign group to role"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/role/{roleId}/group/{groupId}": {
+      "delete": {
+        "tags": ["Group Assignments"],
+        "summary": "Remove a group from a role",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group removed from role successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove group from role"
+          }
+        }
+      }
+    },
+    "/api/permissions/remove/user/{userId}/role/{roleId}": {
+      "delete": {
+        "tags": ["Role Assignments"],
+        "summary": "Remove a role from a user",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role removed from user successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to remove role from user"
+          }
+        }
+      }
+    },
+    "/api/settings/{userId}": {
+      "get": {
+        "tags": ["Settings"],
+        "summary": "Get user settings",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User settings retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Settings not found"
+          },
+          "500": {
+            "description": "Failed to retrieve settings"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Settings"],
+        "summary": "Update user settings",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "settings": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Settings updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update settings"
+          }
+        }
+      }
+    },
+    "/api/settings/{userId}/reset": {
+      "post": {
+        "tags": ["Settings"],
+        "summary": "Reset user settings to default",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Settings reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to reset settings"
+          }
+        }
+      }
+    },
+    "/api/activity/feature": {
+      "post": {
+        "tags": ["Activity"],
+        "summary": "Track feature usage",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["feature"],
+                "properties": {
+                  "feature": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feature usage tracked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to track feature usage"
+          }
+        }
+      }
+    },
+    "/api/activity/pageview": {
+      "post": {
+        "tags": ["Activity"],
+        "summary": "Track page views",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["page"],
+                "properties": {
+                  "page": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "duration": {
+                    "type": "number"
+                  },
+                  "referrer": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Page view tracked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to track page view"
+          }
+        }
+      }
+    },
+    "/api/systemLog/melding/{meldingId}/{preventiefId}/{correctiefId}/history": {
+      "get": {
+        "tags": ["System Logs"],
+        "summary": "Get system logs for a melding",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "meldingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "preventiefId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correctiefId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System logs retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "No logs found for this melding"
+          },
+          "500": {
+            "description": "Failed to retrieve system logs"
+          }
+        }
+      }
+    },
+    "/api/migration/upload": {
+      "post": {
+        "tags": ["Migration"],
+        "summary": "Upload migration file (Excel or JSON)",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Excel (.xlsx, .xls) or JSON file to upload (max 500MB)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "originalName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No file uploaded or invalid file type"
+          },
+          "500": {
+            "description": "Failed to upload file"
+          }
+        }
+      }
+    },
+    "/api/csrf/token": {
+      "get": {
+        "tags": ["Security"],
+        "summary": "Get CSRF token",
+        "description": "Retrieves a CSRF token for form submission protection",
+        "responses": {
+          "200": {
+            "description": "CSRF token retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "CSRF token value"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to generate CSRF token"
+          }
+        }
+      }
+    },
+    "/api/deleteall": {
+      "delete": {
+        "tags": ["Development"],
+        "summary": "Delete all data (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "responses": {
+          "200": {
+            "description": "All data deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "All data deleted"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to delete data"
+          }
+        }
+      }
+    },
+    "/api/delete/history": {
+      "delete": {
+        "tags": ["Development"],
+        "summary": "Delete all history (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "responses": {
+          "200": {
+            "description": "History deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "History deleted"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to delete history"
+          }
+        }
+      }
+    },
+    "/api/create/projects": {
+      "post": {
+        "tags": ["Development"],
+        "summary": "Create multiple projects (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Projects created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All data created"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to create projects"
+          }
+        }
+      }
+    },
+    "/api/create": {
+      "post": {
+        "tags": ["Development"],
+        "summary": "Create multiple reports (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reports created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All data created"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to create reports"
+          }
+        }
+      }
+    },
+    "/api/create/actiehouders": {
+      "post": {
+        "tags": ["Development"],
+        "summary": "Create multiple actiehouders (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Actiehouders created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "All data created"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to create actiehouders"
+          }
+        }
+      }
+    },
+    "/api/create/projectleiders": {
+      "post": {
+        "tags": ["Development"],
+        "summary": "Create multiple project leaders (Development only)",
+        "description": "Only available when ENABLE_BATCHING=true and NODE_ENV=development",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }, { "MigrationApiKey": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project leaders created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "All data created"
+                    },
+                    "ENV": {
+                      "type": "string",
+                      "example": "development"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed - Wrong environment or missing authentication"
+          },
+          "500": {
+            "description": "Failed to create project leaders"
+          }
+        }
+      }
+    },
+    "/api/uploadthing": {
+      "post": {
+        "tags": ["Files"],
+        "summary": "Upload file using uploadthing",
+        "security": [{ "BearerAuth": [], "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "fileUrl": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid file or missing file"
+          },
+          "500": {
+            "description": "Upload failed"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get a project by number ID
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/project/number/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

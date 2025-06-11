@@ -1,0 +1,23 @@
+meta {
+  name: Create multiple projects -Development only-
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/create/projects
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "data": [
+      {}
+    ]
+  }
+}

@@ -1,0 +1,727 @@
+{
+  "profile": {
+    "greeting_morning": "Goedemorgen, {name}",
+    "greeting_afternoon": "Goedemiddag, {name}",
+    "greeting_evening": "Goedenavond, {name}",
+    "greeting_night": "Je zou moeten slapen, {name}!",
+    "allow_notifications": "Sta meldingen toe",
+    "my_issues": "Mijn feedback",
+    "settings": "Instellingen",
+    "logout": "Uitloggen",
+    "roles": {
+      "admin": "Beheerder",
+      "user": "Gebruiker"
+    }
+  },
+  "myIssues": {
+    "title": "Mijn Feedback Dashboard",
+    "subtitle": "Volg en beheer uw feedback efficiënt",
+    "emptyState": "Geen meldingen gevonden",
+    "states": {
+      "open": "Open",
+      "closed": "Gesloten"
+    },
+    "labels": {
+      "created": "Aangemaakt",
+      "closed": "Gesloten",
+      "na": "N.v.t."
+    },
+    "buttons": {
+      "viewDetails": "Bekijk Details",
+      "close": "Sluiten",
+      "submitComment": "Reactie Plaatsen"
+    },
+    "details": {
+      "description": "Beschrijving",
+      "commentsTitle": "Reacties ({count})",
+      "addCommentTitle": "Reactie Toevoegen",
+      "commentPlaceholder": "Typ hier uw reactie..."
+    }
+  },
+  "verbeterplein": {
+    "breadcrumbs": {
+      "home": "Home",
+      "verbeterplein": "Verbeterplein"
+    },
+    "buttons": {
+      "new_report": "Melding"
+    },
+    "tabs": {
+      "ops": "Inbox",
+      "correctief": "Correctief",
+      "pdca": "Preventief",
+      "all": "Alles",
+      "archived": "Archief"
+    },
+    "createReport": {
+      "step1": "Obstakel",
+      "step2": "Project",
+      "step3": "Bestanden",
+      "step3_subtitle": "Optioneel",
+      "step4": "Correctief",
+      "step5": "Overzicht"
+    },
+    "showItem": {
+      "headers": {
+        "general": "ALGEMEEN",
+        "improvements": "VERBETERINGEN",
+        "obstacle_data": "OBSTAKEL GEGEVENS",
+        "corrective": "CORRECTIEF",
+        "improvement": "PREVENTIEF"
+      },
+      "tabs": {
+        "report": "Melding",
+        "communication": "Communicatie",
+        "pdca": "PDCA",
+        "history": "Geschiedenis",
+        "engagement": "Engagement"
+      },
+      "fields": {
+        "sequence_number": "Volgnummer",
+        "project_number": "Projectnummer",
+        "project_name": "Naam",
+        "sub_order": "Deelorder",
+        "project_team": "Projectteam",
+        "summary": "Samenvatting",
+        "category": "Categorie",
+        "title": "Titel",
+        "obstacle": "Obstakel",
+        "linked_to": "Gedeelde PDCA met",
+        "action_holder": "Actiehouder",
+        "deadline": "Deadline",
+        "fail_costs": "Faalkosten",
+        "solution": "Oplossing",
+        "approval": "Aankoopgoedkeuring",
+        "approval_no": "Nee",
+        "approval_yes": "Ja",
+        "attachments": "Bijlagen",
+        "client": "Klant",
+        "team_members": "Teamleden",
+        "cause": "Oorzaak",
+        "linked_reports": "Gekoppelde Meldingen"
+      },
+      "actions": {
+        "edit": "Bewerken",
+        "start_pdca": "PDCA",
+        "add_attachment": "Bijlage toevoegen",
+        "share": "Link delen",
+        "copy": "Link kopiëren"
+      },
+      "placeholders": {
+        "no_summary": "Geen samenvatting",
+        "no_category": "Geen categorie",
+        "na": "N.v.t.",
+        "no_solution": "Geen oplossing gegeven",
+        "no_obstacle": "Geen beschrijving van de obstakel gegeven"
+      },
+      "dialog": {
+        "form_title": "Formulier",
+        "chat": "Chat"
+      },
+      "buttons": {
+        "questions": "Vragen"
+      },
+      "history": {
+        "events_count": "gebeurtenissen",
+        "correctief": "Correctief",
+        "preventief": "Preventief",
+        "id": "ID",
+        "actions": {
+          "update_correctief": "Correctief bijgewerkt",
+          "update_preventief": "Preventief bijgewerkt",
+          "create_correctief": "Correctief aangemaakt",
+          "create_preventief": "Preventief aangemaakt",
+          "delete_correctief": "Correctief verwijderd",
+          "delete_preventief": "Preventief verwijderd",
+          "archive_correctief": "Correctief gearchiveerd",
+          "archive_preventief": "Preventief gearchiveerd",
+          "create_report": "Melding aangemaakt",
+          "delete_report": "Melding verwijderd",
+          "update_report": "Melding bijgewerkt",
+          "archive_report": "Melding gearchiveerd",
+          "add_correspondence_id": "Correspondentie toegevoegd",
+          "remove_correspondence_id": "Correspondentie verwijderd",
+          "add_correspondence_to_preventief": "Correspondentie toegevoegd aan preventief",
+          "remove_correspondence_from_preventief": "Correspondentie verwijderd van preventief",
+          "id": "ID"
+        },
+        "by_user": "Door {name}",
+        "unknown_time": "Onbekende tijd",
+        "minutes_ago": "{minutes} minuten geleden",
+        "hours_ago": "{hours} uur geleden",
+        "yesterday": "Gisteren",
+        "request_info": "Verzoek Informatie",
+        "environment": "Omgeving",
+        "version": "Versie",
+        "execution_time": "Uitvoeringstijd",
+        "status_code": "Statuscode",
+        "technical_details": "Technische Details",
+        "endpoint": "Eindpunt",
+        "method": "Methode",
+        "user_details": "Gebruikersdetails",
+        "department": "Afdeling",
+        "user_role": "Gebruikersrol",
+        "no_history": "Geen geschiedenis beschikbaar",
+        "timing": "Tijdsgegevens",
+        "timestamp": "Tijdstempel",
+        "requested_at": "Aangevraagd op",
+        "view_changes": "Wijzigingen bekijken",
+        "view_files": "Bestanden bekijken",
+        "correspondence_files": "Correspondentiebestanden",
+        "view_file": "Bestand bekijken",
+        "before": "Voor",
+        "after": "Na",
+        "empty": "Geen geschiedenis",
+        "advanced_details": "Geavanceerde Technische Details",
+        "request_details": "Verzoekdetails",
+        "response_details": "Responsdetails",
+        "correlation_id": "Correlatie-ID",
+        "api_version": "API-versie",
+        "preventief_id": "Preventief-ID",
+        "correctief_id": "Correctief-ID",
+        "resource_id": "Resource-ID",
+        "resource_type": "Resourcetype",
+        "response_time": "Responstijd",
+        "content_length": "Inhoudslengte",
+        "result_count": "Aantal resultaten",
+        "user_id": "Gebruikers-ID",
+        "user_email": "Gebruikersemail",
+        "ip_address": "IP-adres",
+        "session_id": "Sessie-ID",
+        "user_agent": "User Agent"
+      },
+      "edit": {
+        "title": "Bewerken",
+        "category": "Categorie Bewerken",
+        "summary": "Samenvatting Bewerken"
+      },
+      "preventief": {
+        "empty_title": "Geen preventieve actie gestart",
+        "empty_description": "Start of koppel een PDCA om structurele verbeteringen door te voeren en herhaling te voorkomen.",
+        "steps": {
+          "assign": "Wijs een actiehouder toe",
+          "analyze": "Analyseer de oorzaak",
+          "plan": "Plan verbeteracties",
+          "implement": "Implementeer en evalueer"
+        }
+      },
+      "engagement": {
+        "loading": "Bezig met laden van engagementgegevens...",
+        "no_data": "Geen engagementgegevens beschikbaar voor dit item.",
+        "total_views": "Totaal aantal weergaven",
+        "unique_viewers": "Unieke bezoekers",
+        "total_events": "Totaal aantal geregistreerde evenementen",
+        "activity_timeline": "Activiteiten tijdlijn",
+        "chart_placeholder": "Activiteiten grafiek volgt binnenkort...",
+        "eventTypes": {
+          "history_view": "Geschiedenis",
+          "view": "Bekeken",
+          "create": "Gemaakt",
+          "update": "Bijgewerkt",
+          "update_preventief": "Preventief bijgewerkt",
+          "create_preventief": "Preventief aangemaakt",
+          "comment": "Reactie toegevoegd",
+          "other": "Andere actie",
+          "open_url": "URL geopend",
+          "check_pdca": "PDCA gecontroleerd"
+        },
+        "event_type_label": "Type evenement",
+        "charts": {
+          "activity_timeline_title": "Activiteiten tijdlijn",
+          "views_by_department_title": "Weergaven per afdeling",
+          "event_type_distribution_title": "Verdeling evenementtype",
+          "top_users_title": "Top gebruikers per evenement",
+          "engagement_trend_title": "Engagement trend over tijd",
+          "activity_by_hour_title": "Activiteiten per uur van de dag",
+          "activity_by_day_title": "Activiteiten per dag van de week"
+        }
+      }
+    },
+    "table": {
+      "headers": {
+        "id": "ID",
+        "project": "Project",
+        "project_name": "Naam",
+        "deelorder": "Deelorder",
+        "akoordOPS": "Aankoop goedkeuring",
+        "created_at": "Aangemaakt",
+        "pdca_started": "PDCA/PD toegewezen",
+        "fail_costs": "Faalkosten",
+        "status_correctief": "Status correctief",
+        "status_preventief": "Status preventief",
+        "action_holder_pdca": "Actiehouder PDCA",
+        "begeleider_pdca": "Begeleider",
+        "status_pdca": "Status PDCA",
+        "title_pdca": "PDCA Titel",
+        "deadline": "Deadline",
+        "deadline_correctief": "Deadline correctief",
+        "deadline_preventief": "Deadline preventief",
+        "clones": "Meldingen aan deze PDCA",
+        "processdeel": "Afdeling",
+        "action_holder_correctief": "Actiehouder correctief",
+        "action": "Acties"
+      },
+      "na": "N.v.t."
+    },
+    "filters": {
+      "title": "filters",
+      "clear": "Wissen",
+      "active_count": "Actieve filters: {count}"
+    },
+    "edit_ops": {
+      "title": "Melding bewerken",
+      "labels": {
+        "project": "Projectnummer",
+        "part_order": "Deelorder",
+        "project_team": "Projectteam",
+        "obstacle": "Obstakel"
+      }
+    },
+    "dialog": {
+      "chat": "Chat"
+    },
+    "edit_pdca": {
+      "title": "PDCA",
+      "labels": {
+        "title": "Titel",
+        "action_holder": "Actiehouder",
+        "deadline": "Deadline",
+        "team_members": "Teamleden",
+        "status": "Status"
+      }
+    }
+  },
+  "admin": {
+    "title": "Beheer",
+    "backup": {
+      "title": "Backup Beheer",
+      "restore_title": "Backup Terugzetten",
+      "restore_warning": "Waarschuwing: Het terugzetten van een backup vervangt alle huidige gegevens. Deze actie kan niet ongedaan worden gemaakt.",
+      "confirm_restore": "Weet je zeker dat je deze backup wilt terugzetten? Alle huidige gegevens gaan verloren.",
+      "confirm_delete": "Weet je zeker dat je deze backup wilt verwijderen?",
+      "select_backup": "Selecteer een backup om terug te zetten",
+      "selected_backup": "Geselecteerde Backup",
+      "start_restore": "Start Terugzetten",
+      "restore_success": "Backup succesvol teruggezet",
+      "delete_success": "Backup succesvol verwijderd",
+      "create_success": "Backup succesvol aangemaakt",
+      "create_backup": "Backup Maken",
+      "download": "Downloaden",
+      "delete": "Verwijderen",
+      "restore": "Terugzetten",
+      "no_backups": "Geen backups gevonden",
+      "table": {
+        "backup_name": "Backup Naam",
+        "created_at": "Aangemaakt Op",
+        "actions": "Acties"
+      },
+      "restore_status": {
+        "started": "Terugzetten gestart",
+        "downloading": "Backup downloaden",
+        "decompressing": "Backup uitpakken",
+        "restoring": "Gegevens terugzetten",
+        "completed": "Terugzetten voltooid"
+      },
+      "create_status": {
+        "started": "Backup maken gestart",
+        "generating": "Backup data genereren",
+        "compressing": "Backup data comprimeren",
+        "uploading": "Backup uploaden",
+        "finalizing": "Backup afronden",
+        "completed": "Backup voltooid"
+      },
+      "backup_created": "Backup succesvol aangemaakt",
+      "download_backup": "Backup downloaden...",
+      "download_success": "Backup succesvol gedownload",
+      "delete_backup": "Backup verwijderen...",
+      "restore_backup": "Backup terugzetten...",
+      "upload_title": "Backup uploaden",
+      "select_file": "Selecteer backup bestand"
+    },
+    "email": {
+      "overview": "E-mail Tracking",
+      "templates": "E-mailtemplates",
+      "add_template": "Template toevoegen",
+      "edit_template": "Template bewerken",
+      "new_template": "Nieuwe template",
+      "table": {
+        "date_sent": "Verzonden op",
+        "status": "Status",
+        "recipient": "Ontvanger",
+        "opened": "Geopend",
+        "opened_from": "Geopend vanaf",
+        "name": "Naam",
+        "subject": "Onderwerp",
+        "variables": "Variabelen",
+        "actions": "Acties"
+      }
+    },
+    "permissions": {
+      "title": "Permissiesbeheer",
+      "add_permission": "Permissie toevoegen",
+      "edit_permission": "Permissie bewerken",
+      "delete_permission": "Permissie verwijderen",
+      "delete_confirmation": "Weet je zeker dat je deze permisie wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "rules": {
+        "name_required": "Naam is verplicht",
+        "description_required": "Beschrijving is verplicht",
+        "resource_type_required": "Resourcetype is verplicht",
+        "permission_action_required": "Permissie actie is verplicht"
+      },
+      "table": {
+        "name": "Naam",
+        "description": "Beschrijving",
+        "permission_type": "Permissietype",
+        "resource_type": "Resourcetype",
+        "permission_action": "Permissieactie",
+        "created_at": "Aangemaakt op",
+        "actions": "Acties"
+      },
+      "permission_types": {
+        "read": "Lezen",
+        "create": "Aanmaken",
+        "update": "Bijwerken",
+        "delete": "Verwijderen",
+        "manage": "Beheren"
+      },
+      "resource_types": {
+        "melding": "Melding",
+        "idee": "Idee",
+        "project": "Project",
+        "schade": "Schade",
+        "projectleider": "Projectleider",
+        "status": "Status",
+        "user": "Gebruiker",
+        "correctief": "Correctief",
+        "actiehouders": "Actiehouders",
+        "preventief": "Preventief",
+        "chat": "Chat",
+        "archive": "Archief",
+        "history": "Geschiedenis",
+        "audit": "Audit",
+        "settings": "Instellingen",
+        "department": "Afdeling",
+        "all": "Alles"
+      }
+    },
+    "roles": {
+      "title": "Rollenbeheer",
+      "add_role": "Rol toevoegen",
+      "edit_role": "Rol bewerken",
+      "create_role": "Rol aanmaken",
+      "delete_role": "Rol verwijderen",
+      "delete_group": "Groep verwijderen",
+      "delete_confirmation_role": "Weet je zeker dat je deze rol wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "delete_confirmation_group": "Weet je zeker dat je deze groep wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "edit_group": "Groep bewerken",
+      "create_group": "Groep aanmaken",
+      "manage_role": "Rol beheren",
+      "manage_group": "Groep beheren",
+      "permissions": "Selecteer permissies",
+      "table": {
+        "name": "Naam",
+        "description": "Beschrijving",
+        "permissions": "Permissies",
+        "created_at": "Aangemaakt op",
+        "actions": "Acties"
+      }
+    },
+    "users": {
+      "title": "Gebruikersbeheer",
+      "pageTitle": "Gebruikersbeheer",
+      "delete_user": "Gebruiker verwijderen",
+      "delete_confirmation_user": "Weet je zeker dat je deze gebruiker wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "manage_user_access": "Gebruikerstoegang beheren",
+      "dialog": {
+        "roles": "Rollen",
+        "groups": "Groepen",
+        "permissions": "Rechten",
+        "department": "Afdeling",
+        "selectRoles": "Selecteer rollen",
+        "selectGroups": "Selecteer groepen",
+        "selectPermissions": "Selecteer rechten",
+        "selectDepartment": "Selecteer afdeling"
+      },
+      "table": {
+        "search": "Zoek gebruikers",
+        "user": "Gebruiker",
+        "email": "E-mail",
+        "department": "Afdeling",
+        "lastLogin": "Laatste login",
+        "createdAt": "Aangemaakt op",
+        "actions": "Acties"
+      },
+      "department_updated": "Afdeling succesvol bijgewerkt"
+    },
+    "departments": {
+      "title": "Afdelingsbeheer",
+      "pageTitle": "Afdelingsbeheer",
+      "add_department": "Afdeling toevoegen",
+      "edit_department": "Afdeling bewerken",
+      "delete_department": "Afdeling verwijderen",
+      "delete_confirmation": "Weet je zeker dat je deze afdeling wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "created": "Afdeling succesvol aangemaakt",
+      "updated": "Afdeling succesvol bijgewerkt",
+      "updating": "Afdeling bijwerken...",
+      "deleted": "Afdeling succesvol verwijderd",
+      "table": {
+        "name": "Naam",
+        "description": "Beschrijving",
+        "created_at": "Aangemaakt op",
+        "actions": "Acties"
+      }
+    },
+    "github": {
+      "issues": {
+        "title": "GitHub Issues",
+        "page_title": "GitHub Issues Beheer",
+        "filter": {
+          "status": "Status",
+          "type": "Type",
+          "search": "Zoek issues"
+        },
+        "table": {
+          "title": "Titel",
+          "status": "Status",
+          "type": "Type",
+          "created": "Aangemaakt",
+          "actions": "Acties",
+          "labels": "Labels"
+        },
+        "actions": {
+          "close": "Issue Sluiten",
+          "reopen": "Issue Heropenen",
+          "view_details": "Details Bekijken"
+        },
+        "details_title": "Issue Details",
+        "created_by": "Aangemaakt door",
+        "close_issue": "Issue Sluiten",
+        "close_reason": "Reden voor Sluiting",
+        "close_comment": "Afsluitende Opmerking",
+        "close_comment_placeholder": "Voeg een opmerking toe waarom deze issue wordt gesloten...",
+        "close_reasons": {
+          "Duplicate": "Duplicaat Issue",
+          "Invalid": "Ongeldige Issue",
+          "wont_fix": "Wordt Niet Opgelost",
+          "Completed": "Voltooid",
+          "Not Needed": "Niet Nodig",
+          "Other": "Anders"
+        },
+        "reason_required": "Reden is verplicht",
+        "comment_required": "Opmerking is verplicht",
+        "confirm_close": "Bevestig Sluiting",
+        "close_success_title": "Issue Gesloten",
+        "close_success_message": "De issue is succesvol gesloten",
+        "close_error_title": "Fout bij Sluiten Issue",
+        "close_error_message": "Er is een fout opgetreden bij het sluiten van de issue",
+        "reopen_success_title": "Issue Heropend",
+        "reopen_success_message": "De issue is succesvol heropend",
+        "reopen_error_title": "Fout bij Heropenen Issue",
+        "reopen_error_message": "Er is een fout opgetreden bij het heropenen van de issue",
+        "load_error": "Kon issues niet laden",
+        "closed_success": "Issue succesvol gesloten",
+        "reopened_success": "Issue succesvol heropend",
+        "status_update_error": "Kon issue status niet bijwerken",
+        "closing_issue_message": "Issue wordt gesloten...",
+        "close_comment_template": "Gesloten door {user}: {reason} - {message}",
+        "reopen_comment_template": "Heropend door {user}",
+        "coming_soon": "Aanvullende functies komen binnenkort..."
+      }
+    }
+  },
+  "general": {
+    "retry": "Opnieuw proberen",
+    "fallback": {
+      "loading": "Component laden..."
+    },
+    "yes": "Ja",
+    "no": "Nee",
+    "cancel": "Annuleren",
+    "events": "Evenementen",
+    "event": "Evenement",
+    "view": "Weergave",
+    "views": "Weergaven",
+    "time_hour": "Uur",
+    "day_of_week": "Dag van de week",
+    "day": "Dag"
+  },
+  "days": {
+    "sun": "Zondag",
+    "mon": "Maandag",
+    "tue": "Dinsdag",
+    "wed": "Woensdag",
+    "thu": "Donderdag",
+    "fri": "Vrijdag",
+    "sat": "Zaterdag"
+  },
+  "errors": {
+    "data_transform_error": "Fout bij het transformeren van gegevens voor grafiek {index}: {error}",
+    "fetch_error": "Kon gegevens niet ophalen: {error}"
+  },
+  "analytics": {
+    "activity_time_series_name": "Evenementen dit uur",
+    "activity_day_series_name": "Evenementen deze dag",
+    "trend_series_name": "Evenementen over tijd"
+  },
+  "notifications": {
+    "ops_saved": "Faalkosten succesvol opgeslagen!",
+    "system": "Er is een nieuwe melding.",
+    "dialog_closed": "Dialoog gesloten!",
+    "start_melding": "Melding aanmaken...",
+    "create_success": "Melding succesvol aangemaakt!",
+    "update_start": "Melding wordt bijgewerkt...",
+    "update_success": "Succesvol bijgewerkt!",
+    "update_failed": "Bijwerken mislukt!",
+    "status_updated": "Status succesvol bijgewerkt!",
+    "upload_success": "Bestanden succesvol geüpload",
+    "uploading_files": "Bestanden uploaden...",
+    "delete_success": "Bestand succesvol verwijderd",
+    "pdca_info": "Je hebt een week de tijd om de PDCA te plannen!",
+    "success": "Succes",
+    "info": "Info",
+    "error": "Fout",
+    "promise": "Bezig...",
+    "promise_success": "Succes",
+    "promise_error": "Fout",
+    "promise_canceled": "Melding geannuleerd",
+    "item_saved": "Item opgeslagen",
+    "item_removed": "Item verwijderd",
+    "empty_field": "Het veld: {field} is leeg!",
+    "create_pdca": "PDCA aanmaken...",
+    "create_pdca_success": "PDCA succesvol aangemaakt!",
+    "create_pdca_failed": "PDCA aanmaken mislukt!",
+    "archive_success": "Meldingen succesvol naar archief verplaatst!",
+    "phase_reset_success": "Fase succesvol hersteld!",
+    "update": "Succesvol bijgewerkt!",
+    "no_changes": "Geen wijzigingen aangebracht",
+    "linking_pdca": "PDCA koppelen...",
+    "linking_pdca_success": "PDCA succesvol gekoppeld!",
+    "creating_feedback": "Feedback aanmaken...",
+    "feedback_created": "Feedback succesvol aangemaakt!",
+    "feedback_error": "Fout bij het aanmaken van feedback! Probeer het opnieuw of neem contact op met support. {error}",
+    "feedback_error_upload": "Fout bij het uploaden van de afbeelding! Probeer het opnieuw of neem contact op met support. {error}",
+    "feedback_error_upload_timeout": "Upload time-out. Probeer het opnieuw of neem contact op met support. {error}",
+    "saving_correctief": "Correctief opslaan...",
+    "correctief_saved": "Correctief succesvol opgeslagen!",
+    "correctief_created": "Correctief succesvol aangemaakt!",
+    "saving_correspondence": "Correspondentie opslaan...",
+    "correspondence_saved": "Correspondentie succesvol opgeslagen!",
+    "saving_title": "Titel opslaan...",
+    "title_saved": "Titel succesvol opgeslagen!",
+    "saving_category": "Categorie opslaan...",
+    "category_saved": "Categorie succesvol opgeslagen!",
+    "saving_ops": "Faalkosten opslaan...",
+    "faalkosten_saved": "Faalkosten succesvol opgeslagen!",
+    "saving_pdca": "PDCA opslaan...",
+    "pdca_saved": "PDCA succesvol opgeslagen!",
+    "shared_successfully": "Link succesvol gedeeld",
+    "copied_to_clipboard": "Link gekopieerd naar klembord",
+    "action_deleted": "Taak succesvol verwijderd!",
+    "saving": "Opslaan..."
+  },
+  "auth": {
+    "microsoft_login": "Inloggen met Microsoft",
+    "microsoft_auth_failed": "Microsoft authenticatie mislukt. Probeer het opnieuw.",
+    "user_not_found": "Gebruikersaccount niet gevonden.",
+    "login_failed": "Inloggen mislukt. Probeer het opnieuw.",
+    "auth_code_reused": "Inloggen mislukt. Neem contact op met support."
+  },
+  "settings": {
+    "notifications": {
+      "title": "Meldingsinstellingen",
+      "enable_all": "Meldingen inschakelen",
+      "enable_toast": "In-App meldingen inschakelen",
+      "enable_system": "Systeemmeldingen inschakelen",
+      "enable_sound": "Geluid inschakelen",
+      "permission_required": "Systeemmeldingen vereisen browsertoestemming",
+      "request_permission": "Toestemming aanvragen"
+    },
+    "security": {
+      "title": "Beveiligingsinstellingen",
+      "devices": {
+        "title": "Actieve Sessies",
+        "device": "Apparaat",
+        "browser": "Browser",
+        "os": "Besturingssysteem",
+        "last_active": "Laatst Actief",
+        "status": "Status",
+        "actions": "Acties",
+        "online": "Online",
+        "offline": "Offline",
+        "revoke": "Intrekken",
+        "current": "Huidige Sessie",
+        "revoke_all": "Alle Sessies Intrekken",
+        "revoke_confirm": "Weet je zeker dat je de toegang voor deze sessie wilt intrekken?",
+        "revoke_all_confirm": "Weet je zeker dat je de toegang voor alle sessies wilt intrekken?"
+      },
+      "settings": {
+        "title": "Beveiligingsopties",
+        "two_factor": "Tweestapsverificatie",
+        "login_history": "Inloggeschiedenis",
+        "password": "Wachtwoord",
+        "configure": "Configureren",
+        "enable": "Inschakelen",
+        "view": "Bekijk Geschiedenis",
+        "change": "Wijzig Wachtwoord"
+      },
+      "two_factor": {
+        "setup_title": "Tweestapsverificatie Instellen"
+      },
+      "login_history": {
+        "title": "Inloggeschiedenis",
+        "date": "Datum",
+        "browser": "Browser",
+        "device": "Apparaat",
+        "ip": "IP-adres",
+        "status": "Status"
+      },
+      "password": {
+        "title": "Wachtwoord Wijzigen",
+        "current": "Huidig Wachtwoord",
+        "new": "Nieuw Wachtwoord",
+        "confirm": "Bevestig Wachtwoord"
+      }
+    },
+    "email": {
+      "title": "E-mailinstellingen"
+    }
+  },
+  "common": {
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "home": "Home",
+    "clear": "Wissen"
+  },
+  "todos": {
+    "title": "Taken",
+    "active_tasks": "Actieve Taken",
+    "completed_tasks": "Voltooide Taken",
+    "active_count": {
+      "one": "{count} taak",
+      "other": "{count} taken"
+    },
+    "completed_count": {
+      "one": "{count} voltooid",
+      "other": "{count} voltooid"
+    },
+    "no_active_tasks": "Geen actieve taken",
+    "no_completed_tasks": "Geen voltooide taken",
+    "created_at": "Aangemaakt: {date}",
+    "completed_at": "Voltooid: {date}",
+    "statistics": "Takenstatistieken",
+    "total_tasks": "Totaal Taken",
+    "completion_rate": "Voltooiingspercentage",
+    "recent_activity": "Recente Activiteit"
+  },
+  "notificationPage": {
+    "all_notifications": "Alle meldingen",
+    "system": "Systeem",
+    "toast": "Toast",
+    "notification": "Melding",
+    "announcement": "Aankondiging",
+    "click_to_open": "Klik om te openen",
+    "mark_as_read": "Markeer als gelezen",
+    "mark_all_read": "Markeer alles als gelezen",
+    "no_notifications": "Geen meldingen"
+  }
+}

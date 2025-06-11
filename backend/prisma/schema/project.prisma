@@ -1,0 +1,23 @@
+model Project {
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
+  NumberID        Int            @unique
+  ProjectNaam     String
+  Deelorders      String[]
+  ProjectLeider   Projectleider? @relation(fields: [ProjectleiderId], references: [id])
+  ProjectleiderId String?        @db.ObjectId
+  CreatedAt       DateTime       @default(now())
+  UpdatedAt       DateTime       @updatedAt
+  Melding         Melding[]
+  ProjectLocatie  String?
+  StartDate       DateTime?
+  EndDate         DateTime?
+  Beschrijving    String?
+}
+
+model Projectleider {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  Name      String    @unique
+  CreatedAt DateTime  @default(now())
+  UpdatedAt DateTime  @updatedAt
+  Project   Project[]
+}

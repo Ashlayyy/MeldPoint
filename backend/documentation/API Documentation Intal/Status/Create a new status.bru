@@ -1,0 +1,23 @@
+meta {
+  name: Create a new status
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/status
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "StatusNaam": "",
+    "StatusColor": "",
+    "StatusType": ""
+  }
+}

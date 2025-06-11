@@ -1,0 +1,15 @@
+meta {
+  name: Get all actiehouders
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/actiehouder
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

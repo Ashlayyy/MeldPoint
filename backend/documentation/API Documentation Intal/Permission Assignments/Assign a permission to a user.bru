@@ -1,0 +1,20 @@
+meta {
+  name: Assign a permission to a user
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/permissions/assign/user/:userId/permission/:permissionId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  userId: 
+  permissionId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Get lengths of different melding types
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/melding/fetch/lengths
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

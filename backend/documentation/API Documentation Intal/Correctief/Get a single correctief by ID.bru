@@ -1,0 +1,19 @@
+meta {
+  name: Get a single correctief by ID
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/correctief/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

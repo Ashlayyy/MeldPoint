@@ -1,0 +1,15 @@
+meta {
+  name: Get current user
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/users/auth/current
+  body: none
+  auth: none
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}

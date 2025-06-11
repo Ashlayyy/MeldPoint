@@ -1,0 +1,15 @@
+meta {
+  name: Get user count by department
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/stats/departments
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

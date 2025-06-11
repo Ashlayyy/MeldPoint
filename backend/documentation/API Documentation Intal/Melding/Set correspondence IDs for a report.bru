@@ -1,0 +1,25 @@
+meta {
+  name: Set correspondence IDs for a report
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/api/melding/correspondence/:meldingID
+  body: json
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "correspondence": []
+  }
+}

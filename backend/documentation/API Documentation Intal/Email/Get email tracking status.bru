@@ -1,0 +1,19 @@
+meta {
+  name: Get email tracking status
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/email/status/:trackingId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  trackingId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

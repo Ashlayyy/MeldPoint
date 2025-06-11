@@ -1,0 +1,20 @@
+meta {
+  name: Remove a group from a user
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/api/permissions/remove/user/:userId/group/:groupId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  userId: 
+  groupId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

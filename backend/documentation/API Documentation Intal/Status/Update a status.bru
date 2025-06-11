@@ -1,0 +1,23 @@
+meta {
+  name: Update a status
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/status/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {}
+}

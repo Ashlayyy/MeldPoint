@@ -1,0 +1,19 @@
+meta {
+  name: Upload file using uploadthing
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/uploadthing
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  file: 
+}

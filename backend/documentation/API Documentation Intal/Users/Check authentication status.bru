@@ -1,0 +1,15 @@
+meta {
+  name: Check authentication status
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/users/auth/status
+  body: none
+  auth: none
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}

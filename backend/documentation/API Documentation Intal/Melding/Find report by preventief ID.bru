@@ -1,0 +1,19 @@
+meta {
+  name: Find report by preventief ID
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/melding/find/preventief/:preventiefID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  preventiefID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Rewrite team members for correctief
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/correctief/teamleden/:meldingID/rewrite
+  body: json
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "teamleden": []
+  }
+}

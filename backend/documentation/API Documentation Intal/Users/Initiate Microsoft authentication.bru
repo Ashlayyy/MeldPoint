@@ -1,0 +1,15 @@
+meta {
+  name: Initiate Microsoft authentication
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/users/auth/microsoft
+  body: none
+  auth: none
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}

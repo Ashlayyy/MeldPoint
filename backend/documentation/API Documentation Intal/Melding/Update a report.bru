@@ -1,0 +1,25 @@
+meta {
+  name: Update a report
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/melding/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "data": {}
+  }
+}

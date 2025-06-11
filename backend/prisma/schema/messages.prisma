@@ -1,0 +1,19 @@
+model ChatRoom {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  messages  Message[]
+  meldingId String?   @unique @db.ObjectId
+  Melding   Melding?  @relation(fields: [meldingId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  content    String
+  userId     String   @db.ObjectId
+  chatroomId String   @db.ObjectId
+  chatroom   ChatRoom @relation(fields: [chatroomId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

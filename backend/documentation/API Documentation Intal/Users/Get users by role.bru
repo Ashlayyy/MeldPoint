@@ -1,0 +1,19 @@
+meta {
+  name: Get users by role
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/users/role/:roleId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  roleId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

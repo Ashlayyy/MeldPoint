@@ -1,0 +1,25 @@
+meta {
+  name: Rewrite team members for preventief record
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/api/preventief/teamleden/:meldingID/rewrite
+  body: json
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "teamleden": []
+  }
+}

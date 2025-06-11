@@ -1,0 +1,25 @@
+meta {
+  name: Add correspondence to preventief record
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/api/preventief/correspondence/:meldingID
+  body: json
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "correspondence": ""
+  }
+}

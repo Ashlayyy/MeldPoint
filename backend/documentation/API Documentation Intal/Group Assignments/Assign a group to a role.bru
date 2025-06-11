@@ -1,0 +1,20 @@
+meta {
+  name: Assign a group to a role
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/permissions/assign/role/:roleId/group/:groupId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  roleId: 
+  groupId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

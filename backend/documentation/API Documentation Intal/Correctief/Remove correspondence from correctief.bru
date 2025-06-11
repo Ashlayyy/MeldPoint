@@ -1,0 +1,20 @@
+meta {
+  name: Remove correspondence from correctief
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/api/correctief/correspondence/:correctiefID/:CorrespondenceID
+  body: none
+  auth: bearer
+}
+
+params:path {
+  correctiefID: 
+  CorrespondenceID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

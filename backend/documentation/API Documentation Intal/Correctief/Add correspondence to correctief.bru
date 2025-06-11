@@ -1,0 +1,25 @@
+meta {
+  name: Add correspondence to correctief
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/correctief/correspondence/:meldingID
+  body: json
+  auth: bearer
+}
+
+params:path {
+  meldingID: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "correspondence": ""
+  }
+}

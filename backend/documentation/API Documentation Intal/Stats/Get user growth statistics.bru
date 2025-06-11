@@ -1,0 +1,19 @@
+meta {
+  name: Get user growth statistics
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/stats/growth
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~period: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

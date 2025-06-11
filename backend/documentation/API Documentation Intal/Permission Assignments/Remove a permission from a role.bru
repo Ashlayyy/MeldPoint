@@ -1,0 +1,20 @@
+meta {
+  name: Remove a permission from a role
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/permissions/remove/role/:roleId/permission/:permissionId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  roleId: 
+  permissionId: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

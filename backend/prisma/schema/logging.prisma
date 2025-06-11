@@ -1,0 +1,93 @@
+model PermissionLog {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String?  @db.ObjectId
+  userEmail    String?
+  userName     String?
+  department   String?
+  action       String
+  resourceType String
+  success      Boolean
+  metadata     String?
+  timestamp    DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([timestamp])
+  @@index([success])
+}
+
+model SystemLog {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String? @db.ObjectId
+  userEmail     String?
+  userName      String?
+  ipAddress     String?
+  userAgent     String?
+  correlationID String?
+  action        String
+  resourceType  String
+  resourceId    String?
+  success       Boolean
+  endpoint      String?
+  method        String?
+
+  previousState String?
+  newState      String?
+  changedFields String?
+
+  changesData       String?
+  changeCount       Int?
+  changedFieldNames String[]
+
+  metadata     Json?
+  errorMessage String?
+  errorStack   String?
+  errorCode    String?
+
+  sessionId     String?
+  requestBody   String?
+  requestQuery  String?
+  requestParams String?
+  timestamp     DateTime @default(now())
+
+  User User? @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  @@index([userId])
+  @@index([correlationID])
+  @@index([resourceType, resourceId])
+  @@index([timestamp])
+  @@index([success])
+  @@index([changedFieldNames])
+  @@index([action, resourceType])
+}
+
+model UserActivity {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  action    String
+  feature   String
+  metadata  String?
+  timestamp DateTime
+  sessionId String
+  ipAddress String
+  userAgent String
+
+  @@map("user_activity")
+}
+
+model EmailTracking {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  trackingId     String     @unique
+  messageId      String     @unique
+  deliveryStatus String
+  openedAt       DateTime?
+  clickedAt      DateTime[]
+  deliveredAt    DateTime?
+  bouncedAt      DateTime?
+  bounceReason   String?
+  ipOpened       String[]
+  userAgent      String[]
+  linkClicked    String[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}

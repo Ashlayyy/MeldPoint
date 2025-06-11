@@ -1,0 +1,16 @@
+model VersionHistory {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp      DateTime @default(now())
+  targetModel    String
+  targetObjectId String
+  oldVersion     Json
+  newVersion     Json
+  changes        Json
+  userId         String?  @db.ObjectId
+  User           User?    @relation(fields: [userId], references: [id])
+
+  @@index([targetModel, targetObjectId])
+  @@index([timestamp])
+  @@index([userId])
+  @@map("version_histories")
+}
