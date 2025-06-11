@@ -1,4 +1,3 @@
-import { Octokit } from '@octokit/rest';
 import config from '../../../config';
 import logger from '../../../helpers/loggerInstance';
 import {
@@ -14,28 +13,50 @@ import {
   GitHubRelease
 } from '../types';
 
+// Type import for Octokit (TypeScript will use this for type checking only)
+type Octokit = import('@octokit/rest').Octokit;
+
 if (!config.github?.apiKey || !config.github?.username || !config.github?.repo || !config.github?.repoFull) {
   throw new Error('Missing required GitHub configuration');
 }
 
-const octokit = new Octokit({
-  auth: config.github.apiKey,
-  baseUrl: 'https://api.github.com',
-  log: {
-    debug: (message) => {
-      logger.debug(`GitHubService: DEBUG - ${message}`);
-    },
-    info: (message) => {
-      logger.info(`GitHubService: INFO - ${message}`);
-    },
-    warn: (message) => {
-      logger.warn(`GitHubService: WARN - ${message}`);
-    },
-    error: (message) => {
-      logger.error(`GitHubService: ERROR - ${message}`);
+// Cached Octokit instance
+let octokitInstance: Octokit | null = null;
+
+// Dynamic import function with singleton pattern
+const getOctokit = async (): Promise<Octokit> => {
+  if (!octokitInstance) {
+    try {
+      logger.debug('GitHubService: Loading Octokit module dynamically');
+      const { Octokit } = await import('@octokit/rest');
+
+      octokitInstance = new Octokit({
+        auth: config.github.apiKey,
+        baseUrl: 'https://api.github.com',
+        log: {
+          debug: (message) => {
+            logger.debug(`GitHubService: DEBUG - ${message}`);
+          },
+          info: (message) => {
+            logger.info(`GitHubService: INFO - ${message}`);
+          },
+          warn: (message) => {
+            logger.warn(`GitHubService: WARN - ${message}`);
+          },
+          error: (message) => {
+            logger.error(`GitHubService: ERROR - ${message}`);
+          }
+        }
+      });
+
+      logger.debug('GitHubService: Octokit instance created successfully');
+    } catch (error) {
+      logger.error(`GitHubService: Failed to load Octokit module - ${error}`);
+      throw new Error(`Failed to initialize GitHub client: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
-});
+  return octokitInstance;
+};
 
 const handleGitHubResponse = async <T>(promise: Promise<any>): Promise<GitHubResponse<T>> => {
   try {
@@ -68,6 +89,7 @@ export const createIssue = async (payload: CreateIssuePayload): Promise<GitHubRe
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse(
     octokit.issues.create({
       owner,
@@ -100,6 +122,7 @@ export const getIssues = async ({
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
 
   const requestParams: any = {
     owner,
@@ -124,6 +147,7 @@ export const getIssue = async (issueNumber: number): Promise<GitHubResponse<GitH
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse(
     octokit.issues.get({
       owner,
@@ -142,6 +166,7 @@ export const updateIssue = async (
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse(
     octokit.issues.update({
       owner,
@@ -158,6 +183,7 @@ export const closeIssue = async (issueNumber: number): Promise<GitHubResponse<Gi
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse(
     octokit.issues.update({
       owner,
@@ -177,6 +203,7 @@ export const addComment = async (
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse(
     octokit.issues.createComment({
       owner,
@@ -194,6 +221,7 @@ export const findByEmail = async (email: string): Promise<GitHubIssue[]> => {
     throw new Error('Missing required GitHub configuration for repoFull');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
 
   const allIssues = await getAllIssuesPaginated();
   const escapedEmail = escapeRegex(email);
@@ -250,6 +278,7 @@ export const getAllIssuesPaginated = async (): Promise<GitHubIssue[]> => {
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
 
   try {
     const issues = await octokit.paginate(octokit.issues.listForRepo, {
@@ -318,6 +347,7 @@ export const getReleases = async (): Promise<GitHubResponse<GitHubRelease[]>> =>
     throw new Error('Missing required GitHub configuration');
   }
   const [owner, repo] = config.github.repoFull.split('/');
+  const octokit = await getOctokit();
   return handleGitHubResponse<GitHubRelease[]>(
     octokit.rest.repos.listReleases({
       owner,
