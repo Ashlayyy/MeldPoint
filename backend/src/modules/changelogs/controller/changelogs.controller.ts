@@ -64,7 +64,7 @@ function linkifyUrls(text: string): string {
   });
 }
 
-const changelogsDir = path.join(process.cwd(), 'changelogs');
+const changelogsDir = path.join(__dirname, '..', '..', '..', '..', 'changelogs');
 
 async function readLocalChangelogs(): Promise<ChangelogEntry[]> {
   let localChangelogs: ChangelogEntry[] = [];
