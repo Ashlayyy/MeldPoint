@@ -9,7 +9,7 @@
     "code:check": "concurrently \"npm:prettier:check\" \"npm:lint\" \"npm:audit\"",
     "code:clean": "concurrently \"npm:prettier:write\"",
     "copy-templates": "tsx scripts/copy-templates.ts",
-    "build": "npm run clean && npm run audit && npm run code:clean && ts-patch install -s && cross-env NODE_ENV=production tsc --project tsconfig.json && npm run copy-templates",
+    "build": "npm run clean && npm run code:clean && ts-patch install -s && cross-env NODE_ENV=production tsc --project tsconfig.json && npm run copy-templates",
     "start": "cross-env NODE_ENV=production node ./dist/src/server.js",
     "start:pm2": "pm2 start ./dist/src/server.js --name 'aluminate-server' -i max",
     "dev": "cross-env NODE_ENV=development nodemon ./src/server.ts",
