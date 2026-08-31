@@ -2,14 +2,10 @@
 import { Strategy as MicrosoftStrategy } from 'passport-microsoft';
 import { v4 as uuidv4 } from 'uuid';
 import { updateUserGroup } from '../../db/queries/updateQueries';
+import { resolveDefaultPermissionGroupId } from '../../db/queries/helpFunctions/defaultPermissionGroup';
 import { FindUserByEmail, UpdateUser } from '../../modules/User/controller/UserController';
 import { create } from '../../modules/User/service/UserService';
 import logger from '../../helpers/loggerInstance';
-
-const defaultGroupID =
-  process.env.ENABLE_DEV_DATABASE === 'true'
-    ? (process.env.STANDARD_USER_GROUP_ID_DEV as string)
-    : (process.env.STANDARD_USER_GROUP_ID as string);
 
 const microsoftStrategy = new MicrosoftStrategy(
   {
@@ -54,27 +50,32 @@ const microsoftStrategy = new MicrosoftStrategy(
       });
 
       const existingUser = await FindUserByEmail(email);
+      const defaultGroupID = await resolveDefaultPermissionGroupId();
 
-      if (existingUser && existingUser.MicrosoftId) {
+      if (existingUser) {
         logger.info('Existing user found, updating login details', {
           ...authContext,
           userId: existingUser.id,
-          email
+          email,
+          linkingMicrosoftId: !existingUser.MicrosoftId
         });
 
         await UpdateUser(existingUser.id, {
-          lastLogin: new Date()
+          lastLogin: new Date(),
+          ...(!existingUser.MicrosoftId && { MicrosoftId: profile.id })
         });
 
-        logger.debug('Updating user group', {
-          ...authContext,
-          userId: existingUser.id,
-          groupId: defaultGroupID
-        });
+        if (defaultGroupID) {
+          logger.debug('Updating user group', {
+            ...authContext,
+            userId: existingUser.id,
+            groupId: defaultGroupID
+          });
 
-        await updateUserGroup(existingUser.id, {
-          groupID: defaultGroupID
-        });
+          await updateUserGroup(existingUser.id, {
+            groupID: defaultGroupID
+          });
+        }
 
         logger.info('User authentication successful', {
           ...authContext,
@@ -88,7 +89,8 @@ const microsoftStrategy = new MicrosoftStrategy(
 
       logger.info('Creating new user account', {
         ...authContext,
-        email
+        email,
+        groupId: defaultGroupID
       });
 
       const user = await create({
@@ -96,7 +98,7 @@ const microsoftStrategy = new MicrosoftStrategy(
         Email: email,
         MicrosoftId: profile.id,
         lastLogin: new Date(),
-        groupID: defaultGroupID
+        ...(defaultGroupID && { groupID: defaultGroupID })
       });
 
       logger.info('New user account created successfully', {

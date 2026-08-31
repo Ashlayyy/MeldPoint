@@ -43,6 +43,7 @@ export async function updateUser(
     Email?: string;
     MicrosoftId?: string;
     departmentId?: string;
+    lastLogin?: Date;
   }
 ) {
   return prisma.user.update({
@@ -51,6 +52,7 @@ export async function updateUser(
       ...(data.Name && { Name: data.Name }),
       ...(data.Email && { Email: data.Email }),
       ...(data.MicrosoftId && { MicrosoftId: data.MicrosoftId }),
+      ...(data.lastLogin && { lastLogin: data.lastLogin }),
       ...(data.departmentId && {
         Department: { connect: { id: data.departmentId } }
       })

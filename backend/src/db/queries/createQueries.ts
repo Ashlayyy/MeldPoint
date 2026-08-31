@@ -3,6 +3,7 @@
 import prisma from '../prismaClient';
 import type { Melding } from '../../types/queryTypes';
 import { validateAndConnect } from './helpFunctions/validateConnect';
+import { resolveDefaultPermissionGroupId } from './helpFunctions/defaultPermissionGroup';
 import logger from '../../helpers/loggerInstance';
 
 export async function createReport(data: Melding, userId: string) {
@@ -181,7 +182,7 @@ export async function createUser(data: {
   Email: string;
   Name: string;
   MicrosoftId: string;
-  groupID: string;
+  groupID?: string;
   lastLogin: Date;
 }) {
   return await prisma.$transaction(async (tx) => {
@@ -194,12 +195,38 @@ export async function createUser(data: {
       }
     });
 
-    await tx.usersOnPermissionGroups.create({
-      data: {
-        user: { connect: { id: user.id } },
-        group: { connect: { id: data.groupID } }
+    let requestedGroupId: string | null = null;
+    if (data.groupID) {
+      try {
+        const requestedGroup = await tx.permissionGroup.findUnique({
+          where: { id: data.groupID },
+          select: { id: true }
+        });
+        requestedGroupId = requestedGroup?.id ?? null;
+      } catch {
+        requestedGroupId = null;
       }
-    });
+    }
+    const groupId = requestedGroupId ?? (await resolveDefaultPermissionGroupId(tx));
+
+    if (groupId) {
+      await tx.usersOnPermissionGroups.create({
+        data: {
+          user: { connect: { id: user.id } },
+          group: { connect: { id: groupId } }
+        }
+      });
+    } else {
+      logger.error('CreateUser Query: No permission group available to assign. User was still created.');
+      logger.debug(
+        JSON.stringify({
+          userId: user.id,
+          email: user.Email,
+          requestedGroupId: data.groupID,
+          error: 'Permission group not found'
+        })
+      );
+    }
 
     const DEFAULT_ROLE = 'Actiehouder';
 

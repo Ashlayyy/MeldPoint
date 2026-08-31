@@ -3,6 +3,8 @@
 import type { Prisma } from '@prisma/client';
 import prisma from '../prismaClient';
 import type { Melding, UserDepartment, Correctief, SmartItem, Effectiviteit } from '../../types/queryTypes';
+import { resolveDefaultPermissionGroupId } from './helpFunctions/defaultPermissionGroup';
+import logger from '../../helpers/loggerInstance';
 
 export async function updateSingleReport(id: string, data: Partial<Melding>) {
   return await prisma.$transaction(async (tx) => {
@@ -309,13 +311,37 @@ export async function updateUser(
   });
 }
 
-export async function updateUserGroup(id: string, data: { groupID: string }) {
+export async function updateUserGroup(id: string, data: { groupID?: string }) {
   return await prisma.$transaction(async (tx) => {
+    let groupId = data.groupID;
+    if (groupId) {
+      try {
+        const group = await tx.permissionGroup.findUnique({
+          where: { id: groupId },
+          select: { id: true }
+        });
+        if (!group) {
+          groupId = undefined;
+        }
+      } catch {
+        groupId = undefined;
+      }
+    }
+
+    if (!groupId) {
+      groupId = (await resolveDefaultPermissionGroupId(tx)) ?? undefined;
+    }
+
+    if (!groupId) {
+      logger.warn('Skipping user group update because no permission group is available', { userId: id });
+      return null;
+    }
+
     const existingConnection = await tx.usersOnPermissionGroups.findUnique({
       where: {
         userId_groupId: {
           userId: id,
-          groupId: data.groupID
+          groupId
         }
       }
     });
@@ -324,7 +350,7 @@ export async function updateUserGroup(id: string, data: { groupID: string }) {
       return await tx.usersOnPermissionGroups.create({
         data: {
           user: { connect: { id } },
-          group: { connect: { id: data.groupID } }
+          group: { connect: { id: groupId } }
         }
       });
     }

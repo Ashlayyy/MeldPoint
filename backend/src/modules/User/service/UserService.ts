@@ -23,7 +23,7 @@ export interface CreateUserDto {
   Name: string;
   MicrosoftId: string;
   lastLogin: Date;
-  groupID: string;
+  groupID?: string;
   departmentId?: string;
 }
 
@@ -32,6 +32,7 @@ export interface UpdateUserDto {
   Email?: string;
   MicrosoftId?: string;
   departmentId?: string;
+  lastLogin?: Date;
 }
 
 export interface SearchFilters {
