@@ -2,6 +2,7 @@
 /* eslint-disable no-new */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
+import './config/loadEnv';
 import { createServer } from 'http';
 import { Server as SocketServer } from 'socket.io';
 import app from './routes/index.routes';

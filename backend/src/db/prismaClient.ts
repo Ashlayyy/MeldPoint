@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import loggerInstance from '../helpers/loggerInstance';
-
-const inDev = process.env.ENABLE_DEV_DATABASE === 'true';
+import { getMongoUrl } from '../config/loadEnv';
 
 const prisma = new PrismaClient({
-  datasourceUrl: inDev ? (process.env.DATABASE_URL_DEV as string) : (process.env.DATABASE_URL as string)
+  datasourceUrl: getMongoUrl()
 });
 
 export async function initializePrisma() {

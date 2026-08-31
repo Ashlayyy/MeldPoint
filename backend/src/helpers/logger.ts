@@ -3,7 +3,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-control-regex */
 /* eslint-disable @typescript-eslint/no-shadow */
-import 'dotenv/config';
+import '../config/loadEnv';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { hostname, type, arch, release, loadavg, cpus } from 'os';
 import winston, { format, Logger as WinstonLogger } from 'winston';

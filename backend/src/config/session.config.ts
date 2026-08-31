@@ -1,5 +1,6 @@
 import { SessionOptions } from 'express-session';
 import MongoStore from 'connect-mongo';
+import { getMongoUrl } from './loadEnv';
 
 export const SESSION_ABSOLUTE_TIMEOUT = 24 * 60 * 60 * 1000; // 24 hours
 export const SESSION_MAX_CONCURRENT = 3; // Maximum concurrent sessions per user
@@ -9,7 +10,7 @@ export const sessionConfig: SessionOptions = {
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.DATABASE_URL,
+    mongoUrl: getMongoUrl(),
     ttl: 12 * 60 * 60, // 12 hours session TTL
     autoRemove: 'native'
   }),

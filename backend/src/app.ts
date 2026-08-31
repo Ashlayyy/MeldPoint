@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import './config/loadEnv';
 import express from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -12,6 +12,7 @@ import path from 'path';
 import moment from 'moment';
 import logger from './helpers/loggerInstance';
 import { CsrfRequest } from './types/request';
+import { getMongoUrl } from './config/loadEnv';
 
 import { apiLimiter, speedLimiter, authLimiter, refreshTokenLimiter } from './middleware/rate-limit.middleware';
 import HandleError from './middleware/HandleError';
@@ -96,7 +97,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.DATABASE_URL,
+      mongoUrl: getMongoUrl(),
       ttl: 12 * 60 * 60,
       autoRemove: 'native'
     }),

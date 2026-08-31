@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '../config/loadEnv';
 
 export default function morganFormat(): string {
   if (process.env.NODE_ENV === 'testing') {
