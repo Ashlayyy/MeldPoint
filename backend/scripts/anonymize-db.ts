@@ -72,6 +72,15 @@ type Replacements = {
   emails: Map<string, string>;
 };
 
+type AnonUpdate = {
+  _id: mongoose.Types.ObjectId;
+  update: mongoose.mongo.Document;
+};
+
+function asObjectId(value: unknown): mongoose.Types.ObjectId | null {
+  return value instanceof mongoose.Types.ObjectId ? value : null;
+}
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const uriArg = args.find((arg) => arg.startsWith('--uri='))?.slice('--uri='.length);
@@ -186,7 +195,7 @@ function anonymizeValue(value: unknown, key: string, seed: string, replacements:
 
 async function bulkUpdate(
   collection: mongoose.mongo.Collection,
-  docs: Array<{ _id: unknown; update: Record<string, unknown> }>,
+  docs: AnonUpdate[],
   dryRun: boolean
 ): Promise<number> {
   if (docs.length === 0) {
@@ -195,15 +204,13 @@ async function bulkUpdate(
   if (dryRun) {
     return docs.length;
   }
-  const result = await collection.bulkWrite(
-    docs.map((doc) => ({
-      updateOne: {
-        filter: { _id: doc._id },
-        update: { $set: doc.update }
-      }
-    })),
-    { ordered: false }
-  );
+  const operations: mongoose.mongo.AnyBulkWriteOperation[] = docs.map((doc) => ({
+    updateOne: {
+      filter: { _id: doc._id },
+      update: { $set: doc.update }
+    }
+  }));
+  const result = await collection.bulkWrite(operations, { ordered: false });
   return result.modifiedCount;
 }
 
@@ -211,11 +218,15 @@ async function loadUsers(db: mongoose.mongo.Db, replacements: Replacements) {
   const users = db.collection('User');
   const cursor = users.find({});
   let index = 0;
-  const updates: Array<{ _id: unknown; update: Record<string, unknown> }> = [];
+  const updates: AnonUpdate[] = [];
 
   for await (const user of cursor) {
+    const objectId = asObjectId(user._id);
+    if (!objectId) {
+      continue;
+    }
     index += 1;
-    const seed = idKey(user._id);
+    const seed = idKey(objectId);
     const name = fakeName(seed);
     const email = fakeEmail(seed);
     if (typeof user.Name === 'string') {
@@ -225,7 +236,7 @@ async function loadUsers(db: mongoose.mongo.Db, replacements: Replacements) {
       replacements.emails.set(user.Email, email);
     }
     updates.push({
-      _id: user._id,
+      _id: objectId,
       update: {
         Name: name,
         Email: email,
@@ -250,17 +261,21 @@ async function anonymizeCollection(
     return 0;
   }
 
-  const updates: Array<{ _id: unknown; update: Record<string, unknown> }> = [];
+  const updates: AnonUpdate[] = [];
   for await (const doc of collection.find({})) {
-    const seed = idKey(doc._id);
-    const update: Record<string, unknown> = {};
+    const objectId = asObjectId(doc._id);
+    if (!objectId) {
+      continue;
+    }
+    const seed = idKey(objectId);
+    const update: mongoose.mongo.Document = {};
     Object.entries(fieldMap).forEach(([field, mapper]) => {
       if (doc[field] !== undefined && doc[field] !== null) {
         update[field] = mapper(doc as Record<string, unknown>, seed, replacements);
       }
     });
     if (Object.keys(update).length > 0) {
-      updates.push({ _id: doc._id, update });
+      updates.push({ _id: objectId, update });
     }
   }
 
