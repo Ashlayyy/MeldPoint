@@ -1,5 +1,5 @@
 <script setup>
-import remixiconUrl from 'remixicon/fonts/remixicon.symbol.svg';
+import 'remixicon/fonts/remixicon.css';
 
 const props = defineProps({
   icon: String,
@@ -11,9 +11,7 @@ const props = defineProps({
 <template>
   <div>
     <div class="menu-item" :class="{ 'is-active': isActive ? isActive() : null }" @click="action" :title="props.title">
-      <svg class="remix">
-        <use :xlink:href="`${remixiconUrl}#ri-${props.icon}`" />
-      </svg>
+      <i :class="`ri-${props.icon}`"></i>
     </div>
   </div>
 </template>
@@ -27,11 +25,14 @@ const props = defineProps({
   border-radius: 0.4rem;
   padding: 0.25rem;
   margin-right: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
-  svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
+  i {
+    font-size: 1.15rem;
+    line-height: 1;
   }
 
   &.is-active,
