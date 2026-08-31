@@ -3,6 +3,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
 import getSystemLogsByMeldingId from '../service/SystemLogService';
 import { SystemLogParams } from '../types';
+import { routeParams } from '../../../utils/routeParam';
 
 const calculateExecutionTime = (startTime: [number, number]): string => {
   return (process.hrtime(startTime)[0] * 1000 + process.hrtime(startTime)[1] / 1000000).toFixed(2);
@@ -10,7 +11,7 @@ const calculateExecutionTime = (startTime: [number, number]): string => {
 
 const getSystemLogHistory = async (req: Request, res: Response): Promise<void> => {
   const startTime = process.hrtime();
-  const { meldingId, preventiefId, correctiefId } = req.params;
+  const { meldingId, preventiefId, correctiefId } = routeParams(req.params);
 
   if (!meldingId || typeof meldingId !== 'string') {
     logger.error('SystemLog-Controller: Invalid ID format');

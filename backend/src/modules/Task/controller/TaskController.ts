@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { TaskService } from '../service/TaskService';
+import { routeParams } from '../../../utils/routeParam';
 
 export class TaskController {
   static async createTask(req: Request, res: Response) {
@@ -24,7 +25,7 @@ export class TaskController {
 
   static async getTaskById(req: Request, res: Response) {
     try {
-      const { id } = req.params;
+      const { id } = routeParams(req.params);
       const task = await TaskService.getTaskById(id);
       if (!task) {
         return res.status(404).json({ error: 'Task not found' });
@@ -37,7 +38,7 @@ export class TaskController {
 
   static async updateTask(req: Request, res: Response) {
     try {
-      const { id } = req.params;
+      const { id } = routeParams(req.params);
       const data = req.body as any;
       const task = await TaskService.updateTask(id, data);
       return res.json(task);
@@ -48,7 +49,7 @@ export class TaskController {
 
   static async completeTask(req: Request, res: Response) {
     try {
-      const { id } = req.params;
+      const { id } = routeParams(req.params);
       const task = await TaskService.completeTask(id);
       return res.json(task);
     } catch (error) {
@@ -58,7 +59,7 @@ export class TaskController {
 
   static async deleteTask(req: Request, res: Response) {
     try {
-      const { id } = req.params;
+      const { id } = routeParams(req.params);
       await TaskService.deleteTask(id);
       return res.status(204).send();
     } catch (error) {
@@ -68,7 +69,7 @@ export class TaskController {
 
   static async getTasksByUserId(req: Request, res: Response) {
     try {
-      const { userId } = req.params;
+      const { userId } = routeParams(req.params);
       const tasks = await TaskService.getTasksByUserId(userId);
       return res.json(tasks);
     } catch (error) {

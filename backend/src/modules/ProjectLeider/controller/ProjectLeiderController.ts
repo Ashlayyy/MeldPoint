@@ -5,6 +5,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
 import { ProjectLeiderSchema, ProjectLeiderParamsSchema } from '../validation/schemas';
 import * as ProjectLeiderService from '../service/ProjectLeiderService';
+import { routeParams } from '../../../utils/routeParam';
 
 export const getAllProjectLeiders = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
@@ -40,7 +41,7 @@ export const getAllProjectLeiders = async (req: Request, res: Response) => {
 export const getSingleProjectLeider = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     logger.info(`ProjectLeider-Controller: Fetching project leader ${id}`);
 
     const result = await ProjectLeiderService.getSingleProjectLeider(id);
@@ -67,7 +68,7 @@ export const getSingleProjectLeider = async (req: Request, res: Response) => {
     logError(req, {
       action: 'GET_PROJECTLEIDER',
       resourceType: ResourceType.PROJECTLEIDER,
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error
     });
 
@@ -121,7 +122,7 @@ export const createProjectLeider = async (req: Request, res: Response) => {
 export const updateProjectLeider = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const data = req.body;
 
     logger.info(`ProjectLeider-Controller: Updating project leader ${id}`);
@@ -149,7 +150,7 @@ export const updateProjectLeider = async (req: Request, res: Response) => {
     logError(req, {
       action: 'UPDATE_PROJECTLEIDER',
       resourceType: ResourceType.PROJECTLEIDER,
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error,
       metadata: {
         data: req.body
@@ -167,7 +168,7 @@ export const updateProjectLeider = async (req: Request, res: Response) => {
 export const deleteProjectLeider = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     logger.info(`ProjectLeider-Controller: Deleting project leader ${id}`);
 
     const result = await ProjectLeiderService.deleteProjectLeider(id);
@@ -194,7 +195,7 @@ export const deleteProjectLeider = async (req: Request, res: Response) => {
     logError(req, {
       action: 'DELETE_PROJECTLEIDER',
       resourceType: ResourceType.PROJECTLEIDER,
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error
     });
 

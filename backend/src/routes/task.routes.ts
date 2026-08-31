@@ -17,6 +17,7 @@ import {
   findById
 } from '../modules/Task/service/TaskService';
 import createSecureRouter from '../utils/secureRoute';
+import { routeParams } from '../utils/routeParam';
 
 const router = createSecureRouter();
 
@@ -27,7 +28,7 @@ const getTasksHandler = async (req: Request, res: Response) => {
 };
 
 const getTasksByUserIdHandler = async (req: Request, res: Response) => {
-  const { userId } = req.params;
+  const { userId } = routeParams(req.params);
   const tasks = await getTasksByUserIdQuery(userId);
   res.json(tasks);
 };
@@ -43,7 +44,7 @@ const getTasksByCurrentUserHandler = async (req: Request, res: Response) => {
 };
 
 const getTaskByIdHandler = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   const task = await getTaskByIdQuery(id);
   res.json(task);
 };
@@ -54,26 +55,26 @@ const createTaskHandler = async (req: Request, res: Response) => {
 };
 
 const updateTaskHandler = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   const task = await updateTaskQuery(id, req.body);
   res.json(task);
 };
 
 const completeTaskHandler = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   const task = await completeTaskQuery(id);
   res.json(task);
 };
 
 const uncompleteTaskHandler = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   const task = await uncompleteTask(id);
   res.json(task);
 };
 
 const deleteTaskHandler = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const deletedTask = await deleteTaskQuery(id);
 
     res.status(200).json({ success: true, data: deletedTask });
@@ -88,13 +89,13 @@ const deleteTaskHandler = async (req: Request, res: Response) => {
 };
 
 const getTasksByCorrectiefHandler = async (req: Request, res: Response) => {
-  const { correctiefId } = req.params;
+  const { correctiefId } = routeParams(req.params);
   const tasks = await getTasksByCorrectief(correctiefId);
   res.json(tasks);
 };
 
 const getTasksByPreventiefHandler = async (req: Request, res: Response) => {
-  const { preventiefId } = req.params;
+  const { preventiefId } = routeParams(req.params);
   const tasks = await getTasksByPreventief(preventiefId);
   res.json(tasks);
 };

@@ -3,6 +3,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import handleError from '../../../utils/errorHandler';
 import logger from '../../../utils/logger';
 import * as DepartmentService from '../service/DepartmentService';
+import { routeParams } from '../../../utils/routeParam';
 
 export const GetAllDepartments: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -36,7 +37,7 @@ export const GetAllDepartments: RequestHandler = async (req, res) => {
 
 export const GetDepartmentById: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Department-Controller: Fetching department ${id}`);
@@ -106,7 +107,7 @@ export const CreateDepartment: RequestHandler = async (req, res) => {
 
 export const UpdateDepartment: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Department-Controller: Updating department ${id}`);
@@ -142,7 +143,7 @@ export const UpdateDepartment: RequestHandler = async (req, res) => {
 
 export const DeleteDepartment: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Department-Controller: Deleting department ${id}`);
@@ -175,7 +176,7 @@ export const DeleteDepartment: RequestHandler = async (req, res) => {
 
 export const AssignUserToDepartment: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { userId } = req.params;
+  const { userId } = routeParams(req.params);
   const { department } = req.body;
 
   try {

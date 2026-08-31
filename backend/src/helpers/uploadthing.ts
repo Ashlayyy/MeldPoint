@@ -14,7 +14,7 @@ export const deleteFile = async (fileID: string) => {
 export const uploadFile = async (file: Express.Multer.File) => {
   try {
     // Create a Blob from the buffer with the correct mime type
-    const blob = new Blob([file.buffer], { type: file.mimetype });
+    const blob = new Blob([new Uint8Array(file.buffer)], { type: file.mimetype });
 
     // Create a File object from the Blob
     const fileData = new File([blob], file.originalname || 'screenshot.png', {

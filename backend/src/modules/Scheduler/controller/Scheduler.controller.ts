@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 import SchedulerService from '../service/Scheduler.service';
 import logger from '../../../helpers/loggerInstance';
+import { routeParams } from '../../../utils/routeParam';
 
 class SchedulerController {
   private readonly schedulerService: SchedulerService;
@@ -12,7 +13,7 @@ class SchedulerController {
 
   async triggerTask(req: Request, res: Response): Promise<void> {
     try {
-      const result = await this.schedulerService.triggerTask(req.params.taskName, req.user!.id);
+      const result = await this.schedulerService.triggerTask(routeParams(req.params).taskName, req.user!.id);
       res.json(result);
     } catch (error) {
       logger.error(`Controller error triggering task: ${error}`);
@@ -22,7 +23,7 @@ class SchedulerController {
 
   async getTaskStatus(req: Request, res: Response): Promise<void> {
     try {
-      const status = await this.schedulerService.getTaskStatus(req.params.taskName);
+      const status = await this.schedulerService.getTaskStatus(routeParams(req.params).taskName);
       res.json(status);
     } catch (error) {
       logger.error(`Controller error getting task status: ${error}`);
@@ -42,7 +43,7 @@ class SchedulerController {
 
   async enableTask(req: Request, res: Response): Promise<void> {
     try {
-      const task = await this.schedulerService.enableTask(req.params.taskName);
+      const task = await this.schedulerService.enableTask(routeParams(req.params).taskName);
       res.json(task);
     } catch (error) {
       logger.error(`Controller error enabling task: ${error}`);
@@ -52,7 +53,7 @@ class SchedulerController {
 
   async disableTask(req: Request, res: Response): Promise<void> {
     try {
-      const task = await this.schedulerService.disableTask(req.params.taskName);
+      const task = await this.schedulerService.disableTask(routeParams(req.params).taskName);
       res.json(task);
     } catch (error) {
       logger.error(`Controller error disabling task: ${error}`);

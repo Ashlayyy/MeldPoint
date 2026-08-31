@@ -4,6 +4,7 @@ import { PermissionSchema, PermissionGroupSchema, RoleSchema } from '../validati
 import * as PermissionsService from '../service/PermissionsService';
 import logger from '../../../helpers/loggerInstance';
 import { regenerateSession } from '../../../helpers/session';
+import { routeParams } from '../../../utils/routeParam';
 
 // Permission Controllers
 export const getPermissions = async (_req: Request, res: Response) => {
@@ -18,7 +19,7 @@ export const getPermissions = async (_req: Request, res: Response) => {
 
 export const getPermission = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const permission = await PermissionsService.getPermissionById(id);
     res.status(200).json({ data: permission });
   } catch (error) {
@@ -48,7 +49,7 @@ export const createNewPermission = async (req: Request, res: Response) => {
 
 export const updateExistingPermission = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const validatedData = req.body;
     const permission = await PermissionsService.updatePermissionById(id, validatedData);
     res.status(200).json({ data: permission });
@@ -64,7 +65,7 @@ export const updateExistingPermission = async (req: Request, res: Response) => {
 
 export const deletePermission = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     await PermissionsService.deletePermissionById(id);
     res.status(204).send();
   } catch (error) {
@@ -86,7 +87,7 @@ export const getPermissionGroups = async (_req: Request, res: Response) => {
 
 export const getPermissionGroup = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const group = await PermissionsService.getPermissionGroupById(id);
     res.status(200).json({ data: group });
   } catch (error) {
@@ -116,7 +117,7 @@ export const createNewPermissionGroup = async (req: Request, res: Response) => {
 
 export const updateExistingPermissionGroup = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const validatedData = req.body;
     const group = await PermissionsService.updatePermissionGroupById(id, validatedData);
     res.status(200).json({ data: group });
@@ -132,7 +133,7 @@ export const updateExistingPermissionGroup = async (req: Request, res: Response)
 
 export const deletePermissionGroup = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     await PermissionsService.deletePermissionGroupById(id);
     res.status(204).send();
   } catch (error) {
@@ -154,7 +155,7 @@ export const getRoles = async (_req: Request, res: Response) => {
 
 export const getRole = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const role = await PermissionsService.getRoleById(id);
     res.status(200).json({ data: role });
   } catch (error) {
@@ -184,7 +185,7 @@ export const createNewRole = async (req: Request, res: Response) => {
 
 export const updateExistingRole = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const validatedData = req.body;
     const role = await PermissionsService.updateRoleById(id, validatedData);
     res.status(200).json({ data: role });
@@ -200,7 +201,7 @@ export const updateExistingRole = async (req: Request, res: Response) => {
 
 export const deleteRole = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     await PermissionsService.deleteRoleById(id);
     res.status(204).send();
   } catch (error) {
@@ -212,7 +213,7 @@ export const deleteRole = async (req: Request, res: Response) => {
 // Assignment Controllers
 export const assignPermissionToUser = async (req: Request, res: Response) => {
   try {
-    const { userId, permissionId } = req.params;
+    const { userId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.assignPermissionToUserById(userId, permissionId);
 
     // Regenerate session if the user's own permissions are being modified
@@ -229,7 +230,7 @@ export const assignPermissionToUser = async (req: Request, res: Response) => {
 
 export const assignPermissionToRole = async (req: Request, res: Response) => {
   try {
-    const { roleId, permissionId } = req.params;
+    const { roleId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.assignPermissionToRoleById(roleId, permissionId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -240,7 +241,7 @@ export const assignPermissionToRole = async (req: Request, res: Response) => {
 
 export const assignPermissionToGroup = async (req: Request, res: Response) => {
   try {
-    const { groupId, permissionId } = req.params;
+    const { groupId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.assignPermissionToGroupById(groupId, permissionId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -251,7 +252,7 @@ export const assignPermissionToGroup = async (req: Request, res: Response) => {
 
 export const removePermissionFromUser = async (req: Request, res: Response) => {
   try {
-    const { userId, permissionId } = req.params;
+    const { userId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.removePermissionFromUserById(userId, permissionId);
 
     // Regenerate session if the user's own permissions are being modified
@@ -268,7 +269,7 @@ export const removePermissionFromUser = async (req: Request, res: Response) => {
 
 export const removePermissionFromRole = async (req: Request, res: Response) => {
   try {
-    const { roleId, permissionId } = req.params;
+    const { roleId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.removePermissionFromRoleById(roleId, permissionId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -279,7 +280,7 @@ export const removePermissionFromRole = async (req: Request, res: Response) => {
 
 export const removePermissionFromGroup = async (req: Request, res: Response) => {
   try {
-    const { groupId, permissionId } = req.params;
+    const { groupId, permissionId } = routeParams(req.params);
     const result = await PermissionsService.removePermissionFromGroupById(groupId, permissionId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -290,7 +291,7 @@ export const removePermissionFromGroup = async (req: Request, res: Response) => 
 
 export const assignRoleToUser = async (req: Request, res: Response) => {
   try {
-    const { userId, roleId } = req.params;
+    const { userId, roleId } = routeParams(req.params);
     console.log('assignRoleToUser', userId, roleId);
     const result = await PermissionsService.assignRoleToUserById(userId, roleId);
     console.log('result', result);
@@ -303,7 +304,7 @@ export const assignRoleToUser = async (req: Request, res: Response) => {
 
 export const assignGroupToUser = async (req: Request, res: Response) => {
   try {
-    const { userId, groupId } = req.params;
+    const { userId, groupId } = routeParams(req.params);
     const result = await PermissionsService.assignGroupToUserById(userId, groupId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -314,7 +315,7 @@ export const assignGroupToUser = async (req: Request, res: Response) => {
 
 export const assignGroupToRole = async (req: Request, res: Response) => {
   try {
-    const { roleId, groupId } = req.params;
+    const { roleId, groupId } = routeParams(req.params);
     const result = await PermissionsService.assignGroupToRoleById(roleId, groupId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -325,7 +326,7 @@ export const assignGroupToRole = async (req: Request, res: Response) => {
 
 export const removeRoleFromUser = async (req: Request, res: Response) => {
   try {
-    const { userId, roleId } = req.params;
+    const { userId, roleId } = routeParams(req.params);
     const result = await PermissionsService.removeRoleFromUserById(userId, roleId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -336,7 +337,7 @@ export const removeRoleFromUser = async (req: Request, res: Response) => {
 
 export const removeGroupFromUser = async (req: Request, res: Response) => {
   try {
-    const { userId, groupId } = req.params;
+    const { userId, groupId } = routeParams(req.params);
     const result = await PermissionsService.removeGroupFromUserById(userId, groupId);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -347,7 +348,7 @@ export const removeGroupFromUser = async (req: Request, res: Response) => {
 
 export const removeGroupFromRole = async (req: Request, res: Response) => {
   try {
-    const { roleId, groupId } = req.params;
+    const { roleId, groupId } = routeParams(req.params);
     const result = await PermissionsService.removeGroupFromRoleById(roleId, groupId);
     res.status(200).json({ data: result });
   } catch (error) {

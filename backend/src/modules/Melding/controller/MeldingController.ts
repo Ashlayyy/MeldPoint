@@ -20,6 +20,7 @@ import {
 } from '../service/MeldingService';
 import { handleCorrectiefTaskCreationReportSide } from '../../../utils/handleCorrectiefTasks';
 import { recordChange } from '../../../services/versionHistory.service';
+import { routeParams } from '../../../utils/routeParam';
 
 export const GetLengths: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -86,7 +87,7 @@ export const GetAllReports: RequestHandler = async (req, res) => {
 
 export const GetSingleReport: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Fetching report ${id}`);
@@ -119,7 +120,7 @@ export const GetSingleReport: RequestHandler = async (req, res) => {
 
 export const GetSingleReportByVolgnummer: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { volgnummer } = req.params;
+  const { volgnummer } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Fetching report ${volgnummer}`);
@@ -193,7 +194,7 @@ export const CreateReport: RequestHandler = async (req, res) => {
 
 export const UpdateReport: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Updating report ${id}`);
@@ -238,7 +239,7 @@ export const UpdateReport: RequestHandler = async (req, res) => {
 
 export const AddCloneID: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID, cloneID } = req.params;
+  const { meldingID, cloneID } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Adding clone ID ${cloneID} to report ${meldingID}`);
@@ -275,7 +276,7 @@ export const AddCloneID: RequestHandler = async (req, res) => {
 
 export const RemoveCloneID: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID, cloneID } = req.params;
+  const { meldingID, cloneID } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Removing clone ID ${cloneID} from report ${meldingID}`);
@@ -312,7 +313,7 @@ export const RemoveCloneID: RequestHandler = async (req, res) => {
 
 export const AddCorrespondenceID: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID } = req.params;
+  const { meldingID } = routeParams(req.params);
   const { correspondence } = req.body;
 
   try {
@@ -350,7 +351,7 @@ export const AddCorrespondenceID: RequestHandler = async (req, res) => {
 
 export const RemoveCorrespondenceID: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID, correspondenceID } = req.params;
+  const { meldingID, correspondenceID } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Removing correspondence ID ${correspondenceID} from report ${meldingID}`);
@@ -390,7 +391,7 @@ export const RemoveCorrespondenceID: RequestHandler = async (req, res) => {
 
 export const SetCorrespondenceIDs: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID } = req.params;
+  const { meldingID } = routeParams(req.params);
   const { correspondence } = req.body;
 
   try {
@@ -428,7 +429,7 @@ export const SetCorrespondenceIDs: RequestHandler = async (req, res) => {
 
 export const FindReportByPreventiefID: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { preventiefId } = req.params;
+  const { preventiefId } = routeParams(req.params);
 
   try {
     logger.info(`Melding-Controller: Finding report by preventief ID ${preventiefId}`);

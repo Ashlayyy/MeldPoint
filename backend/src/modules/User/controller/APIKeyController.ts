@@ -3,6 +3,7 @@ import { apiKeyService } from '../../../services/apikey.service';
 import handleError from '../../../utils/errorHandler';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
+import { routeParams } from '../../../utils/routeParam';
 
 export const CreateAPIKey = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
@@ -90,7 +91,7 @@ export const RevokeAPIKey = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
     const userId = req.user?.id;
-    const { keyId } = req.params;
+    const { keyId } = routeParams(req.params);
 
     if (!userId) {
       throw new Error('User ID is required');
@@ -125,7 +126,7 @@ export const UpdateAPIKey = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
     const userId = req.user?.id;
-    const { keyId } = req.params;
+    const { keyId } = routeParams(req.params);
     const { name, expiresAt } = req.body;
 
     if (!userId) {

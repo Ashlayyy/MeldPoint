@@ -7,6 +7,7 @@ import * as ChatService from '../service/ChatService';
 import type NotificationChannel from '../../../services/socket/channels/NotificationChannel';
 import { MessageSchema, ChatRoomSchema, ChatRoomParamsSchema } from '../validation/schemas';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
+import { routeParams } from '../../../utils/routeParam';
 
 const getExecutionTime = (startTime: [number, number]): number => {
   return Number((process.hrtime(startTime)[0] * 1000 + process.hrtime(startTime)[1] / 1000000).toFixed(2));
@@ -15,7 +16,7 @@ const getExecutionTime = (startTime: [number, number]): number => {
 export async function getMessagesFromChatRoom(req: Request, res: Response) {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     logger.info('Chat-Controller: Fetching messages from chat room', { chatRoomId: id });
 
     const messages = await ChatService.getMessagesFromChatRoom(id);
@@ -40,7 +41,7 @@ export async function getMessagesFromChatRoom(req: Request, res: Response) {
     const error = err instanceof Error ? err : new Error('Unknown error occurred');
     logger.error('Chat-Controller: Failed to get messages', error);
 
-    const chatRoomId = req.params.id;
+    const chatRoomId = routeParams(req.params).id;
     logError(req, {
       action: 'GET_CHAT_MESSAGES',
       resourceType: ResourceType.MELDING,
@@ -63,7 +64,7 @@ export async function createMessage(req: Request, res: Response) {
   const startTime = process.hrtime();
   try {
     const { message, user } = req.body;
-    const { id: chatRoomId } = req.params;
+    const { id: chatRoomId } = routeParams(req.params);
 
     logger.info('Chat-Controller: Creating new message', { chatRoomId });
 
@@ -89,7 +90,7 @@ export async function createMessage(req: Request, res: Response) {
     const error = err instanceof Error ? err : new Error('Unknown error occurred');
     logger.error('Chat-Controller: Failed to create message', error);
 
-    const chatRoomId = req.params.id;
+    const chatRoomId = routeParams(req.params).id;
     logError(req, {
       action: 'CREATE_CHAT_MESSAGE',
       resourceType: ResourceType.MELDING,

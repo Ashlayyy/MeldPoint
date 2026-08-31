@@ -3,6 +3,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
 import * as GitHubService from '../service/GitHubService';
 import { CreateIssuePayload, UpdateIssuePayload, AddCommentPayload, IssueStatusUpdate, IssueState } from '../types';
+import { routeParams } from '../../../utils/routeParam';
 
 const handleServiceError = async (req: Request, res: Response, error: Error, action: string) => {
   logger.error(`GitHub-Controller: ${action} failed - ${error}`);
@@ -78,7 +79,7 @@ export const getIssues = async (req: Request, res: Response): Promise<void> => {
 
 export const getIssue = async (req: Request, res: Response): Promise<void> => {
   try {
-    const issueNumber = parseInt(req.params.issueNumber, 10);
+    const issueNumber = parseInt(routeParams(req.params).issueNumber, 10);
     if (Number.isNaN(issueNumber)) {
       res.status(400).json({ error: 'Invalid issue number' });
       return;
@@ -93,7 +94,7 @@ export const getIssue = async (req: Request, res: Response): Promise<void> => {
 
 export const updateIssue = async (req: Request, res: Response): Promise<void> => {
   try {
-    const issueNumber = parseInt(req.params.issueNumber, 10);
+    const issueNumber = parseInt(routeParams(req.params).issueNumber, 10);
     if (Number.isNaN(issueNumber)) {
       res.status(400).json({ error: 'Invalid issue number' });
       return;
@@ -122,7 +123,7 @@ export const updateIssue = async (req: Request, res: Response): Promise<void> =>
 
 export const closeIssue = async (req: Request, res: Response): Promise<void> => {
   try {
-    const issueNumber = parseInt(req.params.issueNumber, 10);
+    const issueNumber = parseInt(routeParams(req.params).issueNumber, 10);
     if (Number.isNaN(issueNumber)) {
       res.status(400).json({ error: 'Invalid issue number' });
       return;
@@ -150,7 +151,7 @@ export const closeIssue = async (req: Request, res: Response): Promise<void> => 
 
 export const addComment = async (req: Request, res: Response): Promise<void> => {
   try {
-    const issueNumber = parseInt(req.params.issueNumber, 10);
+    const issueNumber = parseInt(routeParams(req.params).issueNumber, 10);
     if (Number.isNaN(issueNumber)) {
       res.status(400).json({ error: 'Invalid issue number' });
       return;
@@ -215,7 +216,7 @@ export const getIssueStats = async (_req: Request, res: Response): Promise<void>
 
 export const updateIssueStatus = async (req: Request, res: Response): Promise<void> => {
   try {
-    const issueNumber = parseInt(req.params.issueNumber, 10);
+    const issueNumber = parseInt(routeParams(req.params).issueNumber, 10);
     if (Number.isNaN(issueNumber)) {
       res.status(400).json({ error: 'Invalid issue number' });
       return;

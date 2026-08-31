@@ -36,11 +36,12 @@ import {
 import { logSuccess, logError } from '../middleware/handleHistory';
 import logger from '../helpers/loggerInstance';
 import createSecureRouter from '../utils/secureRoute';
+import { routeParams } from '../utils/routeParam';
 
 const router = createSecureRouter();
 
 const getPreviousState = async (req: Request) => {
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   switch (req.path.split('/')[1]) {
     case 'permission':
       return getSinglePermission(id);
@@ -57,7 +58,7 @@ const getPreviousState = async (req: Request) => {
 const logRoute = (action: string) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const startTime = process.hrtime();
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
 
     try {
       // Create a promise to handle the async response

@@ -10,6 +10,7 @@ import { deleteFile } from '../../../helpers/uploadthing';
 import { handlePreventiefTaskUpdate } from '../../../utils/handlePreventiefTasks';
 import { recordChange } from '../../../services/versionHistory.service';
 import { getPreventiefVolgNummer } from '../../../db/queries';
+import { routeParams } from '../../../utils/routeParam';
 
 export const GetAll: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -49,7 +50,7 @@ export const GetAll: RequestHandler = async (req, res) => {
 
 export const GetSingle: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Preventief-Controller: Getting preventief record ${id}`);
@@ -187,7 +188,7 @@ async function handlePreventiefTaskCreation(preventief: any): Promise<void> {
 
 export const Update: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Preventief-Controller: Updating preventief record ${id}`);
@@ -251,7 +252,7 @@ export const Update: RequestHandler = async (req, res) => {
 
 export const AddTeamlidToPreventief: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID, teamlidID } = req.params;
+  const { meldingID, teamlidID } = routeParams(req.params);
 
   try {
     logger.info(`Preventief-Controller: Adding teamlid ${teamlidID} to preventief record ${meldingID}`);
@@ -296,7 +297,7 @@ export const AddTeamlidToPreventief: RequestHandler = async (req, res) => {
 
 export const RewriteTeamlidInPreventief: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID } = req.params;
+  const { meldingID } = routeParams(req.params);
   const { teamleden } = req.body;
 
   try {
@@ -342,7 +343,7 @@ export const RewriteTeamlidInPreventief: RequestHandler = async (req, res) => {
 
 export const RemoveTeamlidFromPreventief: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { meldingID, teamlidID } = req.params;
+  const { meldingID, teamlidID } = routeParams(req.params);
 
   try {
     logger.info(`Preventief-Controller: Removing teamlid ${teamlidID} from preventief record ${meldingID}`);
@@ -387,7 +388,7 @@ export const RemoveTeamlidFromPreventief: RequestHandler = async (req, res) => {
 
 export const AddCorrespondenceToPreventief: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { preventiefID } = req.params;
+  const { preventiefID } = routeParams(req.params);
   const { correspondence } = req.body;
 
   try {
@@ -433,7 +434,7 @@ export const AddCorrespondenceToPreventief: RequestHandler = async (req, res) =>
 
 export const RemoveCorrespondenceFromPreventief: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { preventiefID, CorrespondenceID } = req.params;
+  const { preventiefID, CorrespondenceID } = routeParams(req.params);
 
   try {
     logger.info(

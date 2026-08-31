@@ -7,6 +7,7 @@ import config from '../config';
 import prisma from '../db/prismaClient';
 import GitHubService from '../services/github.service';
 import { channelManager } from '../server';
+import { routeParams } from '../utils/routeParam';
 
 let githubService: GitHubService;
 
@@ -160,7 +161,7 @@ class GitHubController {
   static async getIssueById(req: Request, res: Response): Promise<Response> {
     try {
       const issue = await prisma.gitHubIssue.findUnique({
-        where: { id: req.params.id }
+        where: { id: routeParams(req.params).id }
       });
       if (!issue) return res.status(404).json({ error: 'Issue not found' });
       return res.json(issue);
@@ -186,7 +187,7 @@ class GitHubController {
   // Update issue status (admin only)
   static async updateIssueStatus(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = req.params;
+      const { id } = routeParams(req.params);
       const { status, reason, comment } = req.body;
 
       if (!['open', 'closed'].includes(status)) {

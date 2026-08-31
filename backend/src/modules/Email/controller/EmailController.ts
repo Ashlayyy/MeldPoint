@@ -3,6 +3,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import * as emailService from '../service/EmailService';
 import handleError from '../../../utils/errorHandler';
 import logger from '../../../utils/logger';
+import { routeParams } from '../../../utils/routeParam';
 
 export const SendEmail: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -34,7 +35,7 @@ export const SendEmail: RequestHandler = async (req, res) => {
 
 export const TrackEmailOpen: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { trackingId } = req.params;
+  const { trackingId } = routeParams(req.params);
   const userAgent = req.headers['user-agent'];
   const ipAddress = req.ip;
 
@@ -111,7 +112,7 @@ export const GetEmailHistory: RequestHandler = async (req, res) => {
 
 export const GetEmailTemplate: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { templateId } = req.params;
+  const { templateId } = routeParams(req.params);
   try {
     const templates = await emailService.getAvailableTemplates();
     const template = templates.find((t) => t === templateId);
@@ -193,7 +194,7 @@ export const HandleEmailWebhook: RequestHandler = async (req, res) => {
 
 export const GetEmailStatus: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { trackingId } = req.params;
+  const { trackingId } = routeParams(req.params);
 
   try {
     const trackingInfo = await emailService.getEmailTrackingInfo(trackingId);
@@ -323,7 +324,7 @@ export const GetAvailableTemplates: RequestHandler = async (req, res) => {
 };
 
 export const TrackEmailClick: RequestHandler = async (req, res) => {
-  const { trackingId } = req.params;
+  const { trackingId } = routeParams(req.params);
   const { url } = req.query;
   const userAgent = req.headers['user-agent'];
   const ipAddress = req.ip;
@@ -369,7 +370,7 @@ export const TrackEmailClick: RequestHandler = async (req, res) => {
 };
 
 export const TrackOutlookOpen: RequestHandler = async (req, res) => {
-  const { trackingId } = req.params;
+  const { trackingId } = routeParams(req.params);
   const userAgent = req.headers['user-agent'];
   const ipAddress = req.ip;
 

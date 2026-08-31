@@ -4,6 +4,7 @@ import * as ProjectService from '../service/ProjectService';
 import handleError from '../../../utils/errorHandler';
 import logger from '../../../utils/logger';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
+import { routeParams } from '../../../utils/routeParam';
 
 export const GetAllProjects: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -37,7 +38,7 @@ export const GetAllProjects: RequestHandler = async (req, res) => {
 
 export const GetProjectById: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
   const type = (req.query.type as 'id' | 'number') || 'id';
 
   try {
@@ -108,7 +109,7 @@ export const CreateProject: RequestHandler = async (req, res) => {
 
 export const UpdateProject: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   try {
     logger.info(`Project-Controller: Updating project ${id}`);
@@ -218,7 +219,7 @@ export const RemoveDeelorder: RequestHandler = async (req, res) => {
 
 export const DeleteProject: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
-  const { id } = req.params;
+  const { id } = routeParams(req.params);
 
   if (!id) {
     res.status(400).json({ error: 'Project ID is required' });

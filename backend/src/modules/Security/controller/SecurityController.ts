@@ -3,6 +3,7 @@ import { logSuccess, logError } from '../../../middleware/handleHistory';
 import handleError from '../../../utils/errorHandler';
 import logger from '../../../utils/logger';
 import * as SecurityService from '../service/SecurityService';
+import { routeParams } from '../../../utils/routeParam';
 
 export const RegisterDevice: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
@@ -124,7 +125,7 @@ export const UpdateDeviceStatus: RequestHandler = async (req, res) => {
 export const RemoveDevice: RequestHandler = async (req, res) => {
   const startTime = process.hrtime();
   const userId = req.user?.id;
-  const { deviceId } = req.params;
+  const { deviceId } = routeParams(req.params);
 
   try {
     if (!userId) {

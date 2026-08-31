@@ -5,6 +5,7 @@ import * as UserService from '../service/UserService';
 import handleError from '../../../utils/errorHandler';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
+import { routeParams } from '../../../utils/routeParam';
 
 export const GetCurrentUser: RequestHandler = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
@@ -146,7 +147,7 @@ export const UpdateUser = async (id: string, data: any) => {
 export const GetActiveUsers: RequestHandler = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const users = await UserService.getActive(req.params.id);
+    const users = await UserService.getActive(routeParams(req.params).id);
 
     logSuccess(req, {
       action: 'GET_ACTIVE_USERS',
@@ -197,7 +198,7 @@ export const GetAllUsersForFilter: RequestHandler = async (req: Request, res: Re
 export const GetUsersByRole: RequestHandler = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { role } = req.params;
+    const { role } = routeParams(req.params);
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
     const result = await UserService.getByRole(role, page, limit);
@@ -228,7 +229,7 @@ export const GetUsersByRole: RequestHandler = async (req: Request, res: Response
 export const GetUsersByDepartment: RequestHandler = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { department } = req.params;
+    const { department } = routeParams(req.params);
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
     const result = await UserService.getByDepartment(department, page, limit);
@@ -291,7 +292,7 @@ export const SearchUsers: RequestHandler = async (req: Request, res: Response) =
 export const DeleteUser: RequestHandler = async (req: Request, res: Response) => {
   const startTime = process.hrtime();
   try {
-    const { userId } = req.params;
+    const { userId } = routeParams(req.params);
     const result = await UserService.remove(userId);
 
     logSuccess(req, {

@@ -3,11 +3,12 @@ import { getSettings as getSettingsService, update, reset } from '../service/Set
 import handleError from '../../../utils/errorHandler';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
+import { routeParams } from '../../../utils/routeParam';
 
 export async function getSettings(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { userId } = req.params;
+    const { userId } = routeParams(req.params);
     const settings = await getSettingsService(userId);
 
     logSuccess(req, {
@@ -33,7 +34,7 @@ export async function getSettings(req: Request, res: Response): Promise<void> {
     logError(req, {
       action: 'GET_SETTINGS',
       resourceType: 'SETTINGS',
-      resourceId: req.params.userId,
+      resourceId: routeParams(req.params).userId,
       error
     });
     handleError(error, res);
@@ -43,7 +44,7 @@ export async function getSettings(req: Request, res: Response): Promise<void> {
 export async function updateSettings(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { userId } = req.params;
+    const { userId } = routeParams(req.params);
     const previousState = await getSettingsService(userId);
     const settings = await update(userId, req.body);
 
@@ -66,7 +67,7 @@ export async function updateSettings(req: Request, res: Response): Promise<void>
     logError(req, {
       action: 'UPDATE_SETTINGS',
       resourceType: 'SETTINGS',
-      resourceId: req.params.userId,
+      resourceId: routeParams(req.params).userId,
       error,
       metadata: { requestBody: req.body }
     });
@@ -77,7 +78,7 @@ export async function updateSettings(req: Request, res: Response): Promise<void>
 export async function resetSettings(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { userId } = req.params;
+    const { userId } = routeParams(req.params);
     const previousState = await getSettingsService(userId);
     const settings = await reset(userId);
 
@@ -99,7 +100,7 @@ export async function resetSettings(req: Request, res: Response): Promise<void> 
     logError(req, {
       action: 'RESET_SETTINGS',
       resourceType: 'SETTINGS',
-      resourceId: req.params.userId,
+      resourceId: routeParams(req.params).userId,
       error
     });
     handleError(error, res);

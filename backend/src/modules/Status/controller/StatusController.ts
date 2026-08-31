@@ -4,6 +4,7 @@ import { getAll, getById, create, update, remove } from '../service/StatusServic
 import handleError from '../../../utils/errorHandler';
 import { logSuccess, logError } from '../../../middleware/handleHistory';
 import logger from '../../../helpers/loggerInstance';
+import { routeParams } from '../../../utils/routeParam';
 
 export async function getStatuses(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
@@ -39,7 +40,7 @@ export async function getStatuses(req: Request, res: Response): Promise<void> {
 export async function getStatus(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const status = await getById(id);
 
     logSuccess(req, {
@@ -65,7 +66,7 @@ export async function getStatus(req: Request, res: Response): Promise<void> {
     logError(req, {
       action: 'GET_STATUS',
       resourceType: 'STATUS',
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error
     });
     handleError(error, res);
@@ -105,7 +106,7 @@ export async function createStatus(req: Request, res: Response): Promise<void> {
 export async function updateStatus(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const previousState = await getById(id);
     const status = await update(id, req.body);
 
@@ -133,7 +134,7 @@ export async function updateStatus(req: Request, res: Response): Promise<void> {
     logError(req, {
       action: 'UPDATE_STATUS',
       resourceType: 'STATUS',
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error,
       metadata: { requestBody: req.body }
     });
@@ -144,7 +145,7 @@ export async function updateStatus(req: Request, res: Response): Promise<void> {
 export async function deleteStatus(req: Request, res: Response): Promise<void> {
   const startTime = process.hrtime();
   try {
-    const { id } = req.params;
+    const { id } = routeParams(req.params);
     const previousState = await getById(id);
     const status = await remove(id);
 
@@ -170,7 +171,7 @@ export async function deleteStatus(req: Request, res: Response): Promise<void> {
     logError(req, {
       action: 'DELETE_STATUS',
       resourceType: 'STATUS',
-      resourceId: req.params.id,
+      resourceId: routeParams(req.params).id,
       error
     });
     handleError(error, res);
