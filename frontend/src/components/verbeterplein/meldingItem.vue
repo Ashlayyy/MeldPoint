@@ -202,7 +202,7 @@
 
                         <v-col cols="12" md="6">
                           <!-- <div class="flex-grow-1"> -->
-                          <!-- <div class="text-h2  mb-5" :style="{ fontFamily: 'FreeSetDemiBold' }">intalAI</div> -->
+                          <!-- <div class="text-h2  mb-5" :style="{ fontFamily: 'FreeSetDemiBold' }">Intalligence AI</div> -->
                           <div class="d-flex flex-column mt-9 mb-5 gap-8">
                             <AIGenerator
                               :label="$t('verbeterplein.showItem.fields.summary')"

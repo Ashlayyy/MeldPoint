@@ -21,21 +21,18 @@ export const GetChangelogs = async (): Promise<ResponseData> => {
   }
 };
 
+const fallbackVersion = ((import.meta.env.PACKAGE_VERSION as string | undefined) || '1.1.0').replace(/^v/, '');
+
 export const GetVersion = async (): Promise<string> => {
   try {
     const apiUrl = '/changelogs/version';
     const response = await axios.get<{ latestVersion: string }>(apiUrl);
     if (response.data && typeof response.data.latestVersion === 'string') {
       return response.data.latestVersion.replace(/^v/, '');
-    } else {
-      throw new Error('API returned data in an unexpected format for /version. Expected { latestVersion: string }');
     }
+    console.warn('API returned data in an unexpected format for /changelogs/version. Using package version.');
   } catch (err) {
-    console.error('Error fetching version from API:', err);
-    if (err instanceof AxiosError) {
-      const errorMessage = (err.response?.data as any)?.message || err.message;
-      throw new Error(`Failed to fetch version: ${errorMessage} (Status: ${err.response?.status ?? 'N/A'})`);
-    }
-    throw new Error('An unexpected error occurred while fetching the version.');
+    console.error('Error fetching version from API, using package version:', err);
   }
+  return fallbackVersion;
 };

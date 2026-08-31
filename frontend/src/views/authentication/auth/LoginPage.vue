@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import Logo from '@/layouts/full/logo/LogoDark.vue';
 import AuthLogin from '../authForms/AuthLogin.vue';
 import PersistentAlert from '@/components/shared/PersistentAlert.vue';
@@ -56,7 +56,6 @@ backgrounds.value = getRandomItems(backgroundImages, 5);
 
 const appVersion = ref<string | null>(null);
 const versionLoading = ref<boolean>(true);
-const versionError = ref<string | null>(null);
 
 onMounted(async () => {
   versionLoading.value = true;
@@ -64,8 +63,7 @@ onMounted(async () => {
     appVersion.value = await GetVersion();
   } catch (err: any) {
     console.error('Failed to load app version:', err);
-    versionError.value = err.message || 'Could not load version';
-    appVersion.value = 'N/A';
+    appVersion.value = null;
   } finally {
     versionLoading.value = false;
   }
@@ -101,8 +99,8 @@ onMounted(async () => {
                     <!---Welcome Text-->
                     <v-row class="mb-6">
                       <v-col cols="12" class="text-center">
-                        <h2 class="welcome-text text-h3 font-weight-bold mb-2">Hi, Intalist</h2>
-                        <h4 class="text-subtitle-1 text-medium-emphasis">Login met je Intal-account</h4>
+                        <h2 class="welcome-text text-h3 font-weight-bold mb-2">Welkom</h2>
+                        <h4 class="text-subtitle-1 text-medium-emphasis">Login met je account</h4>
                       </v-col>
                     </v-row>
 
@@ -112,7 +110,6 @@ onMounted(async () => {
                     <!---Version Info-->
                     <div class="version-info">
                       <span v-if="versionLoading">Loading...</span>
-                      <span v-else-if="versionError">Error happened</span>
                       <span v-else-if="appVersion">v{{ appVersion }}</span>
                     </div>
                   </v-card-text>

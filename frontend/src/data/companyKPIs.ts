@@ -8,7 +8,7 @@ export const companyKPIs = [
     title: 'Continu verbeteren in DNA',
     value: 'continuous_improvement',
     category: 'Cultuur',
-    description: 'Intal is een showcase in continu verbeteren, dagelijks in het DNA van iedere Intalist'
+    description: 'De organisatie is een showcase in continu verbeteren, dagelijks in het DNA van iedere medewerker'
   },
   {
     title: 'Voorspelbare flowproductie',
@@ -33,7 +33,7 @@ export const companyKPIs = [
     category: 'Product'
   },
   {
-    title: '80% Brandwerende puien in Intal systemen',
+    title: '80% Brandwerende puien in de systemen',
     value: 'fire_resistant_doors',
     category: 'Product'
   },
@@ -58,7 +58,7 @@ export const companyKPIs = [
     title: 'Eigenaarschap & teamcultuur',
     value: 'ownership_culture',
     category: 'Cultuur',
-    description: 'Intalisten voelen zich eigenaar van Intal en hun team, communiceren in Wij, zijn Open, assertief en correct'
+    description: 'Medewerkers voelen zich eigenaar van de organisatie en hun team, communiceren in Wij, zijn Open, assertief en correct'
   },
   {
     title: 'Balans structuur en cultuur',
@@ -80,13 +80,13 @@ export const companyKPIs = [
     title: 'A-label status',
     value: 'a_label_status',
     category: 'Marketing',
-    description: 'Intal staat als A-label "top of mind"'
+    description: 'Het merk staat als A-label "top of mind"'
   },
   {
     title: 'Voorkeursmerk architecten',
     value: 'architect_preference',
     category: 'Marketing',
-    description: 'Architectenbureaus schrijven Intal voor'
+    description: 'Architectenbureaus schrijven het merk voor'
   },
   {
     title: 'Koploper circulaire profielsystemen',

@@ -1,7 +1,7 @@
 {
   "name": "meldpoint-backend",
   "version": "1.1.0",
-  "description": "The API For Intalligance",
+  "description": "The API for Intalligence / MeldPoint",
   "main": "dist/index.js",
   "scripts": {
     "test": "concurrently \"cross-env NODE_ENV=testing jest --detectOpenHandles\" \"npm:dev\"",

@@ -15,14 +15,12 @@ const sidebarMenu = shallowRef(sidebarItems);
 
 const appVersion = ref<string | null>(null);
 const versionLoading = ref<boolean>(true);
-const versionError = ref<string | null>(null);
 
 onMounted(async () => {
   try {
     appVersion.value = await GetVersion();
   } catch (err: any) {
     console.error('Failed to load app version for sidebar:', err);
-    versionError.value = err.message || 'Error';
   } finally {
     versionLoading.value = false;
   }
@@ -60,9 +58,8 @@ onMounted(async () => {
       </v-list>
       <div class="pa-4 text-center">
         <v-chip color="inputBorder" size="small" v-if="versionLoading"> Loading... </v-chip>
-        <v-chip color="error" size="small" v-else-if="versionError"> Error </v-chip>
         <router-link :to="{ name: 'changelog' }" class="text-decoration-none">
-          <v-chip color="inputBorder" size="small" v-if="appVersion"> v{{ appVersion }} </v-chip>
+          <v-chip color="inputBorder" size="small" v-else-if="appVersion"> v{{ appVersion }} </v-chip>
         </router-link>
       </div>
     </div>

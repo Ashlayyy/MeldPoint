@@ -77,8 +77,11 @@ axiosServices.interceptors.response.use(
   (error) => {
     const authStore = useAuthStore();
     if (error.response?.status === 401 || error.response?.status === 403) {
-      authStore.logout();
-      window.location.href = '/auth/login';
+      const onAuthPage = window.location.pathname.startsWith('/auth/');
+      if (!onAuthPage) {
+        authStore.logout();
+        window.location.href = '/auth/login';
+      }
     }
     return Promise.reject(error);
   }

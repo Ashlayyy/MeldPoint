@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation Intal",
+    "title": "API Documentation MeldPoint",
     "version": "1.0.0",
-    "description": "Complete API documentation for Intal system."
+    "description": "Complete API documentation for the Intalligence / MeldPoint system."
   },
   "servers": [
     {
       "url": "http://localhost:4000",
-      "description": "Intal Server"
+      "description": "MeldPoint Server"
     }
   ],
   "components": {

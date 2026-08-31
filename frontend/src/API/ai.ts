@@ -11,7 +11,7 @@ class ChatService {
       {
         role: 'system',
         content:
-          'Je bent een hulpverlener voor de Intal Verbeterplein applicatie. Antwoord in het Nederlands. Gebruik geen Engelse woorden.'
+          'Je bent een hulpverlener voor de Intalligence Verbeterplein applicatie. Antwoord in het Nederlands. Gebruik geen Engelse woorden.'
       },
       {
         role: 'user',

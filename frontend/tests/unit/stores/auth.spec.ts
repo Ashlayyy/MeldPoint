@@ -320,11 +320,11 @@ describe('Auth Store', () => {
       expect(result).toBe(true);
     });
 
-    it('should call logout and return false if GetCurrentUser fails', async () => {
+    it('should clear local session and return false if GetCurrentUser fails', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { router } = await import('@/router');
-      const { Logout } = await import('@/API/user'); // Need to check logout calls
+      const { Logout } = await import('@/API/user');
 
       const mockError = new Error('Failed to fetch user');
       vi.mocked(GetCurrentUser).mockRejectedValue(mockError);
@@ -336,21 +336,18 @@ describe('Auth Store', () => {
       expect(store.user).toBeNull();
       expect(store.permissions).toEqual([]);
       expect(GetCurrentUser).toHaveBeenCalledOnce();
-
-      // Check that logout logic was triggered
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
       expect(result).toBe(false);
     });
 
-    it('should call logout and return false if GetCurrentUser returns no data', async () => {
+    it('should clear local session and return false if GetCurrentUser returns no data', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { router } = await import('@/router');
       const { Logout } = await import('@/API/user');
 
-      const mockApiResponse = { data: null, status: 200 }; // Simulate API responding ok but with no user
+      const mockApiResponse = { data: null, status: 200 };
       vi.mocked(GetCurrentUser).mockResolvedValue(mockApiResponse);
 
       const result = await store.initializeAuth();
@@ -360,11 +357,8 @@ describe('Auth Store', () => {
       expect(store.user).toBeNull();
       expect(store.permissions).toEqual([]);
       expect(GetCurrentUser).toHaveBeenCalledOnce();
-
-      // Check that logout logic was triggered
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
       expect(result).toBe(false);
     });
   });
@@ -396,7 +390,7 @@ describe('Auth Store', () => {
       expect(router.push).not.toHaveBeenCalled();
     });
 
-    it('should call logout if GetCurrentUser returns null data', async () => {
+    it('should clear local session if GetCurrentUser returns null data', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { Logout } = await import('@/API/user');
@@ -410,18 +404,16 @@ describe('Auth Store', () => {
       expect(result).toBe(false);
       expect(store.isAuthenticated).toBe(false);
       expect(store.user).toBeNull();
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
     });
 
-    it('should call logout if GetCurrentUser returns non-200 status', async () => {
+    it('should clear local session if GetCurrentUser returns non-200 status', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { Logout } = await import('@/API/user');
       const { router } = await import('@/router');
 
-      // Important: Mock the resolved value, not a rejection for non-200 status check
       const mockApiResponse = { data: { id: 'user-fail' }, status: 404 };
       vi.mocked(GetCurrentUser).mockResolvedValue(mockApiResponse);
 
@@ -430,12 +422,11 @@ describe('Auth Store', () => {
       expect(result).toBe(false);
       expect(store.isAuthenticated).toBe(false);
       expect(store.user).toBeNull();
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
     });
 
-    it('should call logout and notify on API error', async () => {
+    it('should clear local session and notify on API error', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { Logout } = await import('@/API/user');
@@ -449,9 +440,8 @@ describe('Auth Store', () => {
       expect(result).toBe(false);
       expect(store.isAuthenticated).toBe(false);
       expect(store.user).toBeNull();
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
       expect(mockNotificationError).toHaveBeenCalledOnce();
       expect(mockNotificationError).toHaveBeenCalledWith({ message: expect.stringContaining('errors.check_auth_failed') });
     });
@@ -481,7 +471,7 @@ describe('Auth Store', () => {
       expect(Logout).not.toHaveBeenCalled();
     });
 
-    it('should call logout if GetCurrentUser returns non-200 status', async () => {
+    it('should clear local session if GetCurrentUser returns non-200 status', async () => {
       const store = useAuthStore();
       const { GetCurrentUser } = await import('@/API/user');
       const { Logout } = await import('@/API/user');
@@ -494,9 +484,8 @@ describe('Auth Store', () => {
 
       expect(store.isAuthenticated).toBe(false);
       expect(store.user).toBeNull();
-      expect(Logout).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledOnce();
-      expect(router.push).toHaveBeenCalledWith('/auth/login');
+      expect(Logout).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
     });
   });
 

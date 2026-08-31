@@ -175,7 +175,7 @@ export default class GitHubWebhookService {
 
         const isDev = process.env.NODE_ENV === 'development';
         const enableDevEmail = process.env.ENABLE_DEV_EMAIL === 'true';
-        const devEmail = process.env.DEV_EMAIL || 'intalligence@intal.nl';
+        const devEmail = process.env.DEV_EMAIL || 'dev@intalligence.nl';
         const isDevMode = isDev || enableDevEmail;
 
         // Send to the email from the issue content

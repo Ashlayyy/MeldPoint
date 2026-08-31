@@ -40,13 +40,21 @@ export const useAuthStore = defineStore('auth', {
       });
     },
 
+    clearLocalSession() {
+      this.user = null;
+      this.isAuthenticated = false;
+      this.permissions = [];
+      this.csrfToken = null;
+      this.currentDevice = null;
+    },
+
     async initializeAuth() {
       this.isLoading = true;
       try {
         const user = await this.getCurrentUser();
 
         if (!user || !user.data) {
-          this.logout();
+          this.clearLocalSession();
           return false;
         }
 
@@ -56,7 +64,7 @@ export const useAuthStore = defineStore('auth', {
         return true;
       } catch (error) {
         console.error('Error initializing auth:', error);
-        this.logout();
+        this.clearLocalSession();
         return false;
       } finally {
         this.isLoading = false;
@@ -98,12 +106,12 @@ export const useAuthStore = defineStore('auth', {
         const response = await this.getCurrentUser();
 
         if (response.data === null) {
-          this.logout();
+          this.clearLocalSession();
           return false;
         }
 
         if (response.status !== 200 || !response.data) {
-          this.logout();
+          this.clearLocalSession();
           return false;
         }
 
@@ -117,7 +125,7 @@ export const useAuthStore = defineStore('auth', {
         notification.error({
           message: t('errors.check_auth_failed', { error: error || 'Check auth failed' })
         });
-        this.logout();
+        this.clearLocalSession();
         return false;
       }
     },
@@ -125,7 +133,7 @@ export const useAuthStore = defineStore('auth', {
     async setUser() {
       const response = await this.getCurrentUser();
       if (response.status !== 200) {
-        this.logout();
+        this.clearLocalSession();
         return false;
       }
 
@@ -136,26 +144,11 @@ export const useAuthStore = defineStore('auth', {
 
     async logout() {
       try {
-        // Call server-side logout endpoint
         await Logout();
-
-        // Clear local state
-        this.user = null;
-        this.isAuthenticated = false;
-        this.permissions = [];
-        this.csrfToken = null;
-        this.currentDevice = null;
-
-        // Redirect to login page
-        router.push('/auth/login');
       } catch (error) {
         console.error('Logout error:', error);
-        // Even if server logout fails, clear local state
-        this.user = null;
-        this.isAuthenticated = false;
-        this.permissions = [];
-        this.csrfToken = null;
-        this.currentDevice = null;
+      } finally {
+        this.clearLocalSession();
         router.push('/auth/login');
       }
     },

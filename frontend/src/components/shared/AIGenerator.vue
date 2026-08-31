@@ -6,7 +6,7 @@
         <div class="star-container">
           <v-icon icon="mdi-star-four-points" size="x-small" class="ml-0 mb-2 gemini-star" :class="{ 'is-generating': isGenerating }" />
           <div class="generating-pill star-tooltip">
-            <span class="generating-text">intal<span style="color: rgb(var(--v-theme-secondary))">AI</span></span>
+            <span class="generating-text">Intalligence<span style="color: rgb(var(--v-theme-secondary))"> AI</span></span>
             <div class="sparkle"></div>
           </div>
         </div>
@@ -77,7 +77,7 @@
         <div class="star-container mr-2">
           <v-icon icon="mdi-star-four-points" size="x-small" class="gemini-star" :class="{ 'is-generating': isGenerating }" />
           <div class="generating-pill star-tooltip">
-            <span class="generating-text">intalAI</span>
+            <span class="generating-text">Intalligence AI</span>
             <div class="sparkle"></div>
           </div>
         </div>

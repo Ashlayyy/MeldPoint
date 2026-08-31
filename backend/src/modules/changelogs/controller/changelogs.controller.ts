@@ -64,10 +64,48 @@ function linkifyUrls(text: string): string {
   });
 }
 
-const changelogsDir = path.join(__dirname, '..', '..', '..', '..', 'changelogs');
+function getPackageVersion(): string {
+  try {
+    const pkgPath = path.join(process.cwd(), 'package.json');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    const pkg = require(pkgPath);
+    return typeof pkg.version === 'string' && pkg.version.length > 0 ? pkg.version : '1.1.0';
+  } catch {
+    return '1.1.0';
+  }
+}
+
+async function resolveChangelogsDir(): Promise<string | null> {
+  const candidates = [
+    path.join(process.cwd(), 'changelogs'),
+    path.join(process.cwd(), 'dist', 'changelogs'),
+    path.join(__dirname, '..', '..', '..', '..', 'changelogs'),
+    path.join(__dirname, '..', '..', '..', '..', '..', 'changelogs')
+  ];
+
+  const uniqueCandidates = [...new Set(candidates)];
+  const results = await Promise.all(
+    uniqueCandidates.map(async (dir) => {
+      try {
+        await fs.access(dir);
+        return dir;
+      } catch {
+        return null;
+      }
+    })
+  );
+
+  return results.find((dir): dir is string => dir !== null) ?? null;
+}
 
 async function readLocalChangelogs(): Promise<ChangelogEntry[]> {
   let localChangelogs: ChangelogEntry[] = [];
+  const changelogsDir = await resolveChangelogsDir();
+  if (!changelogsDir) {
+    logger.warn('Changelogs-Controller: Local changelogs directory not found in any known location.');
+    return localChangelogs;
+  }
+
   try {
     const files = await fs.readdir(changelogsDir);
     const jsonFiles = files.filter((file) => path.extname(file) === '.json');
@@ -249,7 +287,7 @@ export const getLastVersion: RequestHandler = async (req, res) => {
   // Cache invalid or expired, proceed to fetch
   logger.info('Changelogs-Controller(getLastVersion): Cache miss or expired, fetching from GitHub.');
   let latestVersionString: string | null = null;
-  let source: 'GitHub' | 'Local' | 'None' = 'None';
+  let source: 'GitHub' | 'Local' | 'Package' | 'None' = 'None';
 
   try {
     // Attempt to fetch from GitHub first
@@ -318,8 +356,26 @@ export const getLastVersion: RequestHandler = async (req, res) => {
         }
       });
     } else {
-      res.status(404).json({ error: 'No published version found from GitHub or local files.' });
-      logger.warn('Changelogs-Controller(getLastVersion): No published version could be determined from any source.');
+      latestVersionString = getPackageVersion();
+      source = 'Package';
+      cachedLatestVersion = {
+        version: latestVersionString,
+        expires: Date.now() + CACHE_DURATION_MS
+      };
+      logger.warn(
+        `Changelogs-Controller(getLastVersion): No published version found, falling back to package.json (${latestVersionString}).`
+      );
+      res.json({ latestVersion: latestVersionString });
+
+      logSuccess(req, {
+        action: 'GET_LAST_VERSION',
+        resourceType: ResourceType.CHANGELOGS,
+        metadata: {
+          source,
+          version: latestVersionString,
+          executionTime: Number((process.hrtime(startTime)[0] * 1e9 + process.hrtime(startTime)[1] / 1e6).toFixed(2))
+        }
+      });
     }
   } catch (err) {
     const error = err instanceof Error ? err : new Error('Unknown error occurred during last version retrieval');

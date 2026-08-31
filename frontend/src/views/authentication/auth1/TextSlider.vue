@@ -9,7 +9,7 @@ type slideType = {
 const slides = ref<slideType[]>([
   {
     title: 'GROEI',
-    description: 'Bij Intal kan alles altijd beter!'
+    description: 'Bij Intalligence kan alles altijd beter!'
   },
   {
     title: 'JIJ',
@@ -17,7 +17,7 @@ const slides = ref<slideType[]>([
   },
   {
     title: 'WIJ',
-    description: 'Intal is een platte organisatie, wij denken en handelen in de wij-vorm.'
+    description: 'Wij zijn een platte organisatie, wij denken en handelen in de wij-vorm.'
   }
 ]);
 </script>

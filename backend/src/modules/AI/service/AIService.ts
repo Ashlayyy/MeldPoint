@@ -3,7 +3,7 @@ import config from '../../../config';
 import logger from '../../../helpers/loggerInstance';
 import { Message } from '../types';
 
-const SYSTEM_MESSAGE = 'You are a helpful assistant for the Intal Verbeterplein application.';
+const SYSTEM_MESSAGE = 'You are a helpful assistant for the Intalligence Verbeterplein application.';
 const BASE_URL = 'https://api.openai.com/v1';
 
 const validateMessages = (messages: Message[]): void => {

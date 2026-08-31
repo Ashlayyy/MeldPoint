@@ -7,7 +7,7 @@
     "dev": "vite --mode development",
     "dev_host": "vite --host --mode development",
     "build": "vite build --mode production",
-    "build_intal": "vite build --mode staging",
+    "build_staging": "vite build --mode staging",
     "preview": "vite preview --port 5050",
     "typecheck": "tsc",
     "lint": "eslint . -c .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-pattern .gitignore",

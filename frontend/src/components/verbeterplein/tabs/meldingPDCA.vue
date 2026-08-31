@@ -1591,7 +1591,7 @@ watch(
                     <div v-bind="props" class="pill-content">
                       <span class="generating-text">
                         <span v-if="isGenerating" class="ai-text" style="color: rgb(var(--v-theme-secondary))">Genereren</span>
-                        <span v-if="!isGenerating" class="ai-text" style="color: rgb(var(--v-theme-secondary))">IntalAI</span>
+                        <span v-if="!isGenerating" class="ai-text" style="color: rgb(var(--v-theme-secondary))">Intalligence AI</span>
                       </span>
                       <div class="sparkle"></div>
                     </div>

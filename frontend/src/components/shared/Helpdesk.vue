@@ -461,14 +461,19 @@ const submitFeedback = async () => {
     ? window.location.href.replace('/overzicht', `/melding/${selectedFormNumber.value}`)
     : window.location.href;
 
-  const version = await GetVersion();
+  let versionLabel = 'onbekend';
+  try {
+    versionLabel = await GetVersion();
+  } catch (versionError) {
+    console.error('Failed to load version for feedback:', versionError);
+  }
 
   try {
     let message = [
       'Melding vanaf Intalligence \n\n',
       `**Melder**:       ${authStore.user.Name}`,
       `**Email**:        ${authStore.user.Email}`,
-      `**Versie**:       ${version.data.latestVersion}`,
+      `**Versie**:       ${versionLabel}`,
       `**URL**:          ${window.location.href}`,
       `**Onderwerp**:    ${form.subject}\n\n`,
       `**Date**:         ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })} - ${new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}`,
