@@ -57,9 +57,9 @@ onMounted(async () => {
         </template>
       </v-list>
       <div class="pa-4 text-center">
-        <v-chip color="inputBorder" size="small" v-if="versionLoading"> Loading... </v-chip>
-        <router-link :to="{ name: 'changelog' }" class="text-decoration-none">
-          <v-chip color="inputBorder" size="small" v-else-if="appVersion"> v{{ appVersion }} </v-chip>
+        <v-chip v-if="versionLoading" color="inputBorder" size="small"> Loading... </v-chip>
+        <router-link v-else-if="appVersion" :to="{ name: 'changelog' }" class="text-decoration-none">
+          <v-chip color="inputBorder" size="small"> v{{ appVersion }} </v-chip>
         </router-link>
       </div>
     </div>
